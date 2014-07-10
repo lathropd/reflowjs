@@ -100,7 +100,7 @@ p {
 }
 
 
-#mugshotCaption { padding-top: 20px;}
+#mugshotCaption { padding-top: 0px;}
 
 
 
@@ -155,12 +155,16 @@ p {
 
 .box.tall img {height: 200px;}
 
+#mugshotCaption { padding-top: 125px;}
+
 
 @media (min-width: 960px) {
 	#mugshotCaption { padding-top: 0px;}
 	#mugshotPhoto {padding-bottom: 10px;}
 	#mugshot, #bigMultimedia { height: 450px; }
 	#bigHeadline { font-size: 4.5em;}
+	#mugshotCaption { padding-top: 0px;}
+
 
 }
 
@@ -185,7 +189,7 @@ p {
 @media (min-width: 624px) and (max-width: 767px) {
 	.reflow, .box.w3col { width: 622px; }
 	#mugshot, .box.w2col { width: 622px; }
-
+	
 	.box.w1col { width: 300px; }
 
  
@@ -203,12 +207,13 @@ p {
 
 
 @media  (min-width: 484px) and (max-width: 599px) {
-	#mugshotCaption { padding-top: 0px;}
-	#mugshotPhoto {padding-bottom: 10px;}
+	#mugshotCaption { padding-top: 0px; }
+	#mugshotPhoto {padding-bottom: 10px; }
 	.reflow, .box.w3col { width: 480px; }
-	#mugshot, .box.w2col { width: 480px; }
+	 .box.w2col { width: 480px; }
+	 #mugshot { width: 300px; }
 
-	.box.w1col { margin-left: 70px; margin-right: 70px;}
+	.box.w1col, #mugshot { margin-left: 70px; margin-right: 70px;}
 	#bigHeadline { font-size: 3.5em;}
 
 
