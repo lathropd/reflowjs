@@ -6,52 +6,47 @@
 
 	<script src="packery.pkgd.min.js"></script>
 	<script src="miso.ds.deps.ie.min.0.4.1.js"></script>
+	<script src="marked.js"></script>
+
 
 
 	
 	<script type="text/javascript">
-	
-	
+		var obit_name = "President&nbsp;Andrew Jackson";
+		var pckry = {};
+
 		var ds = new Miso.Dataset({
 		  importer : Miso.Dataset.Importers.GoogleSpreadsheet,
 		  parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
-		  key : "0Asnl0xYK7V16dFpFVmZUUy1taXdFbUJGdGtVdFBXbFE",
+		  key : "1AMZOgPH3JQfXafxjmp6J9IUPvDV8IO-cnWURr-u52L8",
 		  worksheet : "1"
 		});
 
 		ds.fetch({ 
 		  success : function() {
-		  	jacksondata = jacksondata;
-		  	init(jacksondata);
-		  	pack();
-			
+		  	obitdata = ds.rows(function(row) {return row.mugshotName != "d";}).toJSON()[0];
+		  	init(obitdata);
+		  	pckry = new Packery( '#content', {
+			  "column": 320,
+			  "itemSelector": ".box", 
+			  "gutter": 20 ,
+			  //"rowHeight": 20,
+			  "transitionDuration": "0.4s",	});
+			document.body.style.display="";
+			pack();
+			var i = setInterval(pack, 100);
+			setTimeout(function(){clearInterval(i)},5000);
+
 		  },
 		  error : function() {
 			console.log("Google data didn't load.");
 		  }
 		});
 		
-		var pckry = {};
-		
-		window.onload=function(){
-			
-			pckry = new Packery( '#content', {
-			  "column": 320,
-			  "itemSelector": ".box", 
-			  "gutter": 20 ,
-			  "rowHeight": 10,
-			  "transitionDuration": "0.4s",	});
-			//jacksondata = defaultdata;
-			//init(jacksondata);
-			
-			var i = setInterval(pack, 100);
-			setTimeout(function(){clearInterval(i)},2000);
 
-
-		};
 		
 	
-		var jacksondata = {
+		var obitdata = {
 			mugshotName: "President&nbsp;Andrew Jackson",
 			mugshotDates: "1767&nbsp;-&nbsp;1845",
 			mugshotPhoto: "jackson.jpg",
@@ -62,7 +57,7 @@
 			boxOne:"<h2>\"Andrew Jackson engineered a genocide. He shouldn’t be on our currency.\"<br>--<a href='http://www.pressherald.com/2014/03/23/andrew_jackson_isn_t_worth_the_paper_he_s_printed_on_/'>Jillian Keenan</a></h2>",
 			boxTwo: "<p>JACKSON, Andrew, a Representative and a Senator from Tennessee and 7th President of the United States; born on March 15, 1767; in the Waxhaw Settlement in South Carolina; attended an old-field school; though just a boy, participated in the battle of Hanging Rock during the Revolution, captured by the British and imprisoned; worked for a time in a saddler’s shop and afterward taught school;",
 			boxThree: "<img src='staticmap.png'><h6>The Hermitage, Jackson's estate</h6>",
-			//boxFour: "<img src='staticmap.png'><h6>The Hermitage, Jackson's estate</h6>",
+			boxFour: "",
 			boxFive: "",
 			boxSix: "<p>Jackson is the founder of the Democratic Party. He is best known for bringing the country through the 1832/1833 Nullification Crisis. He was controversial in his time, and his policy of 'Indian Removal' led to genocide against eastern Native American tribes. Despite that he remains a revered figure, particularly among Democrats, with his face on the $20 bill.</p>",
 			boxSeven: "<iframe height='900' src='http://embed.contagiousmedia.com/embed/sub/the-new-york-times-innovation-report-n5mfds-4sov?uri=the-new-york-times-innovation-report-n5mfds-4sov&cb=1404601428' frameborder=0></iframe>",
@@ -98,14 +93,16 @@
 		
 		
 		function swap(id, content) {
+			
 			document.getElementById(id).innerHTML=content;
 			//new_height = document.getElementById('inner'+id).clientHeight;
 			//document.getElementById(id).style.height = new_height + "px";
 			//pckry
 					
 		}
+		
 		function insert(id, content) {
-			document.getElementById(id).innerHTML="<div>"+content+"</div>";
+			document.getElementById(id).innerHTML="<div>"+format(content)+"</div>";
 			//new_height = document.getElementById('inner'+id).clientHeight;
 			//document.getElementById(id).style.height = new_height + "px";
 			//pckry
@@ -115,15 +112,13 @@
 		
 		
 		var boxen = ['bigMultimedia','boxOne','boxTwo','boxThree','boxFour','boxFive','boxSix',
-						'boxSeven','boxEight','boxNine','boxTen'];
-		var strings = ['bigHeadline', "mugshotName", "mugshotDates","mugshotPhoto"];
+						'boxSeven','boxEight','boxNine','boxTen',"mugshotPhoto",'mugshotBio',];
+		var strings = ['bigHeadline', "mugshotName", "mugshotDates",];
 		
 		function swapLoop(id_list, data, fn) {
-			var isImage = /\.(jpg|png|gif)$/;
 			for (i=0; i < id_list.length; i++) {
 				val = id_list[i];
-				if (data.hasOwnProperty(val)&data[val]!=""){
-					if (isImage.test(data[val])) { data[val] = "<img src='"+data[val]+"'>";}
+				if (data.hasOwnProperty(val)&data[val]!=""&data[val]!=null){
 					//console.log(data[val]);
 					fn(val, data[val]);
 				} else {
@@ -166,7 +161,6 @@
 			window.onresize = function () {bgImage(pagedata)};
 			swapLoop(strings, pagedata, swap);
 			swapLoop(boxen, pagedata, insert);
-			var mugImageHTML = "<img src='" + pagedata.mugshotPhoto + "'>";
 			img = new Image();
 			if (pagedata.hasOwnProperty('bigImage')&pagedata.bigImage!="") {
 		
@@ -189,13 +183,41 @@
 		function pack() {
 			pckry.layout();
 			//console.log('p');
-		};
+		}
+		
+		
+		
+		function format(text) {
+			console.log(text);
+			formatted = text;
+			var isImage = /^\S*\.(jpg|png|gif)$/;
+			var isBrightcove = /http:\/\/bcove.me.*/;
+			var isYouTube = /http:\/\/(youtu.be)|(youtube.com).*/;
+			var isLink = /^(http)?\:\/\/\S+\.\S+\s*$/;
+			var isHTML = /^\<.*\>$/;
+			if (isImage.test(text)) {
+				formatted = "<img src='"+text+"'>";
+			} else if (isBrightcove.test(text)) {
+				// something
+			} else if (isYouTube.test(text)) {
+				//something else
+			} else if (isLink.test(text)) {
+				// iframe it
+			} else if (isHTML.test(text)) {
+				formatted = text; // leave it as is
+			} else {
+				formatted = marked(text);
+			}
+			return formatted;
+		}
 
+	</script>
+	<script id="callback" type="text/javascript">
 	</script>
 
  
 </head>
-<body>
+<body style="display:none;">
 	<div id="bigPicture" class="fullwidth tall"><div><h1 id="bigHeadline"></h1></div></div>
 	<div id="content" class="reflow">
 			<div class="box" id="mugshot">
@@ -203,7 +225,7 @@
 				<div id="mugshotCaption">
 					<h2 id="mugshotName"></h2>
 					<h3 id="mugshotDates"></h3>
-					<h3 id="mughshotHed"></h3>
+					<div class="indentLeft" id="mugshotBio"></div>
 				</div>
 			</div>
 			<div class="box w2col" id="bigMultimedia"></div>

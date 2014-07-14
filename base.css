@@ -39,17 +39,13 @@ p {
           box-sizing: border-box;
 }
  
-/* Attribute selector */
-[class*='bit-'] {
-  float: left;
-  padding: 10px;
+
+ul, ol {
+	list-style-position:inside;
+	list-style-type: square;
+	margin-left: 3px;
 }
- 
-/* Floats last ".bit-" to the right */
-[class*='bit-']:last-of-type {
-  padding-right: 10px;
-  float: right;
-}
+
  
 /* Clearfix */
 .reflow:after {
@@ -70,11 +66,11 @@ p {
 
 
 .box {
-	border: 1px solid #eee;
+	border: 1px solid #f4f4f4;
 	/* min-height: 200px; */
 	float: left;
 	background-color: white;
-	margin-bottom: 10px;
+	/*margin-bottom: 0px;*/
 
 }
 
@@ -88,6 +84,15 @@ p {
 	padding: 20px;
 }
 
+div.indentLeft { padding-right: 0px; padding-top: 0px; padding-left: 5px;  width: 100%;}
+div.indentLeft div {padding:0px; }
+
+
+div#mugshotPhoto div {
+  margin: 0;
+  padding: 0;
+}
+
 #mugshotPhoto {
 	float: left;
 }
@@ -98,10 +103,6 @@ p {
 
 
 }
-
-
-#mugshotCaption { padding-top: 0px;}
-
 
 
 #bigPicture {
@@ -155,13 +156,16 @@ p {
 
 .box.tall img {height: 200px;}
 
-#mugshotCaption { padding-top: 125px;}
+#mugshotCaption { padding-top: 75px;}
 
 
 @media (min-width: 960px) {
 	#mugshotCaption { padding-top: 0px;}
 	#mugshotPhoto {padding-bottom: 10px;}
-	#mugshot, #bigMultimedia { height: 450px; }
+	#mugshotPhoto {	max-width: 300px; }
+
+	#bigMultimedia { height: 450px; }
+	#mugshot { min-height: 450px; }
 	#bigHeadline { font-size: 4.5em;}
 	#mugshotCaption { padding-top: 0px;}
 
@@ -207,13 +211,13 @@ p {
 
 
 @media  (min-width: 484px) and (max-width: 599px) {
-	#mugshotCaption { padding-top: 0px; }
-	#mugshotPhoto {padding-bottom: 10px; }
-	.reflow, .box.w3col { width: 480px; }
+	#mugshotCaption { padding-top: 0px; margin-left: 15px; margin-right: 15px; }
+	#mugshotPhoto {padding-bottom: 10px;  }
+	#mugshotPhoto div img {max-width: 480px;}
+	.reflow, .box.w3col,  #mugshot  { width: 480px; }
 	 .box.w2col { width: 480px; }
-	 #mugshot { width: 300px; }
-
-	.box.w1col, #mugshot { margin-left: 70px; margin-right: 70px;}
+	
+	.box.w1col { margin-left: 70px; margin-right: 70px;}
 	#bigHeadline { font-size: 3.5em;}
 
 
