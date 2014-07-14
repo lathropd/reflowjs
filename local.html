@@ -169,7 +169,8 @@
 
 			img = new Image();
 			if (pagedata.hasOwnProperty('bigImage')&pagedata.bigImage!="") {
-		
+				bigDiv =  document.getElementById('bigPicture');
+				bigDiv.style.backgroundImage = 'url('+pagedata.bigImage+')';
 				img.onload = function () {bgImage(pagedata)};
 				img.src = pagedata.bigImage;
 				document.getElementById('bigPicture').innerHTML = "<div>" + document.getElementById('bigPicture').innerHTML + "</div>";
