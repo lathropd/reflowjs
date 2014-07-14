@@ -165,16 +165,17 @@
 		}
 		
 		function init(pagedata) {
-			window.onresize = function () {bgImage(pagedata)};
-			swapLoop(strings, pagedata, swap);
-			swapLoop(boxen, pagedata, insert);
+		
+
 			img = new Image();
 			if (pagedata.hasOwnProperty('bigImage')&pagedata.bigImage!="") {
 		
 				img.onload = function () {bgImage(pagedata)};
 				img.src = pagedata.bigImage;
 				document.getElementById('bigPicture').innerHTML = "<div>" + document.getElementById('bigPicture').innerHTML + "</div>";
-
+			window.onresize = function () {bgImage(pagedata)};
+			swapLoop(strings, pagedata, swap);
+			swapLoop(boxen, pagedata, insert);
 			} else {
 				
 			}
