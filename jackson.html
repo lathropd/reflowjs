@@ -5,19 +5,44 @@
 	<link rel="stylesheet" type="text/css" href="base.css">
 
 	<script src="packery.pkgd.min.js"></script>
+	<script src="miso.ds.deps.ie.min.0.4.1.js"></script>
+
+
 	
 	<script type="text/javascript">
+	
+	
+		var ds = new Miso.Dataset({
+		  importer : Miso.Dataset.Importers.GoogleSpreadsheet,
+		  parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
+		  key : "0Asnl0xYK7V16dFpFVmZUUy1taXdFbUJGdGtVdFBXbFE",
+		  worksheet : "1"
+		});
+
+		ds.fetch({ 
+		  success : function() {
+		  	jacksondata = jacksondata;
+		  	init(jacksondata);
+		  	pack();
+			
+		  },
+		  error : function() {
+			console.log("Google data didn't load.");
+		  }
+		});
 		
 		var pckry = {};
 		
 		window.onload=function(){
+			
 			pckry = new Packery( '#content', {
 			  "column": 320,
 			  "itemSelector": ".box", 
 			  "gutter": 20 ,
 			  "rowHeight": 10,
 			  "transitionDuration": "0.4s",	});
-			init();
+			//jacksondata = defaultdata;
+			//init(jacksondata);
 			
 			var i = setInterval(pack, 100);
 			setTimeout(function(){clearInterval(i)},2000);
@@ -25,9 +50,8 @@
 
 		};
 		
-
 	
-		pagedata = {
+		var jacksondata = {
 			mugshotName: "President&nbsp;Andrew Jackson",
 			mugshotDates: "1767&nbsp;-&nbsp;1845",
 			mugshotPhoto: "jackson.jpg",
@@ -49,6 +73,27 @@
 
 
 			}
+
+		var defaultdata = {
+			mugshotName: "",
+			mugshotDates: "",
+			mugshotPhoto: "",
+			bigMultimedia: '',
+			bigImage: "",
+			bigHeadline: "",
+			bio: "",
+			boxOne:"",
+			boxTwo: "",
+			boxThree: "", 
+			boxFour: "",
+			boxFive: "",
+			boxSix: "",
+			boxSeven: "",
+			boxSeven: "",
+			boxEight: "",
+			boxNine: "",
+			boxTen: "",
+		}
 		
 		
 		
@@ -91,7 +136,7 @@
 
 
 
-		function bgImage () {
+		function bgImage(pagedata) {
 			if (img.src) {
 				bigDiv =  document.getElementById('bigPicture');
 				bigDiv.style.backgroundImage = 'url('+pagedata.bigImage+')';
@@ -117,15 +162,15 @@
 			}
 		}
 		
-		function init() {
-			window.onresize = bgImage;
+		function init(pagedata) {
+			window.onresize = function () {bgImage(pagedata)};
 			swapLoop(strings, pagedata, swap);
 			swapLoop(boxen, pagedata, insert);
 			var mugImageHTML = "<img src='" + pagedata.mugshotPhoto + "'>";
 			img = new Image();
 			if (pagedata.hasOwnProperty('bigImage')&pagedata.bigImage!="") {
 		
-				img.onload = bgImage;
+				img.onload = function () {bgImage(pagedata)};
 				img.src = pagedata.bigImage;
 				document.getElementById('bigPicture').innerHTML = "<div>" + document.getElementById('bigPicture').innerHTML + "</div>";
 
@@ -151,7 +196,7 @@
  
 </head>
 <body>
-	<div id="bigPicture" class="fullwidth tall"><div><h1 id="bigHeadline">Headline</h1></div></div>
+	<div id="bigPicture" class="fullwidth tall"><div><h1 id="bigHeadline"></h1></div></div>
 	<div id="content" class="reflow">
 			<div class="box" id="mugshot">
 				<div id="mugshotPhoto"></div>
@@ -161,19 +206,19 @@
 					<h3 id="mughshotHed"></h3>
 				</div>
 			</div>
-			<div class="box w2col" id="bigMultimedia">Big MULTIMEDIA<br>5-col</div>
-			<div class="box w2col" id="boxOne">boxOne<br>2-col</div>	
+			<div class="box w2col" id="bigMultimedia"></div>
+			<div class="box w2col" id="boxOne"></div>	
 
-			<div class="box w1col" id="boxTwo">boxTwo<br>1-col</div>
-			<div class="box w1col" id="boxThree">boxThree<br>1-col</div>
-			<div class="box w1col" id="boxFour">boxFour<br>1-col</div>
-			<div class="box w1col" id="boxFive">boxFive<br>1-col</div>
+			<div class="box w1col" id="boxTwo"></div>
+			<div class="box w1col" id="boxThree"></div>
+			<div class="box w1col" id="boxFour"></div>
+			<div class="box w1col" id="boxFive"></div>
 
-			<div class="box w2col" id="boxSix">boxSix<br>2-col</div>
-			<div class="box w1col" id="boxSeven">boxSeven<br>1col</div>
-		 	<div class="box w1col" id="boxEight">boxEight<br>1-col</div>
-			<div class="box w1col" id="boxNine">boxNine<br>1-col</div>
-			<div class="box w3col" id="boxTen">BoxTen<br>3-col</div>
+			<div class="box w2col" id="boxSix"></div>
+			<div class="box w1col" id="boxSeven"></div>
+		 	<div class="box w1col" id="boxEight"></div>
+			<div class="box w1col" id="boxNine"></div>
+			<div class="box w3col" id="boxTen"></div>
 
 
 			
