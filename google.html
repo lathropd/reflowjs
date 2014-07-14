@@ -18,11 +18,11 @@
 
 		var ds = new Miso.Dataset({
 		  //comment out importer to use a local file
-		  importer : Miso.Dataset.Importers.GoogleSpreadsheet,
+		  //importer : Miso.Dataset.Importers.GoogleSpreadsheet,
 	
 		  //change url to correct local file name
 		  //comment out url to use google spreadsheets
-		  //url: 'curl.jsonp',
+		  url: 'curl.jsonp',
 		  jsonp: true,
 		  parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
 		  key : "1AMZOgPH3JQfXafxjmp6J9IUPvDV8IO-cnWURr-u52L8",
@@ -39,7 +39,6 @@
 			  "gutter": 20 ,
 			  //"rowHeight": 20,
 			  "transitionDuration": "0.4s",	});
-			document.body.style.display="";
 			pack();
 			var i = setInterval(pack, 100);
 			setTimeout(function(){clearInterval(i)},5000);
@@ -169,13 +168,16 @@
 
 			img = new Image();
 			if (pagedata.hasOwnProperty('bigImage')&pagedata.bigImage!="") {
-		
+				bigDiv =  document.getElementById('bigPicture');
+				bigDiv.style.backgroundImage = 'url('+pagedata.bigImage+')';
 				img.onload = function () {bgImage(pagedata)};
 				img.src = pagedata.bigImage;
 				document.getElementById('bigPicture').innerHTML = "<div>" + document.getElementById('bigPicture').innerHTML + "</div>";
+			
 			window.onresize = function () {bgImage(pagedata)};
 			swapLoop(strings, pagedata, swap);
 			swapLoop(boxen, pagedata, insert);
+			document.body.style.display="";
 			} else {
 				
 			}
