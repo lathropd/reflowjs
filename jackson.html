@@ -12,11 +12,18 @@
 
 	
 	<script type="text/javascript">
-		var obit_name = "President&nbsp;Andrew Jackson";
+		var obitName = new RegExp(getParameterByName("name"),'i');
 		var pckry = {};
+		
 
 		var ds = new Miso.Dataset({
+		  //comment out importer to use a local file
 		  importer : Miso.Dataset.Importers.GoogleSpreadsheet,
+	
+		  //change url to correct local file name
+		  //comment out url to use google spreadsheets
+		  //url: 'curl.jsonp',
+		  jsonp: true,
 		  parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
 		  key : "1AMZOgPH3JQfXafxjmp6J9IUPvDV8IO-cnWURr-u52L8",
 		  worksheet : "1"
@@ -24,7 +31,7 @@
 
 		ds.fetch({ 
 		  success : function() {
-		  	obitdata = ds.rows(function(row) {return row.mugshotName != "d";}).toJSON()[0];
+		  	obitdata = ds.rows(function(row) {return obitName.test(row.mugshotName)}).toJSON()[0];
 		  	init(obitdata);
 		  	pckry = new Packery( '#content', {
 			  "column": 320,
@@ -211,9 +218,23 @@
 			return formatted;
 		}
 
+
+		/* parameter getter from james padolsey                                        */
+		/* http://james.padolsey.com/javascript/bujs-1-getparameterbyname/             */
+		function getParameterByName(name) {
+ 
+			var match = RegExp('[?&]' + name + '=([^&]*)')
+                    .exec(window.location.search);
+ 
+			return match ?
+				decodeURIComponent(match[1].replace(/\+/g, ' '))
+				: null;
+ 
+		}
+
+
 	</script>
-	<script id="callback" type="text/javascript">
-	</script>
+
 
  
 </head>
