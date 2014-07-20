@@ -7,13 +7,23 @@
 	<script src="packery.pkgd.min.js"></script>
 	<script src="miso.ds.deps.ie.min.0.4.1.js"></script>
 	<script src="marked.js"></script>
-
-
+	<script language="JavaScript" type="text/javascript" src="http://admin.brightcove.com/js/BrightcoveExperiences.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+    	// load google feeds service to
+    	// deal with non-same origin rss feeds
+    	google.load("feeds", "1");
+    </script>
 
 	
+	
 	<script type="text/javascript">
+		brightcove.createExperiences();
 		var obitName = new RegExp(getParameterByName("name"),'i');
 		var pckry = {};
+		
+		// responsive slideshow from Mark Lee
+		// http://themarklee.com/2013/12/26/simple-diy-responsive-slideshow-made-html5-css3-javascript/
 		
 
 		var ds = new Miso.Dataset({
@@ -42,7 +52,7 @@
 			pack();
 			var i = setInterval(pack, 100);
 			setTimeout(function(){clearInterval(i)},5000);
-
+brightcove.createExperiences();
 		  },
 		  error : function() {
 			console.log("Google data didn't load.");
@@ -96,6 +106,45 @@
 			boxTen: "",
 		}
 		
+		
+		function brightcovePlayer(id) {
+			html = '<!-- Start of Brightcove Player -->'
+// 				+''
+// 				+'<div style="display:none">'
+// 				+'Janus Single Chromeless Player '
+// 				+'</div>'
+// 				+''
+// 				+'<!--'
+// 				+'By use of this code snippet, I agree to the Brightcove Publisher T and C '
+// 				+'found at https://accounts.brightcove.com/en/terms-and-conditions/. '
+// 				+'-->'
+// 				+''
+// 				//+'<script language="JavaScript" type="text/javascript" src="http://admin.brightcove.com/js/BrightcoveExperiences.js">\<\/script>'
+// 				+''
+				+'<object id="myExperience" class="BrightcoveExperience">'
+				+'  <param name="bgcolor" value="#FFFFFF" />'
+				+'  <param name="width" value="100%" />'
+				+'  <param name="height" value="100%" />'
+				+'  <param name="playerID" value="2418610043001" />'
+				+'  <param name="playerKey" value="AQ~~,AAACLrx-GiE~,-R5NlQaAplIWhlMPcU5YDN5147VaN70m" />'
+				+'  <param name="isVid" value="true" />'
+				+'  <param name="isUI" value="true" />'
+				+'  <param name="dynamicStreaming" value="true" />'
+				+''
+				+'  <param name="@videoPlayer" value="'+id+'" /> <!-- replace value with video ID -->'
+				+'</object>'
+// 				+''
+// 				+'<!-- '
+// 				+'This script tag will cause the Brightcove Players defined above it to be created as soon'
+// 				+'as the line is read by the browser. If you wish to have the player instantiated only after'
+// 				+'the rest of the HTML is processed and the page load is complete, remove the line.'
+// 				+'-->'
+// 				//+'<script type="text/javascript">brightcove.createExperiences();\<\/script>'
+// 				+''
+// 				+'<!-- End of Brightcove Player -->'
+		
+				return html;
+			}
 		
 		
 		function swap(id, content) {
@@ -178,14 +227,11 @@
 			swapLoop(strings, pagedata, swap);
 			swapLoop(boxen, pagedata, insert);
 			document.body.style.display="";
-			} else {
+			} else {}
 				
-			}
-
-			//swap("boxTwo", pagedata.boxTwo);
-			//pckry.layout();
-			//console.log("testi");
 		}
+
+	
 		
 	
 
@@ -202,6 +248,7 @@
 			formatted = text;
 			var isImage = /^\S*\.(jpg|png|gif)$/;
 			var isBrightcove = /http:\/\/bcove.me.*/;
+			var isBrightcoveId = /^\d+$/;
 			var isYouTube = /http:\/\/(youtu.be)|(youtube.com).*/;
 			var isLink = /^(http)?\:\/\/\S+\.\S+\s*$/;
 			var isHTML = /^\<.*\>$/;
@@ -209,6 +256,9 @@
 				formatted = "<img src='"+text+"'>";
 			} else if (isBrightcove.test(text)) {
 				// something
+			} else if (isBrightcoveId.test(text)) {
+				formatted = brightcovePlayer(text);
+				
 			} else if (isYouTube.test(text)) {
 				//something else
 			} else if (isLink.test(text)) {
@@ -235,6 +285,27 @@
  
 		}
 
+		
+		// name is going to attach a variable to the window. this is not a totally
+		// safe way of doing this. eventually will attach these
+		function rss(url, action, element) {
+			query = new XMLHttpRequest();
+			query.open("GET", url, true);
+			query.onload = function (e) {
+				action(query, element);
+			}
+			query.send();
+			return query;
+		}
+
+
+		function slideshow(rss, element) {
+			console.log(rss.responseText);
+			console.log(rss.responseXML);
+		
+		
+		}
+
 
 	</script>
 
@@ -252,6 +323,9 @@
 					<div class="indentLeft" id="mugshotBio"></div>
 				</div>
 			</div>
+			
+			
+
 			<div class="box w2col" id="bigMultimedia"></div>
 			<div class="box w2col" id="boxOne"></div>	
 

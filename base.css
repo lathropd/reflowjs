@@ -133,6 +133,11 @@ div#mugshotPhoto div {
      
 }
 
+	
+
+#bigMultimedia div {
+	height: 100%;
+}
 
 .reflow {
 	width: 950px;
@@ -176,6 +181,7 @@ div#mugshotPhoto div {
 @media (min-width: 844px) and (max-width: 959px) {	 
 	.reflow, .box.w3col { width: 844px; }
 	#mugshot, .box.w2col { width: 844px; }
+	#bigMultimedia { height: 450px; }
 	.box.w1col { width: 412px;}
 
 }
@@ -185,6 +191,7 @@ div#mugshotPhoto div {
 	.reflow, .box.w3col { width: 764px; }
 	#mugshot, .box.w2col { width: 764px; } 
 	.box.w1col {margin-left:35px; margin-right: 35px; }
+	#bigMultimedia { height: 450px; }
 
 
 }
@@ -193,7 +200,7 @@ div#mugshotPhoto div {
 @media (min-width: 624px) and (max-width: 767px) {
 	.reflow, .box.w3col { width: 622px; }
 	#mugshot, .box.w2col { width: 622px; }
-	
+		#bigMultimedia { height: 450px; }
 	.box.w1col { width: 300px; }
 
  
@@ -205,6 +212,7 @@ div#mugshotPhoto div {
 	#mugshot, .box.w2col { width: 598px; }
 	.box.w1col { width: 289px; }
 	#bigHeadline { font-size: 3.5em;}
+		#bigMultimedia { height: 450px; }
 
 
 }
@@ -219,6 +227,7 @@ div#mugshotPhoto div {
 	
 	.box.w1col { margin-left: 70px; margin-right: 70px;}
 	#bigHeadline { font-size: 3.5em;}
+	#bigMultimedia { height: 400px; }
 
 
 
@@ -229,6 +238,7 @@ div#mugshotPhoto div {
 	.reflow, .box {width: 320px !important; }
 	.box div img {width: 100%;}
 	#bigHeadline { font-size: 3em;}
+	#bigMultimedia { height: 200px; }
 
 
 }
