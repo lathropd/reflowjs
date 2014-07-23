@@ -4,18 +4,28 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link rel="stylesheet" type="text/css" href="base.css">
 
-	<script src="packery.pkgd.min.js"></script>
-	<script src="miso.ds.deps.ie.min.0.4.1.js"></script>
-	<script src="marked.js"></script>
-	<script language="JavaScript" type="text/javascript" src="http://admin.brightcove.com/js/BrightcoveExperiences.js"></script>
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
-    	// load google feeds service to
-    	// deal with non-same origin rss feeds
-    	google.load("feeds", "1");
+
+    google.load("feeds", "1");
     </script>
 
-	
+
+	<script src="packery.pkgd.min.js"></script>
+	<script src="miso.ds.deps.ie.min.0.4.1.js"></script>
+	<script src="better-simple-slideshow.min.js"></script>
+	<script>
+		//slideshow JS
+	    var opts = {
+            auto : false,
+            fullScreen : false
+        };
+       
+
+    </script>
+	<script src="marked.js"></script>
+	<script language="JavaScript" type="text/javascript" src="http://admin.brightcove.com/js/BrightcoveExperiences.js"></script>
+	<link rel="stylesheet" href="simple-slideshow-styles.css">
 	
 	<script type="text/javascript">
 		brightcove.createExperiences();
@@ -55,7 +65,7 @@
 brightcove.createExperiences();
 		  },
 		  error : function() {
-			console.log("Google data didn't load.");
+			//console.log("Google data didn't load.");
 		  }
 		});
 		
@@ -244,12 +254,13 @@ brightcove.createExperiences();
 		
 		
 		function format(text) {
-			console.log(text);
+			//console.log(text);
 			formatted = text;
 			var isImage = /^\S*\.(jpg|png|gif)$/;
 			var isBrightcove = /http:\/\/bcove.me.*/;
 			var isBrightcoveId = /^\d+$/;
-			var isYouTube = /http:\/\/(youtu.be)|(youtube.com).*/;
+			var isYouTube = /^http:\/\/(youtu.be)|(youtube.com).*/;
+			var isSlideshow = /^slideshow\:?\s*(\S*)/;
 			var isLink = /^(http)?\:\/\/\S+\.\S+\s*$/;
 			var isHTML = /^\<.*\>$/;
 			if (isImage.test(text)) {
@@ -259,7 +270,14 @@ brightcove.createExperiences();
 			} else if (isBrightcoveId.test(text)) {
 				formatted = brightcovePlayer(text);
 				
-			} else if (isYouTube.test(text)) {
+			} else if (isSlideshow.test(text)) {
+				id = 'slid' + Math.round(Math.random()*10000);
+				formatted ="<div id='"+id+"' class='"+id+" bss-slides'></div>";
+				link = isSlideshow.exec(text)[1]
+				slideshow(link, id);
+				
+			}
+			else if (isYouTube.test(text)) {
 				//something else
 			} else if (isLink.test(text)) {
 				// iframe it
@@ -285,34 +303,81 @@ brightcove.createExperiences();
  
 		}
 
-		
-		// name is going to attach a variable to the window. this is not a totally
-		// safe way of doing this. eventually will attach these
-		function rss(url, action, element) {
-			query = new XMLHttpRequest();
-			query.open("GET", url, true);
-			query.onload = function (e) {
-				action(query, element);
-			}
-			query.send();
-			return query;
-		}
 
 
-		function slideshow(rss, element) {
-			console.log(rss.responseText);
-			console.log(rss.responseXML);
+
+	function slideshow(url, div) {
+		var new_url = 'http://pipes.yahoo.com/pipes/pipe.run?_id=2FV68p9G3BGVbc7IdLq02Q&_render=json&feedcount=100&feedurl='+encodeURIComponent(url)+'&_callback=';
+		//console.log(new_url);
+
+		var slideds = new Miso.Dataset({ 
+			url:  new_url,
+			jsonp: true,
+			extract: function(data){ return data.value.items;}
+	
+		});
 		
 		
-		}
+
+		slideds.fetch({
+			success: function() {
+				el = document.getElementById(div);
+				var a = "";
+				slideds.each(function(row, rowIndex) {
+					a +=  "<figure><img  width='100%' src='"+row.enclosure.url + "'>"
+					a +=  "<figcaption>"
+					a +=  row.description;
+					a +=  "</figcaption></figure>";
+  				});
+  				el.innerHTML = a;
+  				el.parentElement.outerHTML = el.outerHTML;
+  				makeBSS('.'+div, opts);
+  				pack();
+  			}
+  			
+  		});
+  		
+  		
+  	}
+  			
+	
+	
+
+			
+
 
 
 	</script>
 
 
+
  
 </head>
 <body style="display:none;">
+<!--
+
+       <div class="bss-slides num1" tabindex="1" autofocus="autofocus">
+            <figure>
+		      <img src="http://themarklee.com/wp-content/uploads/2013/12/snowying.jpg" width="100%" /><figcaption>"Snowying" by <a href="http://www.flickr.com/photos/fiddleoak/8511209344/">fiddleoak</a>.</figcaption> 
+            </figure>
+            <figure>
+                <img src="http://themarklee.com/wp-content/uploads/2013/12/starlight.jpg" width="100%" /><figcaption>"Starlight" by <a href="http://www.flickr.com/photos/chaoticmind75/10738494123/in/set-72157626146319517">ChaoticMind75</a>.</figcaption> 
+            </figure>
+            <figure>
+		      <img src="http://themarklee.com/wp-content/uploads/2013/12/snowstorm.jpg" width="100%" /><figcaption>"Snowstorm" by <a href="http://www.flickr.com/photos/tylerbeaulawrence/8539457508/">Beaulawrence</a>.</figcaption> 
+            </figure>
+            <figure>
+		      <img src="http://themarklee.com/wp-content/uploads/2013/12/misty-winter-afternoon.jpg" width="100%" /><figcaption>"Misty winter afternoon" by <a href="http://www.flickr.com/photos/22746515@N02/5277611659/">Bert Kaufmann</a>.</figcaption> 
+            </figure>
+            <figure>
+		      <img src="http://themarklee.com/wp-content/uploads/2013/12/good-morning.jpg" width="100%" /><figcaption>"Good Morning!" by <a href="http://www.flickr.com/photos/frank_wuestefeld/4306107546/">Frank Wuestefeld</a>.</figcaption> 
+            </figure>
+            <figure>
+		      <img src="http://themarklee.com/wp-content/uploads/2013/12/driving-home-for-christmas.jpg" width="100%" /><figcaption>"Driving home for Christmas" by <a href="http://www.flickr.com/photos/22746515@N02/5292186041/">Bert Kaufmann</a>.</figcaption> 
+            </figure>
+        </div> <!-- // bss-slides -->  
+-->
+
 	<div id="bigPicture" class="fullwidth tall"><div><h1 id="bigHeadline"></h1></div></div>
 	<div id="content" class="reflow">
 			<div class="box" id="mugshot">
@@ -328,14 +393,12 @@ brightcove.createExperiences();
 
 			<div class="box w2col" id="bigMultimedia"></div>
 			<div class="box w2col" id="boxOne"></div>	
-
 			<div class="box w1col" id="boxTwo"></div>
 			<div class="box w1col" id="boxThree"></div>
 			<div class="box w1col" id="boxFour"></div>
 			<div class="box w1col" id="boxFive"></div>
-
 			<div class="box w2col" id="boxSix"></div>
-			<div class="box w1col" id="boxSeven"></div>
+			<div class="box w2col" id="boxSeven"></div>
 		 	<div class="box w1col" id="boxEight"></div>
 			<div class="box w1col" id="boxNine"></div>
 			<div class="box w3col" id="boxTen"></div>
