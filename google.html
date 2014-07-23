@@ -78,8 +78,8 @@
 		  	obitdata = ds.rows(function(row) {return obitName.test(row.mugshotName)}).toJSON()[0];
 		  	init(obitdata);
 		  	var container = document.querySelector('#content');
-		  	pckry = new Masonry( container, {
-			  "columnWidth": 310,
+		  	pckry = new Packery( container, {
+			  "column": 320,
 			  "itemSelector": ".box", 
 			  "gutter": 10,
 			  
