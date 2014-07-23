@@ -3,31 +3,53 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link rel="stylesheet" type="text/css" href="base.css">
+	<link rel="stylesheet" href="simple-slideshow-styles.css">
+	<link rel="stylesheet" href="timeline.css">
 
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript">
-
-    google.load("feeds", "1");
-    </script>
-
-
-	<script src="packery.pkgd.min.js"></script>
+	<script src="marked.js"></script>
+	<script src="masonry.pkgd.min.js"></script>
 	<script src="miso.ds.deps.ie.min.0.4.1.js"></script>
 	<script src="better-simple-slideshow.min.js"></script>
+	<script src="http://admin.brightcove.com/js/BrightcoveExperiences.js" type="text/javascript" ></script>
+
 	<script>
+		//settings
+		
 		//slideshow JS
 	    var opts = {
             auto : false,
             fullScreen : false
         };
-       
+        
+        var timelineRenderer = new marked.Renderer();
+        
+        timelineRenderer.list = function(body, ordered) {
+  			var type = ordered ? 'ol' : 'ul';
+  			if (ordered) {
+  					return '<' + type + '>\n' + body + '</' + type + '>\n';
+  			} else {
+  				return '<' + type + ' class="timeline">\n' + body + '</' + type + '>\n';
+			}
+		};
+		
+		timelineRenderer.listitem = function(text) {
+			dateRegex = /^((January|Jan\.?|February|Feb\.?|March|April|May|June|July|August|Aug\.?|September|Sept\.?|October|Oct\.?|November|Nov\.?|December|Dec\.?) ?(\d{1,2}(rd|nd|st)?\,? ?)?)?(\d{4})?$/;
+			if (dateRegex.test(text)) {
+				return '<li class="year">' + text + '</li>\n';
+			} else {
+  				return '<li class="event">' + text + '</li>\n';
+  			}
+		};
+
+		marked.setOptions({
+			smartypants: true,
+		});
+
 
     </script>
-	<script src="marked.js"></script>
-	<script language="JavaScript" type="text/javascript" src="http://admin.brightcove.com/js/BrightcoveExperiences.js"></script>
-	<link rel="stylesheet" href="simple-slideshow-styles.css">
 	
 	<script type="text/javascript">
+	
 		brightcove.createExperiences();
 		var obitName = new RegExp(getParameterByName("name"),'i');
 		var pckry = {};
@@ -53,12 +75,15 @@
 		  success : function() {
 		  	obitdata = ds.rows(function(row) {return obitName.test(row.mugshotName)}).toJSON()[0];
 		  	init(obitdata);
-		  	pckry = new Packery( '#content', {
-			  "column": 320,
+		  	var container = document.querySelector('#content');
+		  	pckry = new Masonry( container, {
+			  "columnWidth": 310,
 			  "itemSelector": ".box", 
-			  "gutter": 20 ,
+			  "gutter": 10,
+			  
 			  //"rowHeight": 20,
-			  "transitionDuration": "0.4s",	});
+			  //"transitionDuration": "0.4s",	
+			  });
 			pack();
 			var i = setInterval(pack, 100);
 			setTimeout(function(){clearInterval(i)},5000);
@@ -261,6 +286,7 @@ brightcove.createExperiences();
 			var isBrightcoveId = /^\d+$/;
 			var isYouTube = /^http:\/\/(youtu.be)|(youtube.com).*/;
 			var isSlideshow = /^slideshow\:?\s*(\S*)/;
+			var isTimeline = /^timeline\:?\n?/;
 			var isLink = /^(http)?\:\/\/\S+\.\S+\s*$/;
 			var isHTML = /^\<.*\>$/;
 			if (isImage.test(text)) {
@@ -275,6 +301,10 @@ brightcove.createExperiences();
 				formatted ="<div id='"+id+"' class='"+id+" bss-slides'></div>";
 				link = isSlideshow.exec(text)[1]
 				slideshow(link, id);
+				
+			} else if (isTimeline.test(text)) {
+				newText = text.replace(isTimeline,"");
+				formatted = marked(newText, {renderer: timelineRenderer});
 				
 			}
 			else if (isYouTube.test(text)) {
@@ -354,30 +384,6 @@ brightcove.createExperiences();
  
 </head>
 <body style="display:none;">
-<!--
-
-       <div class="bss-slides num1" tabindex="1" autofocus="autofocus">
-            <figure>
-		      <img src="http://themarklee.com/wp-content/uploads/2013/12/snowying.jpg" width="100%" /><figcaption>"Snowying" by <a href="http://www.flickr.com/photos/fiddleoak/8511209344/">fiddleoak</a>.</figcaption> 
-            </figure>
-            <figure>
-                <img src="http://themarklee.com/wp-content/uploads/2013/12/starlight.jpg" width="100%" /><figcaption>"Starlight" by <a href="http://www.flickr.com/photos/chaoticmind75/10738494123/in/set-72157626146319517">ChaoticMind75</a>.</figcaption> 
-            </figure>
-            <figure>
-		      <img src="http://themarklee.com/wp-content/uploads/2013/12/snowstorm.jpg" width="100%" /><figcaption>"Snowstorm" by <a href="http://www.flickr.com/photos/tylerbeaulawrence/8539457508/">Beaulawrence</a>.</figcaption> 
-            </figure>
-            <figure>
-		      <img src="http://themarklee.com/wp-content/uploads/2013/12/misty-winter-afternoon.jpg" width="100%" /><figcaption>"Misty winter afternoon" by <a href="http://www.flickr.com/photos/22746515@N02/5277611659/">Bert Kaufmann</a>.</figcaption> 
-            </figure>
-            <figure>
-		      <img src="http://themarklee.com/wp-content/uploads/2013/12/good-morning.jpg" width="100%" /><figcaption>"Good Morning!" by <a href="http://www.flickr.com/photos/frank_wuestefeld/4306107546/">Frank Wuestefeld</a>.</figcaption> 
-            </figure>
-            <figure>
-		      <img src="http://themarklee.com/wp-content/uploads/2013/12/driving-home-for-christmas.jpg" width="100%" /><figcaption>"Driving home for Christmas" by <a href="http://www.flickr.com/photos/22746515@N02/5292186041/">Bert Kaufmann</a>.</figcaption> 
-            </figure>
-        </div> <!-- // bss-slides -->  
--->
-
 	<div id="bigPicture" class="fullwidth tall"><div><h1 id="bigHeadline"></h1></div></div>
 	<div id="content" class="reflow">
 			<div class="box" id="mugshot">
