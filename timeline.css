@@ -80,6 +80,10 @@
 
 .year + .year {margin-top: -20px;} 
 
+ div h1 {text-align: center;}
+ 
+ 
+
 ul.timeline li:last-child { background: white; margin-top: -20px; margin-bottom: 0; height: 0.5em; width: 3em;}
 
 
