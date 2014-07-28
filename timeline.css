@@ -1,12 +1,14 @@
 /* line 6, ../scss/timeline.scss */
 .timeline, .timeline.v1 {
-  margin: 0px auto;
+  margin: 10px auto;
   max-width: 700px;
   overflow: hidden;
   height: auto;
   position: relative;
   padding: 0px;
+  
   list-style-type: none;
+  text-align: center;
   /*thanks to
      https://twitter.com/JacoKoster
   */
@@ -34,45 +36,79 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+
+.timeline li.event h1 { font-size: .83em; }
+.timeline li.event h2 { font-size: .83em; }
+.timeline li.event h3 { font-size: .83em; }
+.timeline li.event h4 { font-size: .83em; }
+.timeline li.event h5 { font-size: .83em; }
+.timeline li.event h6 { font-size: .83em; }
+
+
+
+
 /* line 32, ../scss/timeline.scss */
 .timeline .year, .timeline.v1 .year {
-  background: #505050;
-  font-size: 3em;
+  background: #727272;
+  font-size: 2em;
   max-width: 4em;
   clear: both;
   margin: 1em auto;
   color: white;
-  border-radius: 30% / 100%;
+  border-radius: 10% / 100%;
   text-align: center;
   margin-top: 50px;
+    padding-top: 0.25em;
+  padding-bottom: 0.25em;
   /*
     thanks to Lukas Knuth ( https://github.com/christian-fei/Timeline.css/issues/1 )
   */
 }
+
+.timeline .long, .timeline.v1 .long {
+  font-size: 1.25em;
+  max-width: 9em;
+  margin-top: 0px;
+  margin-bottom: 30px;
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
+
+}
+
+.year {margin-top: 20px;}
+
+.year + .year {margin-top: -20px;} 
+
+ul.timeline li:last-child { background: white; margin-top: -20px; margin-bottom: 0; height: 0.5em; width: 3em;}
+
+
 /* line 43, ../scss/timeline.scss */
 .timeline .year:first-of-type, .timeline.v1 .year:first-of-type {
   margin-top: 0 !important;
 }
 /* line 50, ../scss/timeline.scss */
 .timeline .year + .event, .timeline.v1 .year + .event {
-  margin-top: -1.5em;
+  margin-top: -1em;
 }
 /* line 60, ../scss/timeline.scss */
+
+
+
 .timeline .event, .timeline.v1 .event {
   position: relative;
-  text-align: center;
-  float: right;
-  clear: right;
-  width: 45%;
-  margin: 10px 2.5%;
+  text-align: left;
+  display: table;
+  clear: both;
+  /* reset the standard declaration I defined before*/
+  margin: 20px auto;
   border-radius: 5px;
   list-style-type: none;
-  display: block;
   padding: .4em;
   background: white;
   z-index: 15;
   color: #4d4d4d;
   border: 1px solid #d0d0d0;
+  max-width: 25em;
   text-decoration: none;
   -webkit-transition: background .15s linear;
   -moz-transition: background .15s linear;
@@ -80,20 +116,10 @@
   -o-transition: background .15s linear;
   transition: background .15s linear;
 }
-/* line 86, ../scss/timeline.scss */
-.timeline .event.featured, .timeline.v1 .event.featured {
-  width: 95% !important;
-}
-/* line 88, ../scss/timeline.scss */
-.timeline .event.featured:after, .timeline .event.featured:before, .timeline.v1 .event.featured:after, .timeline.v1 .event.featured:before {
-  display: none;
-}
-@media all and (max-width: 600px) {
-  /* line 60, ../scss/timeline.scss */
-  .timeline .event, .timeline.v1 .event {
-    width: 85%;
-  }
-}
+
+
+
+
 /* line 97, ../scss/timeline.scss */
 .timeline .event.offset-first, .timeline.v1 .event.offset-first {
   margin-top: -1.5em;
@@ -111,32 +137,7 @@
 .timeline .event:hover:after, .timeline.v1 .event:hover:after {
   background: #505050;
 }
-/* line 114, ../scss/timeline.scss */
-.timeline .event:nth-of-type(2n), .timeline.v1 .event:nth-of-type(2n) {
-  float: left;
-  clear: left;
-}
-/* line 117, ../scss/timeline.scss */
-.timeline .event:nth-of-type(2n):after, .timeline.v1 .event:nth-of-type(2n):after {
-  right: -5%;
-  /* reset the standard declaration I defined before*/
-  left: auto;
-}
-@media all and (min-width: 650px) {
-  /* line 124, ../scss/timeline.scss */
-  .timeline .event:after, .timeline.v1 .event:after {
-    display: block;
-    content: ' ';
-    height: 9px;
-    width: 9px;
-    background: #9d9d9d;
-    border-radius: 50%;
-    position: absolute;
-    left: -5%;
-    top: 1.5em;
-    border: 2px solid white;
-  }
-}
+
 /* line 139, ../scss/timeline.scss */
 .timeline time, .timeline.v1 time {
   display: block;

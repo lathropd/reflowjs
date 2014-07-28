@@ -4,21 +4,22 @@
 /* (c) 2014 Daniel Lathrop                            */
 /* Released under the MIT license                     */    
 /* ================================================== */
-@import url(http://fonts.googleapis.com/css?family=Montserrat:700|Fjord+One|Antic+Didone);
-
+@import url(@import url(http://fonts.googleapis.com/css?family=Montserrat|Josefin+Slab:100););
 * {	
-	font-family: 'Montserrat', 'Helvetica', sans-serif;
+	font: 100 1em/1.25em 'Josefin Slab';
+
 }
 
-h1 { font-size: 2em; }
-h2 { font-size: 1.5em; }
-h3 { font-size: 1.17em; }
-h5 { font-size: .83em; }
-h6 { font-size: .75em; }
+h1 { font-family: 'Montserrat', 'Helvetica', sans-serif; font-weight: 700; font-size: 2em; }
+h2 { font-family: 'Montserrat', 'Helvetica', sans-serif; font-weight: 700; font-size: 1.5em; }
+h3 { font-family: 'Montserrat', 'Helvetica', sans-serif; font-weight: 700; font-size: 1.17em; }
+h5 { font-family: 'Montserrat', 'Helvetica', sans-serif; font-weight: 700; font-size: .83em; }
+h6 { font-family: 'Montserrat', 'Helvetica', sans-serif; font-weight: 700; font-size: .75em; }
 
 p { 
-	font-family: 'Antic Didone', 'Garamond','Bodoni','Times New Roman', serif;
-	font-size: 1em;
+	font: 100 1em/1.35em 'Josefin Slab';
+
+
 }
 
 /* ================================================== */
@@ -63,6 +64,8 @@ ul, ol {
 /* begin css */
 
 
+li.year { font-family: 'Montserrat', 'Helvetica', sans-serif;  }
+
 .fullwidth {
 	width: 100%;
 
@@ -84,9 +87,13 @@ a:hover {
 	/* min-height: 200px; */
 	float: left;
 	background-color: white;
+	/*margin: 0 auto;*/
 	/*margin-bottom: 0px;*/
 
 }
+
+/* center container with CSS */
+
 
 .box iframe {
 	width: 100% !important;
@@ -97,10 +104,25 @@ a:hover {
 .box {
 	margin-bottom: 20px;
 	}
+	
 .box div {
 	padding: 20px;
 
 }
+
+
+div.map {
+	min-height: 250px;
+
+}
+
+div.map * {
+	padding: 0px;
+	
+
+}
+
+div.map img{max-width:none; width: auto;}
 
 div.indentLeft { padding-right: 0px; padding-top: 0px; padding-left: 5px;  width: 100%;}
 div.indentLeft div {padding:0px; }
@@ -158,20 +180,20 @@ div#mugshotPhoto div {
 }
 
 .reflow {
-	width: 950px;
+	max-width: 960px;
 	margin-left: auto;
 	margin-right: auto;
 }
 
 
 
-.box.w1col, #mugshot {width: 300px;}
+.box.w1col {width: 300px;}
 
 .box img {width: 100%; }
 
-.box.w2col { width: 620px; }
+.box.w2col { width: 600px; }
 
-.box.w3col { width: 940px; }
+.box.w3col { width: 900px; }
 
 .box.fullwidth { width:100%;}
 
@@ -182,82 +204,60 @@ div#mugshotPhoto div {
 #mugshotCaption { padding-top: 75px;}
 
 
-@media (min-width: 960px) {
-	#mugshotCaption { padding-top: 0px;}
+
+
+
+@media (min-width: 960px)  and (max-width: 1279px) {
+	.reflow { max-width: 960px; }
+	#mugshotCaption { padding-top: 20px; font-size: 0.9em;  }
+
 	#mugshotPhoto {padding-bottom: 10px;}
 	#mugshotPhoto {	max-width: 300px; }
-
+	 #mugshot  {width: 300px; ;}
 	#bigMultimedia { height: 450px; }
 	#mugshot { min-height: 450px; }
 	#bigHeadline { font-size: 4.5em;}
-	#mugshotCaption { padding-top: 0px;}
+	#mugshotBio {font-size: 1em;}
 
 
 }
 
+@media (min-width: 1280px)  {
+	.reflow { max-width: 1280px; }
+	#mugshotCaption { padding-top: 20px; margin-left: 15px; margin-right: 15px; }
 
-@media (min-width: 844px) and (max-width: 959px) {	 
-	.reflow, .box.w3col { width: 844px; }
-	#mugshot, .box.w2col { width: 844px; }
+	#mugshotPhoto {padding-bottom: 10px;}
+	#mugshotPhoto {	max-width: 300px; }
+	 #mugshot  {width: 600px; ;}
 	#bigMultimedia { height: 450px; }
-	.box.w1col { width: 412px;}
+	#mugshot { min-height: 450px; }
+	#bigHeadline { font-size: 4.5em;}
+
 
 }
 
 
-@media (min-width: 768px) and (max-width: 843px) {
-	.reflow, .box.w3col { width: 764px; }
-	#mugshot, .box.w2col { width: 764px; } 
-	.box.w1col {margin-left:35px; margin-right: 35px; }
+
+
+
+@media (min-width: 600px) and (max-width: 959px) {	 
+	.reflow { max-width: 640px; }
+	#mugshot, .box.w2col, .box.w3col  { width: 600px; }
 	#bigMultimedia { height: 450px; }
-
-
-}
-
-
-@media (min-width: 624px) and (max-width: 767px) {
-	.reflow, .box.w3col { width: 622px; }
-	#mugshot, .box.w2col { width: 622px; }
-		#bigMultimedia { height: 450px; }
-	.box.w1col { width: 300px; }
-
- 
-
-}
-
-@media (min-width: 600px) and (max-width: 623px) {
-	.reflow, .box.w3col { width: 598px; }
-	#mugshot, .box.w2col { width: 598px; }
-	.box.w1col { width: 289px; }
-	#bigHeadline { font-size: 3.5em;}
-		#bigMultimedia { height: 450px; }
-
+	.box.w1col { width: 300; }
+	#mugshotCaption { margin-left: 0px; margin-right: 0px; }
 
 }
 
 
-@media  (min-width: 484px) and (max-width: 599px) {
-	#mugshotCaption { padding-top: 0px; margin-left: 15px; margin-right: 15px; }
-	#mugshotPhoto {padding-bottom: 10px;  }
-	#mugshotPhoto div img {max-width: 480px;}
-	.reflow, .box.w3col,  #mugshot  { width: 480px; }
-	 .box.w2col { width: 480px; }
-	
-	.box.w1col { margin-left: 70px; margin-right: 70px;}
-	#bigHeadline { font-size: 3.5em;}
-	#bigMultimedia { height: 400px; }
-
-
-
-
-}
-
-@media  (max-width: 479px) {
-	.reflow, .box {width: 320px !important; }
-	.box div img {width: 100%;}
-	#bigHeadline { font-size: 3em;}
-	#bigMultimedia { height: 200px; }
-
+@media  (max-width: 599px) {	 
+	.reflow { max-width: 320px; }
+	#mugshot, .box.w2col, .box.w3col  { width: 300px; }
+	#bigMultimedia { height: 300px; }
+	.box.w1col { width: 300;}
+	.bss-slides figcaption { visibility: hidden;}
+	.bss-slides:hover figcaption {visibility: visible;}
+	#mugshotCaption {  margin-left: 0px; margin-right: 0px; }
 
 }
 
