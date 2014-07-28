@@ -50,6 +50,7 @@
 /* line 32, ../scss/timeline.scss */
 .timeline .year, .timeline.v1 .year {
   background: #727272;
+  font-weight: 700;
   font-size: 2em;
   max-width: 4em;
   clear: both;
