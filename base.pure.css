@@ -1,0 +1,255 @@
+/* ================================================== */
+/* Simple, responsive CSS  for reflow.js-based        */
+/* projects.                                          */
+/* (c) 2014 Daniel Lathrop                            */
+/* Released under the MIT license                     */    
+/* ================================================== */
+@import url(cached_g_fonts.css);
+
+* {	
+	font-family: 'Antic Didone', 'Garamond','Bodoni','Times New Roman', serif;
+	font-size: 1em;
+	
+}
+
+h1 { font-family: 'Montserrat', 'Helvetica', sans-serif; font-size: 2em; }
+h2 { font-family: 'Montserrat', 'Helvetica', sans-serif; font-size: 1.5em; }
+h3 { font-family: 'Montserrat', 'Helvetica', sans-serif; font-size: 1.17em; }
+h5 { font-family: 'Montserrat', 'Helvetica', sans-serif; font-size: .83em; }
+h6 { font-family: 'Montserrat', 'Helvetica', sans-serif; font-size: .75em; }
+
+p { 
+	font-family: 'Antic Didone', 'Garamond','Bodoni','Times New Roman', serif;
+	font-size: 1em;
+}
+
+li.year { font-family: 'Montserrat', 'Helvetica', sans-serif;  }
+
+.fullwidth {
+	width: 100%;
+
+}
+
+
+a {
+	text-decoration: none;
+	color: #9a9a9a;
+}
+
+a:hover {
+	text-decoration: underline;
+	/*color: #c3c3c3;*/
+}
+
+.box {
+	border: 1px solid #f4f4f4;
+	/* min-height: 200px; */
+	float: left;
+	background-color: white;
+	/*margin-bottom: 0px;*/
+
+}
+/* 
+
+.box iframe {
+	width: 100%;
+
+
+}
+
+.box {
+	margin-bottom: 20px;
+	}*/
+.box div {
+	padding: 20px;
+
+}
+
+
+
+div.map {
+	min-height: 250px;
+	min-width: 250px;
+	
+
+}
+
+div.map * {
+	padding: 0px;
+	
+
+}
+
+
+
+
+div#mugshotPhoto div {
+  margin: 0;
+  padding: 0;
+}
+
+#mugshotPhoto {
+	float: left;
+}
+
+#mugshotPhoto  img {
+	width: 100%;
+	max-width: 278px;
+
+
+}
+
+
+#bigPicture {
+	background-position: center;
+	background-repeat: no-repeat;
+	margin-bottom: 20px;
+	width: 100%;
+	position: relative;
+    vertical-align: bottom;
+
+}
+
+#bigPicture div {
+	width: 100%; 
+	text-align: center;
+	position: absolute;
+	bottom: 10px;
+
+}
+
+#bigHeadline {
+	font-size: 4em;
+    text-shadow:
+  		-0.5px -0.5px 0 #fff,  
+     	0.5px -0.5px 0 #fff,
+    	-0.5px 0.5px 0 #fff,
+     	0.5px 0.5px 0 #fff;
+     
+}
+
+	
+
+#bigMultimedia div {
+	height: 100%;
+}
+
+.reflow {
+	width: 950px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+/*
+.box.w1col, #mugshot {width: 300px;}
+
+.box img {width: 100%; }
+
+.box.w2col { width: 620px; }
+
+.box.w3col { width: 940px; }
+
+.box.fullwidth { width:100%;}
+
+.box.fullwidth img { width:100%;}
+
+.box.tall img {height: 200px;}
+
+#mugshotCaption { padding-top: 75px;}
+
+
+
+
+
+@media (min-width: 960px) {
+	#mugshotCaption { padding-top: 0px;}
+	#mugshotPhoto {padding-bottom: 10px;}
+	#mugshotPhoto {	max-width: 300px; }
+
+	#bigMultimedia { height: 450px; }
+	#mugshot { min-height: 450px; }
+	#bigHeadline { font-size: 4.5em;}
+	#mugshotCaption { padding-top: 0px;}
+
+
+}
+
+
+@media (min-width: 844px) and (max-width: 959px) {	 
+	.reflow, .box.w3col { width: 844px; }
+	#mugshot, .box.w2col { width: 844px; }
+	#bigMultimedia { height: 450px; }
+	.box.w1col { width: 412px;}
+
+}
+
+
+@media (min-width: 768px) and (max-width: 843px) {
+	.reflow, .box.w3col { width: 764px; }
+	#mugshot, .box.w2col { width: 764px; } 
+	.box.w1col {margin-left:35px; margin-right: 35px; }
+	#bigMultimedia { height: 450px; }
+
+
+}
+
+
+@media (min-width: 624px) and (max-width: 767px) {
+	.reflow, .box.w3col { width: 622px; }
+	#mugshot, .box.w2col { width: 622px; }
+		#bigMultimedia { height: 450px; }
+	.box.w1col { width: 300px; }
+
+ 
+
+}
+
+@media (min-width: 600px) and (max-width: 623px) {
+	.reflow, .box.w3col { width: 598px; }
+	#mugshot, .box.w2col { width: 598px; }
+	.box.w1col { width: 289px; }
+	#bigHeadline { font-size: 3.5em;}
+		#bigMultimedia { height: 450px; }
+
+
+}
+
+
+@media  (min-width: 484px) and (max-width: 599px) {
+	#mugshotCaption { padding-top: 0px; margin-left: 15px; margin-right: 15px; }
+	#mugshotPhoto {padding-bottom: 10px;  }
+	#mugshotPhoto div img {max-width: 480px;}
+	.reflow, .box.w3col,  #mugshot  { width: 480px; }
+	 .box.w2col { width: 480px; }
+	
+	.box.w1col { margin-left: 70px; margin-right: 70px;}
+	#bigHeadline { font-size: 3.5em;}
+	#bigMultimedia { height: 400px; }
+
+
+
+
+}
+
+@media  (max-width: 479px) {
+	.reflow, .box {width: 320px !important; }
+	.box div img {width: 100%;}
+	#bigHeadline { font-size: 3em;}
+	#bigMultimedia { height: 200px; }
+
+
+}
+
+/* ================================================== */
+/* Fixes for issues from various embeds               */
+/*                                                    */
+/*                                                    */
+/*                                                    */
+/* ================================================== */   
+
+
+#document_content { border-style: none !important;}
+
+
+
