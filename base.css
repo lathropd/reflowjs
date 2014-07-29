@@ -269,6 +269,10 @@ div#mugshotPhoto div {
 
 }
 
+@media (max-device-width: 480px) {
+	html, body { width:100%; overflow:hidden; }
+}
+
 /* ================================================== */
 /* Fixes for issues from various embeds               */
 /*                                                    */
