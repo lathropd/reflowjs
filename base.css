@@ -6,7 +6,7 @@
 /* ================================================== */
 @import url(@import url(http://fonts.googleapis.com/css?family=Montserrat|Josefin+Slab:100););
 * {	
-	font: 700 1em/1.25em 'Josefin Slab';
+	font: 100 1em/1.25em 'Josefin Slab';
 
 }
 
@@ -280,4 +280,9 @@ div#mugshotPhoto div {
 #document_content { border-style: none !important;}
 
 
+    .gm-style-iw
+    {
+        font: 100 1em/1.2em 'Josefin Slab';
+        max-width: 150px;
+    }
 
