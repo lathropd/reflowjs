@@ -212,6 +212,7 @@ div#mugshotPhoto div {
 #mugshotCaption { padding-top: 75px;}
 
 
+#
 
 
 
@@ -259,7 +260,8 @@ div#mugshotPhoto div {
 
 
 @media  (max-width: 599px) {	 
-	.reflow { max-width: 320px; }
+	.reflow { width: 100%; }
+	.reflow div { margin-left: auto; margin-right: auto;}
 	#mugshot, .box.w2col, .box.w3col  { width: 300px; }
 	#bigMultimedia { height: 300px; }
 	.box.w1col { width: 300;}
