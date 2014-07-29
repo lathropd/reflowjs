@@ -284,5 +284,6 @@ div#mugshotPhoto div {
     {
         font: 100 1em/1.2em 'Josefin Slab';
         max-width: 150px;
+        max-height: 400px;
     }
 
