@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="markdownform/normalize.css">
+        <link rel="stylesheet" href="markdownform/main.css">
+        <link rel="stylesheet" href="markdownform/style.css">
+        <script src="markdownform/vendor/modernizr-2.6.2.min.js"></script>
+        <link rel="stylesheet" href="markdown.css">
+
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+		<div class="container">
+        <!-- Add your site or application content here -->
+            <h1>A.J.C. multimedia obit tool</h1>
+            <br />
+            <form>
+            	<h2>Text elements</h2>
+            	<p>
+            		The following contain only text formatted in markdown and/or HTML. 
+            		They shouldn't include multimedia elements.
+            	</p>
+            	
+				<h3>Headline <small><em>(optional)</em></small></h3>
+				<p>
+					This can be anything. It displays very, very large at the top. If
+					there is a background it will have a 1 pixel white outline.
+				</p>
+				<input class="mdhtmlform-md" id="bigHeadline" name="bigHeadline">
+				
+            	<h3>Name</h3>
+            	<p>
+            		Enter the name as you intend it to be displayed. 
+            		Use  &nbsp; (non-breaking space) to control where the line break
+            		occurs.
+            	</p>
+            	<input class="mdhtmlform-md" id="mugshotName" name="mugshotName">
+
+				<h3>Dates</h3>
+				<p>
+					Appear directly under the name. Should  be year-of-birth hyphen 
+					year-of-death (e.g. 1955 - 2014).
+				</p>
+				<input class="mdhtmlform-md" id="mugshotDates" name="mugshotDates">
+				
+				<h3>Short bio <small><em>(optional)</em></small></h3>
+				<p>
+					A few lines. Displays under the dates. A bullet list or short
+					paragraph is best. Longer bio material should go in a multimedia
+					block.
+				</p>
+				<hr>
+
+				<h2>Images</h2>
+				<p>
+					These should be URLs to images. Upload them first to [AJC server name].
+					Please size them appropriately in an image editor.
+				</p>
+				   	
+            	<h3>Mugshot URL</h3>
+            	<p> Should be at least 256px wide. Preferably taller than it is wide.</p>
+            	<p>
+            		This appears in the primary box along with the name and dates. It is 
+            		quite possibly the most important thing on the page. Please search
+            		[for a photo] or use something from a government or official site
+            		or with a creative commons license allowing reuse.
+            	</p>
+            	<input class="mdhtmlform-md" id="mugshotPhoto" name="mugshotPhoto"><br>
+            	
+            	<h3>Headline backdrop image URL <small><em>(optional)</em></small></h3>
+            	<p>
+            		Should be an at least 900px wide. png files preferred.
+            	</p>
+            	<p>
+            		This will appear full frame no matter how wide the use sets the page.
+            		The height will cleverly adjust, but please use a horizontal image.
+            		Vertical and square images will likely be too tall at larger screen
+            		widths. Exceptions can obviously be made if it looks good that way.
+            		The headline is aligned along the bottom of the image.
+            	</p>
+            	<input id="bigImage" name="bigImage">
+            	<hr>
+            	
+            	
+            	
+            	<h2>Multimedia blocks</h2>
+            	<p>
+            		See the <a href="#instructions">instructions below</a> for the explanation
+            		on how to fill these out. You enter information in the text fields
+            		and a preview renders in the box underneath. <a href="#shortcuts">
+            		Shortcuts</a> will not
+            		display in the preview.
+            	</p>
+            		
+            	 <h4>Really basic Markdown syntax</h4>
+            	<!-- insert  common stuff here --->
+            	[some stuff]
+            	
+            	
+            	
+            	<h2>Large multimedia blocks</h2>
+            	<p>
+            		The following multimedia blocks will appear full width on phones, 
+            		full width on some tablets,  1/2 width on AJC.com embeds and some
+            		tablets, and 2/3 width on the paid site.
+            	<p>
+            	<h3><h3>
+            	<h3>Main multimedia block</h3>
+            	<p>
+            		This will always appear next to or directly underneath the mugshot
+            		and brief bio. Videos and slideshows are encouraged, maps if neither
+            		of those are available. Except on small screens, it will have a 
+            		minimum height approximately equal to the height of the mugshot
+            		block.
+            	</p>
+            	
+                <!-- Markdown group for the big multimedia element -->
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="0" id="bigMultimedia">## Write markdown in the textarea!</textarea>
+                <br /><br />
+                <!-- html display -->
+                <div class="mdhtmlform-html" data-mdhtmlform-group="0"></div>
+                <!-- html submissionn -->
+                <textarea class="mdhtmlform-html" data-mdhtmlform-group="0" style="display: none;"></textarea>
+                <br /><br />
+                <br /><br />
+                
+                
+                
+                
+                <h3>Other large multimedia blocks</h3>
+                
+                
+                
+                <!-- markdown input -->
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="1">
+> You can write markdown here too, same form!
+> In a text block, no less.
+				</textarea>
+                <br /><br />
+                <!-- html display -->
+                <div class="mdhtmlform-html" data-mdhtmlform-group="1"></div>
+                <!-- html submissionn -->
+                <textarea class="mdhtmlform-html" data-mdhtmlform-group="1" style="display: none;"></textarea>
+                <br /><br />
+    
+    
+    
+    
+    
+            	<!-- markdown input -->
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="2">
+![You can also provide alt text for your images.](http://users.humboldt.edu/ogayle/hist111/BuyBuyBuy.png "Titles too!") 
+                </textarea>
+                <br /><br />
+                <!-- html display -->
+                <div class="mdhtmlform-html" data-mdhtmlform-group="2"></div>
+                <!-- html submissionn -->
+                <textarea class="mdhtmlform-html" data-mdhtmlform-group="2" style="display: none;"></textarea>
+                <br /><br />
+                
+                
+                
+                
+                
+                
+                <!-- markdown input -->
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="3"></textarea>
+                <br /><br />
+                <!-- html display -->
+                <div class="mdhtmlform-html" data-mdhtmlform-group="3"></div>
+                <!-- html submissionn -->
+                <textarea class="mdhtmlform-html" data-mdhtmlform-group="3" style="display: none;"></textarea>
+                <br /><br />
+                
+                
+                
+                
+                
+                 <!-- markdown input -->
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="4"></textarea>
+                <br /><br />
+                <!-- html display -->
+                <div class="mdhtmlform-html" data-mdhtmlform-group="4"></div>
+                <!-- html submissionn -->
+                <textarea class="mdhtmlform-html" data-mdhtmlform-group="4" style="display: none;"></textarea>
+                <br /><br />
+                
+                
+                
+                
+                
+                 <!-- markdown input -->
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="5"></textarea>
+                <br /><br />
+                <!-- html display -->
+                <div class="mdhtmlform-html" data-mdhtmlform-group="5"></div>
+                <!-- html submissionn -->
+                <textarea class="mdhtmlform-html" data-mdhtmlform-group="5" style="display: none;"></textarea>
+                <br /><br />
+                
+                
+               <h3>Small multimedia blocks</h3>
+
+                
+                
+                <!-- markdown input -->
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="6"></textarea>
+                <br /><br />
+                <!-- html display -->
+                <div class="mdhtmlform-html" data-mdhtmlform-group="6"></div>
+                <!-- html submissionn -->
+                <textarea class="mdhtmlform-html" data-mdhtmlform-group="6" style="display: none;"></textarea>
+                <br /><br />
+                
+                
+                
+                
+                <!-- markdown input -->
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="7"></textarea>
+                <br /><br />
+                <!-- html display -->
+                <div class="mdhtmlform-html" data-mdhtmlform-group="7"></div>
+                <!-- html submissionn -->
+                <textarea class="mdhtmlform-html" data-mdhtmlform-group="7" style="display: none;"></textarea>
+                <br /><br />
+                
+                
+                
+                
+                <!-- markdown input -->
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="8"></textarea>
+                <br /><br />
+                <!-- html display -->
+                <div class="mdhtmlform-html" data-mdhtmlform-group="8"></div>
+                <!-- html submissionn -->
+                <textarea class="mdhtmlform-html" data-mdhtmlform-group="8" style="display: none;"></textarea>
+                <br /><br />
+                
+                
+                
+                
+                <!-- markdown input -->
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="9"></textarea>
+                <br /><br />
+                <!-- html display -->
+                <div class="mdhtmlform-html" data-mdhtmlform-group="9"></div>
+                <!-- html submissionn -->
+                <textarea class="mdhtmlform-html" data-mdhtmlform-group="9" style="display: none;"></textarea>
+                <br /><br />
+                
+                
+                
+                
+                <!-- markdown input -->
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="10"></textarea>
+                <br /><br />
+                <!-- html display -->
+                <div class="mdhtmlform-html" data-mdhtmlform-group="10"></div>
+                <!-- html submissionn -->
+                <textarea class="mdhtmlform-html" data-mdhtmlform-group="10" style="display: none;"></textarea>
+                <br /><br />
+                
+                
+                
+                
+                
+                 <!-- markdown input -->
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="11"></textarea>
+                <br /><br />
+                <!-- html display -->
+                <div class="mdhtmlform-html" data-mdhtmlform-group="11"></div>
+                <!-- html submissionn -->
+                <textarea class="mdhtmlform-html" data-mdhtmlform-group="11" style="display: none;"></textarea>
+                <br /><br />
+                            
+                
+                
+                
+                
+                
+                <button class="submit">Submit</button>
+            </form>
+<hr>
+        
+    <br><br><br>    <br>
+        		<h1><a id="instructions">Instructions for the multimedia blocks</a></h1>
+        	    <p>
+            		These are the heart of the matter. They can contain maps, images, 
+            		slideshows, Brightcove video, timelines, embeds and text
+            		formatted in Markdown or HTML.
+            	</p>
+            	<p>
+            		Items appear generally in the order entered, but the automatic
+            		layout attempts to put the puzzle together without a lot of
+            		awkward white space.
+            	</p>
+            	<p>
+            		If you're not happy with the layout at one of the widths, tweaking the
+            		order definitely makes a difference.
+            	</p> 
+            
+            	<h3>So, what's Markdown?</h3>
+            	<p>
+            		Markdown is a convenient format for quickly writing HTML without
+            		having to write HTML. But, you can also mix and match by including
+            		HTML.
+            	</p>
+            	<p>
+            		For example, text followed by a blank line becomes a &lt;p&gt;
+            		element. Lines starting with "* " become a bullet list.
+            	</p>
+            	
+            	<p>
+            		Once you get the hang of it, it's actually quite a bit easier than
+            		using a WYSIWYG editor, in part because we've used the flexibility
+            		to add shortcuts for common tasks: timelines, maps, Brightcove embeds 
+            		and	slideshows.
+            	</p>
+            	<p>
+            		Because it's sometimes unfamiliar, the HTML version will appear
+            		below the text box you're entering.
+            	</p>
+            	
+            	<h3>More basic Markdown syntax</h3>
+            	<!-- insert more common stuff here --->
+            	[some stuff]
+            	
+            	
+            	<p>
+            		For more, see 
+            		<a href="http://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">
+            		this convenient cheatsheet.
+            	</p>
+            	
+            	<br><br>
+            	<h3><a id="shortcuts">AJC shortcuts</a></h3>
+            	<p>
+            		Each of following simply starts a new block
+            	</p>
+            	<ul>
+            	<li>
+            		<em>Google map with info window</em>: Begin a block with  
+            		"map" (all lower case) one one line, the address to map on a second 
+            		line and
+            		the material for the info window on the third and subsequent lines.
+            		The info window can contain basic formatting. Use &lt;br&gt; to add
+            		line breaks within the window. 
+            	</li>
+<small>
+<pre>
+Example:
+map
+223 Perimeter Center Pkwy, Atlanta, GA 30346 
+The offices of the Atlanta Journal-Constitution are lovely and the parking is much better
+than it was downtown.           		
+</pre>
+</small>
+            	<li>
+            		<em>Slideshow</em>: Start a block with the word "slideshow" followed 
+            		by the complete url for the RSS feed of an AJC slideshow. Any text on following
+            		lines will be ignored.
+            	</li>
+<small>
+<pre>
+Example:
+slideshow: http://www.ajc.com/gallery/rss/sports/golf/georgia-golfers-british-open/gCL8d/#5732554        		
+</pre>            	
+</small>            		
+            	<li>
+            		<em>Timeline</em>: Start a block with the word "timeline" followed 
+            		by any headline or setup material, followed by a bullet list
+            		of timeline items.  Dates can be set on separate bullets or by making
+            		them headlines with the bullet. Images can be embedded by using their 
+            		URL. Other things can be embedded with HTML. Consider whether the 
+            		material would look better in a wide or narrow box.
+            	</li>
+<small>
+<pre>
+Example:
+timeline
+##A headline
+This is some setup text
+
+* 1922
+* #March
+  Buys a Studebaker
+* #May
+  Crashes Studebaker
+* 1924 - 1929
+* http://users.humboldt.edu/ogayle/hist111/BuyBuyBuy.png Works on Wall Street
+* 1929
+* Stock market crash sets off the Great Depression.
+
+You can also put text after the timeline.
+       		
+</pre>            	
+</small>            		
+
+
+
+
+ 			</ul>
+ 					     
+ 		</div>      	
+        
+        
+     
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="markdownform/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+        <script src="markdownform/plugins.js"></script>
+
+        <!-- MDWYSIWYG Dependencies -->
+        <script src="markdownform/vendor/showdown.js"></script> <!-- Include Showdown before MDWYSIWYG! -->
+        <script src="markdownform/mdhtmlform.js"></script> <!-- The main MDWYSIWYG file -->
+        <!-- end MDWYSIWYG Dependencies -->
+        
+        <script src="markdownform/example.js"></script> <!-- The js for this example -->
+
+    </body>
+</html>
