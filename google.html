@@ -77,10 +77,10 @@
 	
 		  //change url to correct local file name
 		  //comment out url to use google spreadsheets
-		  //url: 'curl.jsonp',
+		  url: 'basic.jsonp',
 		  jsonp: true,
 		  parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
-		  key : "1SC1Y9XR40HOzbD5OQv7vjj72aDkw5NGbPTITHpeWtXE",
+		  key : "1AMZOgPH3JQfXafxjmp6J9IUPvDV8IO-cnWURr-u52L8",
 		  worksheet : "1"
 		});
 
@@ -99,7 +99,7 @@
 			  });
 			pack();
 			var i = setInterval(pack, 100);
-			setTimeout(function(){clearInterval(i)},5000);
+			setTimeout(function(){clearInterval(i)},120000);
 brightcove.createExperiences();
 		  },
 		  error : function() {
@@ -419,7 +419,7 @@ brightcove.createExperiences();
 				</div>
 			</div>
 			<div class="box w2col" id="bigMultimedia"></div>
-			<div class="box w2col" id="boxOne"></div>	
+			<div class="box w1col" id="boxOne"></div>	
 			<div class="box w2col" id="boxTwo"></div>
 			<div class="box w2col" id="boxThree"></div>
 			<div class="box w2col" id="boxFour"></div>
