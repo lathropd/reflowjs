@@ -27,8 +27,12 @@
 		<div class="container">
         <!-- Add your site or application content here -->
             <h1>A.J.C. multimedia multimedia obit, event and topic tool</h1>
-            <br />
-            <form>
+            <h3>Current list</h3>
+            <div id="skybox">
+            	<select style="height: 50px; width: 200px;" id="skyboxList" multiple="true"></select><div id="skyboxMessage"></div>
+            </div>
+            
+            <form id="adminForm">
             	<h2>Text elements</h2>
             	<p>
             		The following contain only text formatted in markdown and/or HTML. 
@@ -149,7 +153,7 @@
                 <textarea class="mdhtmlform-md" data-mdhtmlform-group="0" id="bigMultimedia">## Write markdown in the textarea!</textarea>
                 <br />
                 <!-- html display -->
-                <small>Preview</small>
+                <small>Preview</small><br>
                 <div class="mdhtmlform-html" data-mdhtmlform-group="0"></div>
                 <!-- html submissionn -->
                 <textarea class="mdhtmlform-html" data-mdhtmlform-group="0" style="display: none;"></textarea>
@@ -252,6 +256,8 @@
                 </textarea>
                 <br /><br />
                 <!-- html display -->
+                                <small>Preview</small><br>
+
                 <div class="mdhtmlform-html" data-mdhtmlform-group="6"></div>
                 <!-- html submissionn -->
                 <textarea class="mdhtmlform-html" data-mdhtmlform-group="6" style="display: none;"></textarea>
