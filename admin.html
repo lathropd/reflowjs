@@ -17,6 +17,8 @@
         <link rel="stylesheet" href="markdownform/style.css">
         <script src="markdownform/vendor/modernizr-2.6.2.min.js"></script>
         <link rel="stylesheet" href="markdown.css">
+		<script src="//cdnjs.cloudflare.com/ajax/libs/dropbox.js/0.10.2/dropbox.min.js"></script>
+		<script src="dropboxFiles.js"></script>
 
     </head>
     <body>
@@ -25,7 +27,7 @@
         <![endif]-->
 		<div class="container">
         <!-- Add your site or application content here -->
-            <h1>A.J.C. multimedia obit tool</h1>
+            <h1>A.J.C. multimedia multimedia obit, event and topic tool</h1>
             <br />
             <form>
             	<h2>Text elements</h2>
@@ -44,7 +46,7 @@
             	<h3>Name</h3>
             	<p>
             		Enter the name as you intend it to be displayed. 
-            		Use  &nbsp; (non-breaking space) to control where the line break
+            		Use  &amp;nbsp; (the "non-breaking space") to control where the line break
             		occurs.
             	</p>
             	<input class="mdhtmlform-md" id="mugshotName" name="mugshotName">
@@ -62,11 +64,25 @@
 					paragraph is best. Longer bio material should go in a multimedia
 					block.
 				</p>
+				
+				<!-- markdown input -->
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="2">
+                </textarea>
+                <br /><br />
+                <!-- html display -->
+                <!--<div class="mdhtmlform-html" data-mdhtmlform-group="2"></div>-->
+                <!-- html submissionn -->
+                <textarea class="mdhtmlform-html" data-mdhtmlform-group="2" style="display: none;"></textarea>
+                <br /><br />
+                
+				
 				<hr>
 
 				<h2>Images</h2>
 				<p>
-					These should be URLs to images. Upload them first to [AJC server name].
+					These should be URLs to images. Upload them first to Medley. Use 
+					the URL displayed at the top of the Medley object next to the image
+					preview once you save it, not the "view on site" URL.
 					Please size them appropriately in an image editor.
 				</p>
 				   	
@@ -101,8 +117,11 @@
             		See the <a href="#instructions">instructions below</a> for the explanation
             		on how to fill these out. You enter information in the text fields
             		and a preview renders in the box underneath. <a href="#shortcuts">
-            		Shortcuts</a> will not
-            		display in the preview.
+            		Shortcuts</a> will not	display in the preview.
+            	</p>
+            	<p>
+            		Just because they're called "multimedia" doesn't mean they can't be 
+            		text, tables, lists, etc.
             	</p>
             		
             	 <h4>Really basic Markdown syntax</h4>
@@ -116,9 +135,9 @@
             		The following multimedia blocks will appear full width on phones, 
             		full width on some tablets,  1/2 width on AJC.com embeds and some
             		tablets, and 2/3 width on the paid site.
-            	<p>
+            	</p>
             	<h3><h3>
-            	<h3>Main multimedia block</h3>
+            	<h3>Main multimedia block <small>(optional)</small></h3>
             	<p>
             		This will always appear next to or directly underneath the mugshot
             		and brief bio. Videos and slideshows are encouraged, maps if neither
@@ -129,8 +148,9 @@
             	
                 <!-- Markdown group for the big multimedia element -->
                 <textarea class="mdhtmlform-md" data-mdhtmlform-group="0" id="bigMultimedia">## Write markdown in the textarea!</textarea>
-                <br /><br />
+                <br />
                 <!-- html display -->
+                <small>Preview</small>
                 <div class="mdhtmlform-html" data-mdhtmlform-group="0"></div>
                 <!-- html submissionn -->
                 <textarea class="mdhtmlform-html" data-mdhtmlform-group="0" style="display: none;"></textarea>
@@ -140,10 +160,13 @@
                 
                 
                 
-                <h3>Other large multimedia blocks</h3>
+                <h3>Large multimedia blocks <small>(optional)</small></h3>
+                <p>
+                	You can create up to four of these by clicking the "Add another" link.
+                	The order does matter as it determines the page layout.
+                </p>
                 
-                
-                
+                 
                 <!-- markdown input -->
                 <textarea class="mdhtmlform-md" data-mdhtmlform-group="1">
 > You can write markdown here too, same form!
@@ -156,13 +179,12 @@
                 <textarea class="mdhtmlform-html" data-mdhtmlform-group="1" style="display: none;"></textarea>
                 <br /><br />
     
-    
-    
+
+    <div style="display:none">
     
     
             	<!-- markdown input -->
                 <textarea class="mdhtmlform-md" data-mdhtmlform-group="2">
-![You can also provide alt text for your images.](http://users.humboldt.edu/ogayle/hist111/BuyBuyBuy.png "Titles too!") 
                 </textarea>
                 <br /><br />
                 <!-- html display -->
@@ -209,15 +231,26 @@
                 <div class="mdhtmlform-html" data-mdhtmlform-group="5"></div>
                 <!-- html submissionn -->
                 <textarea class="mdhtmlform-html" data-mdhtmlform-group="5" style="display: none;"></textarea>
-                <br /><br />
-                
-                
-               <h3>Small multimedia blocks</h3>
 
+ </div>      
+<large><a id="addLarge" href="javascript:function(){return false;}">Add another</a></large>
+                 <br /><br />               
+               <h3>Small multimedia blocks <small>(optional)</small></h3>
+                <p>
+                	You can create up to six of these by clicking the "Add another" link.
+                	The order does matter as it determines the page layout.
+                </p>
+                
+				
                 
                 
                 <!-- markdown input -->
-                <textarea class="mdhtmlform-md" data-mdhtmlform-group="6"></textarea>
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="6">
+<div style="background-color: red; color: white;">
+<h4>You can also use HTML</h4>
+</div>
+
+                </textarea>
                 <br /><br />
                 <!-- html display -->
                 <div class="mdhtmlform-html" data-mdhtmlform-group="6"></div>
@@ -225,7 +258,9 @@
                 <textarea class="mdhtmlform-html" data-mdhtmlform-group="6" style="display: none;"></textarea>
                 <br /><br />
                 
+
                 
+ <div style="display:none">               
                 
                 
                 <!-- markdown input -->
@@ -238,7 +273,7 @@
                 <br /><br />
                 
                 
-                
+            
                 
                 <!-- markdown input -->
                 <textarea class="mdhtmlform-md" data-mdhtmlform-group="8"></textarea>
@@ -284,13 +319,13 @@
                 <div class="mdhtmlform-html" data-mdhtmlform-group="11"></div>
                 <!-- html submissionn -->
                 <textarea class="mdhtmlform-html" data-mdhtmlform-group="11" style="display: none;"></textarea>
-                <br /><br />
-                            
+
+    </div>                
+<large><a id="addSmall" href="javascript:function(){return false;}">Add another</a></large>               
                 
                 
-                
-                
-                
+                             <br /><br />
+                               
                 <button class="submit">Submit</button>
             </form>
 <hr>
@@ -427,7 +462,6 @@ You can also put text after the timeline.
         <script src="markdownform/mdhtmlform.js"></script> <!-- The main MDWYSIWYG file -->
         <!-- end MDWYSIWYG Dependencies -->
         
-        <script src="markdownform/example.js"></script> <!-- The js for this example -->
 
     </body>
 </html>
