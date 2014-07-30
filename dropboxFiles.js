@@ -8,7 +8,7 @@ var ul;
 $(document).ready( function () {
 
 
- 	client = new Dropbox.Client({key: 'phovkvef0jhkx4i'});
+ 	client = new Dropbox.Client({key: 'phovkvef0jhkx4i', token:'zy9Bs1eG-scAAAAAAAABQywH6g14oaZPKxItX9tMUbQ-D7ca2fJ3_9p6iEBwOY-g'});
 
 
 	client.onError.addListener(function(error) { alert("there's been an error. please reload the page.\n\n"+error); client.reset();});
@@ -34,7 +34,7 @@ function obit(client, form, skybox) {
 			$(skyboxList).html();
 			for (entry in entries) {
 				if (entries[entry].match(/\.json$/)) {
-					$(skyboxList).append("<option class='filename' id='"+entries[entry]+"'>"+entries[entry]+"</option>");
+					$(skyboxList).append("<option class='filename' id='"+entries[entry]+"'>"+entries[entry].replace(/[\W_]/g, ' ').replace(/ json$/,'')+"</option>");
 					
 				}				
 			}
