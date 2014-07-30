@@ -1,11 +1,13 @@
 
 
-
+$(document).ready( function () {
 var client = new Dropbox.Client({key: 'phovkvef0jhkx4i'});
 
 var directory;
 
 client.onError.addListener(function(error) { alert("there's been an error. please reload the page.\n\n"+error); client.reset();});
+
+
 client.authenticate();
 
 //client.makeUrl('hello_world.txt', {downloadHack: true}, function(a,b) { console.log(a); console.log(b);});
@@ -21,6 +23,8 @@ client.readdir("/", function(error, entries) {
   
 	directory = entries;
   //alert("Your Dropbox contains " + entries.join(", "));
+});
+
 });
 
 function obit(client, form, skybox) {
