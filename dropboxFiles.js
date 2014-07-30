@@ -1,9 +1,11 @@
-
+var directory;
+var client;
 
 $(document).ready( function () {
-var client = new Dropbox.Client({key: 'phovkvef0jhkx4i'});
 
-var directory;
+
+ client = new Dropbox.Client({key: 'phovkvef0jhkx4i'});
+
 
 client.onError.addListener(function(error) { alert("there's been an error. please reload the page.\n\n"+error); client.reset();});
 
