@@ -1,10 +1,10 @@
 var directory;
 var client;
-var skybox;
+var skybox = "#skybox";
 var form;
 var O;
 var ul;
-
+var skyboxHTML;
 $(document).ready( function () {
 
 
@@ -17,8 +17,9 @@ $(document).ready( function () {
 	client.authenticate();
 	//client.makeUrl('hello_world.txt', {downloadHack: true}, function(a,b) { console.log(a); console.log(b);});
 	form = $("#adminForm");
-	skybox = "#skybox";
-	$(skybox).html('<select style="height: 50px; width: 200px;" id="skyboxList" multiple="true"></select><div id="skyboxMessage"></div>');
+	skyboxHTML =$(skybox).html();
+	
+	$(skybox).html(skyboxHTML);
 	O = obit(client, form, skybox);	
 });
 

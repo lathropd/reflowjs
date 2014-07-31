@@ -10,13 +10,18 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-
-        <link rel="stylesheet" href="markdownform/normalize.css">
-        <link rel="stylesheet" href="markdownform/main.css">
-        <link rel="stylesheet" href="markdownform/style.css">
         <script src="markdownform/vendor/modernizr-2.6.2.min.js"></script>
-        <link rel="stylesheet" href="markdown.css">
+         <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900" rel="stylesheet" type="text/css">
+         <link href="http://matthewhartman.github.io/base/style.css" rel="stylesheet" type="text/css">
+		<style>
+			textarea.mdhtmlform-md { min-height: 50px; width: 600px;}
+			input, textarea {margin-top: 3px;}
+			input {width: 600px;}
+			div.mdhtmlform-html { padding: 10px; border: 1px solid black;  width: 600px;}
+			div.border {padding: 10px; border: 1px solid black; max-width: 300px;}
+			textarea { resize:vertical; }
+			
+		</style>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/dropbox.js/0.10.2/dropbox.min.js"></script>
 
     </head>
@@ -26,57 +31,72 @@
         <![endif]-->
 		<div class="container">
         <!-- Add your site or application content here -->
-            <h1>A.J.C. multimedia multimedia obit, event and topic tool</h1>
-            <h3>Current list</h3>
-            <div id="skybox">
-            	<select style="height: 50px; width: 200px;" id="skyboxList" multiple="true"></select><div id="skyboxMessage"></div>
+            <h1>Reflow</h1>
+            <h2>The AJC multimedia multimedia obit, event and topic tool</h2>
+            <hr>
+            <h4>Select to edit a page</h4>
+            <div id="skybox" style="clear: right;";>
+            	<select size="10" style="padding:10px; min-width: 300px;" id="skyboxList" multiple="true"></select><div id="skyboxMessage"></div>
             </div>
-            
+            <hr>
             <form id="adminForm">
-            	<h2>Text elements</h2>
+
+            <div>
+            	<button class="button" id="create" name="create">Create new</button>
+            	 <button class="button " style="background-color:#007aff" id="save">Save</button>
+                 <button type="reset"  class="button grey-button">Reset Form</button>
+			</div>
+            <hr>
+            <h1>Create/Edit a Page</h1>
+                <h4>Name</h4>
+            	<p>
+            		Enter the name as you intend it to be displayed. 
+            		Use  &amp;nbsp; (the "non-breaking space") to control where the line break
+            		occurs.<br>
+            		<input id="mugshotName" name="mugshotName">
+            	</p>
+
+            	<h2>Additional text elements</h2>
             	<p>
             		The following contain only text formatted in markdown and/or HTML. 
             		They shouldn't include multimedia elements.
             	</p>
             	
-				<h3>Headline <small><em>(optional)</em></small></h3>
+				<h4>Headline <small><em>(optional)</em></small></h4>
 				<p>
 					This can be anything. It displays very, very large at the top. If
 					there is a background it will have a 1 pixel white outline.
-				</p>
-				<input class="mdhtmlform-md" id="bigHeadline" name="bigHeadline">
-				
-            	<h3>Name</h3>
-            	<p>
-            		Enter the name as you intend it to be displayed. 
-            		Use  &amp;nbsp; (the "non-breaking space") to control where the line break
-            		occurs.
-            	</p>
-            	<input class="mdhtmlform-md" id="mugshotName" name="mugshotName">
+					<br>
+					<input id="bigHeadline" name="bigHeadline">
 
-				<h3>Dates</h3>
+				</p>
+				
+
+				<h4>Dates</h4>
 				<p>
 					Appear directly under the name. Should  be year-of-birth hyphen 
 					year-of-death (e.g. 1955 - 2014).
-				</p>
-				<input class="mdhtmlform-md" id="mugshotDates" name="mugshotDates">
+					<br>
+					<input id="mugshotDates" name="mugshotDates">
 				
-				<h3>Short bio <small><em>(optional)</em></small></h3>
+				</p>
+				
+				<h4>Short bio <small><em>(optional)</em></small></h4>
 				<p>
 					A few lines. Displays under the dates. A bullet list or short
 					paragraph is best. Longer bio material should go in a multimedia
 					block.
-				</p>
 				
+				<br>
 				<!-- markdown input -->
                 <textarea class="mdhtmlform-md" data-mdhtmlform-group="2">
                 </textarea>
-                <br /><br />
+               
                 <!-- html display -->
                 <!--<div class="mdhtmlform-html" data-mdhtmlform-group="2"></div>-->
                 <!-- html submissionn -->
                 <textarea class="mdhtmlform-html" data-mdhtmlform-group="2" style="display: none;"></textarea>
-                <br /><br />
+               </p>
                 
 				
 				<hr>
@@ -89,58 +109,70 @@
 					Please size them appropriately in an image editor.
 				</p>
 				   	
-            	<h3>Mugshot URL</h3>
-            	<p> Should be at least 256px wide. Preferably taller than it is wide.</p>
-            	<p>
+            	<h4>Mugshot URL</h4>
+            	<p> 
+            		<em>Should be at least 256px wide. Preferably taller than it is wide.</em>  
             		This appears in the primary box along with the name and dates. It is 
             		quite possibly the most important thing on the page. Please search
-            		[for a photo] or use something from a government or official site
-            		or with a creative commons license allowing reuse.
+            		for an AJC photo,  something from a government or official site
+            		or something with a creative commons license allowing reuse.
+            		<br>
+            		<input class="mdhtmlform-md" id="mugshotPhoto" name="mugshotPhoto"><br>
             	</p>
-            	<input class="mdhtmlform-md" id="mugshotPhoto" name="mugshotPhoto"><br>
-            	
-            	<h3>Headline backdrop image URL <small><em>(optional)</em></small></h3>
+            	<h4>Headline backdrop image URL <small><em>(optional)</em></small></h4>
             	<p>
-            		Should be an at least 900px wide. png files preferred.
-            	</p>
-            	<p>
+            		<em>Should be an at least 900px wide. PNG files are preferred.</em> 
             		This will appear full frame no matter how wide the use sets the page.
             		The height will cleverly adjust, but please use a horizontal image.
             		Vertical and square images will likely be too tall at larger screen
             		widths. Exceptions can obviously be made if it looks good that way.
             		The headline is aligned along the bottom of the image.
-            	</p>
-            	<input id="bigImage" name="bigImage">
+          			<br>
+          			<input id="bigImage" name="bigImage">
+          		</p>
             	<hr>
             	
             	
             	
             	<h2>Multimedia blocks</h2>
             	<p>
-            		See the <a href="#instructions">instructions below</a> for the explanation
-            		on how to fill these out. You enter information in the text fields
-            		and a preview renders in the box underneath. <a href="#shortcuts">
-            		Shortcuts</a> will not	display in the preview.
+            		These are the big elements that make up the page. <em>Remember, just 
+            		because they're called "multimedia" doesn't mean they can't be 
+            		text, tables, lists, etc.</em>
             	</p>
             	<p>
-            		Just because they're called "multimedia" doesn't mean they can't be 
-            		text, tables, lists, etc.
-            	</p>
+            		See the <a href="#instructions">instructions below</a> for the 
+            		explanation on how to fill these out. You can use HTML, 
+            		<a href="#markdown">Markdown</a>, or <a href="#shortcuts">shortcuts</a>. 
             		
+            		As you enter information in the text fields, HTML and markdown will 
+            		display in the preview underneath. Shortcuts do not preview, but can
+            		be checked by viewing the page before it's published.
+            	</p>
+   
             	 <h4>Really basic Markdown syntax</h4>
             	<!-- insert  common stuff here --->
-            	[some stuff]
-            	
-            	
-            	
-            	<h2>Large multimedia blocks</h2>
             	<p>
-            		The following multimedia blocks will appear full width on phones, 
-            		full width on some tablets,  1/2 width on AJC.com embeds and some
-            		tablets, and 2/3 width on the paid site.
+            		Since you may not know about Markdown, here's a quick primer: it's a
+            		quick way of marking up text to generate HTML (HTML can be mixed in). 
             	</p>
-            	<h3><h3>
-            	<h3>Main multimedia block <small>(optional)</small></h3>
+            	<ul><small>
+            	<p>*Italics*</p>
+            	<p>**Bold**</p>
+            	<p>[Hyperlink](http://example.com/url)</p>
+            	<p>![Image](http://example.com/image.png)</p>
+            	<p>#Extra-large title (&lt;h1&gt;)</p>
+            	<p>##Large  title (&lt;h2&gt;)</p>
+            	<p>###Medium title (&lt;h3&gt;) </p>
+            	<p>####Small  title (&lt;h4&gt;)</p>
+            	<p>* Bullet Lists<br>* Of any<br>* length </p>
+				</small></ul>
+
+
+            	
+            	
+            	<h4><h4>
+            	<h4>Main multimedia block <small>(optional)</small></h4>
             	<p>
             		This will always appear next to or directly underneath the mugshot
             		and brief bio. Videos and slideshows are encouraged, maps if neither
@@ -163,17 +195,21 @@
                 
                 
                 
-                <h3>Large multimedia blocks <small>(optional)</small></h3>
+                <h4>Large multimedia blocks <small>(optional)</small></h4>
+            	<p>
+            		The following multimedia blocks will appear full width on phones, 
+            		full width on some tablets,  1/2 width on AJC.com embeds and some
+            		tablets, and 2/3 width on the paid site.
+            	</p>
                 <p>
-                	You can create up to four of these by clicking the "Add another" link.
+                	You can create up to four of these by filling in the text areas.
+                	<!-- clicking the "Add another" link -->
                 	The order does matter as it determines the page layout.
                 </p>
                 
                  
                 <!-- markdown input -->
                 <textarea class="mdhtmlform-md" data-mdhtmlform-group="1">
-> You can write markdown here too, same form!
-> In a text block, no less.
 				</textarea>
                 <br /><br />
                                                 <small>Preview</small><br>
@@ -185,7 +221,6 @@
                 <br /><br />
     
 
-    <div style="display:none">
     
     
             	<!-- markdown input -->
@@ -237,12 +272,12 @@
                 <!-- html submissionn -->
                 <textarea class="mdhtmlform-html" data-mdhtmlform-group="5" style="display: none;"></textarea>
 
- </div>      
-<large><a id="addLarge" href="javascript:function(){return false;}">Add another</a></large>
+<!--<large><a id="addLarge" href="javascript:function(){return false;}">Add another</a></large>-->
                  <br /><br />               
-               <h3>Small multimedia blocks <small>(optional)</small></h3>
+               <h4>Small multimedia blocks <small>(optional)</small></h4>
                 <p>
-                	You can create up to six of these by clicking the "Add another" link.
+                	You can create up to six of these by filling in the boxes.
+                	<!-- clicking the "Add another" link -->
                 	The order does matter as it determines the page layout.
                 </p>
                 
@@ -251,9 +286,7 @@
                 
                 <!-- markdown input -->
                 <textarea class="mdhtmlform-md" data-mdhtmlform-group="6">
-<div style="background-color: red; color: white;">
-<h4>You can also use HTML</h4>
-</div>
+
 
                 </textarea>
                 <br /><br />
@@ -266,9 +299,7 @@
                 <br /><br />
                 
 
-                
- <div style="display:none">               
-                
+
                 
                 <!-- markdown input -->
                 <textarea class="mdhtmlform-md" data-mdhtmlform-group="7"></textarea>
@@ -327,13 +358,12 @@
                 <!-- html submissionn -->
                 <textarea class="mdhtmlform-html" data-mdhtmlform-group="11" style="display: none;"></textarea>
 
-    </div>                
-<large><a id="addSmall" href="javascript:function(){return false;}">Add another</a></large>               
+<!--<large><a id="addSmall" href="javascript:function(){return false;}">Add another</a></large>    -->           
                 
                 
                              <br /><br />
                                
-                <button class="submit">Submit</button>
+
             </form>
 <hr>
         
@@ -354,7 +384,7 @@
             		order definitely makes a difference.
             	</p> 
             
-            	<h3>So, what's Markdown?</h3>
+            	<h4>So, what's Markdown?</h4>
             	<p>
             		Markdown is a convenient format for quickly writing HTML without
             		having to write HTML. But, you can also mix and match by including
@@ -376,25 +406,19 @@
             		below the text box you're entering.
             	</p>
             	
-            	<h3>More basic Markdown syntax</h3>
-            	<!-- insert more common stuff here --->
-            	[some stuff]
-            	
-            	
-            	<p>
-            		For more, see 
-            		<a href="http://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">
-            		this convenient cheatsheet.
-            	</p>
+            	<h4>Read the <a href="http://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">
+            	Markdown Cheat Sheet</a></h4>
+            	<h4>Or read <a href="https://daringfireball.net/projects/markdown/basics">a more complete explanation</a></h4>
             	
             	<br><br>
-            	<h3><a id="shortcuts">AJC shortcuts</a></h3>
+            	<h4><a id="shortcuts">AJC shortcuts</a></h4>
             	<p>
-            		Each of following simply starts a new block
+            		Each of following lets you quickly do something without the need
+            		for HTML, an embed code or using Markdown.
             	</p>
             	<ul>
             	<li>
-            		<em>Google map with info window</em>: Begin a block with  
+            		<em>Google map with info window</em><br>Begin a block with  
             		"map" (all lower case) one one line, the address to map on a second 
             		line and
             		the material for the info window on the third and subsequent lines.
@@ -403,7 +427,6 @@
             	</li>
 <small>
 <pre>
-Example:
 map
 223 Perimeter Center Pkwy, Atlanta, GA 30346 
 The offices of the Atlanta Journal-Constitution are lovely and the parking is much better
@@ -411,18 +434,17 @@ than it was downtown.
 </pre>
 </small>
             	<li>
-            		<em>Slideshow</em>: Start a block with the word "slideshow" followed 
+            		<em>Slideshow</em><br>Begin a block with the word "slideshow" followed 
             		by the complete url for the RSS feed of an AJC slideshow. Any text on following
             		lines will be ignored.
             	</li>
 <small>
 <pre>
-Example:
 slideshow: http://www.ajc.com/gallery/rss/sports/golf/georgia-golfers-british-open/gCL8d/#5732554        		
 </pre>            	
 </small>            		
             	<li>
-            		<em>Timeline</em>: Start a block with the word "timeline" followed 
+            		<em>Timeline</em><br>Begin a block with the word "timeline" followed 
             		by any headline or setup material, followed by a bullet list
             		of timeline items.  Dates can be set on separate bullets or by making
             		them headlines with the bullet. Images can be embedded by using their 
@@ -431,7 +453,6 @@ slideshow: http://www.ajc.com/gallery/rss/sports/golf/georgia-golfers-british-op
             	</li>
 <small>
 <pre>
-Example:
 timeline
 ##A headline
 This is some setup text
@@ -447,13 +468,18 @@ This is some setup text
 * Stock market crash sets off the Great Depression.
 
 You can also put text after the timeline.
-       		
 </pre>            	
 </small>            		
-
-
-
-
+				<li>
+            		<em>Brightcove</em><br>Use a Brightcove video's id number by itself in
+            		a field and it will automatically be placed in the correct, responsive
+            		player.
+				</li>
+<small>
+<pre>
+3666574943001
+</pre>            	
+</small>      
  			</ul>
  					     
  		</div>      	
