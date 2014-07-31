@@ -54,10 +54,11 @@ function obit(client, form, skybox) {
 					}
 				}				
 			}
-			$("option.filename").click(function (event) {this_obit.load(this.id+".json")});
-			$("#"+(this.data.file_name||"nothing").replace(/.json/,"")).attr('selected','selected');
-
+			$("option.filename").on("click", function (event) {this_obit.load(this.id+".json")});
+			$("#"+(this.data.file_name||"nothing").replace(/.json/,"")).click();
+			
 		});
+		
 	};
 	this.create = function() {
 		console.log(1)
@@ -70,6 +71,7 @@ function obit(client, form, skybox) {
 			this.write();
 			
 		}
+		
 		
 		
 	};
@@ -87,11 +89,10 @@ function obit(client, form, skybox) {
 			} else {
 				this.data.file_name  = name;
 				this.data = JSON.parse(results);
-				console.log(results);
 				if (!this.data.url||!this.data.webUrl) {
 					client.makeUrl(name, {downloadHack: true}, function (error, result) {
 						$("#url").val(result.url);
-						$("#webUrl").val("https://lathropd.github.com/reflowjs/?"+result.url.replace(/https?\:\/\/dl.dropboxusercontent.com/,""));
+						$("#webUrl").val("https://lathropd.github.com/reflowjs/?file="+result.url.replace(/https?\:\/\//,""));
 					});
 				
 				}
@@ -112,15 +113,13 @@ function obit(client, form, skybox) {
 
 	this.json = function () { return JSON.stringify(this.data);};
 	this.write = function() {
-			client.writeFile(this.data.file_name, this.json());
-			
-			this.loadEntries();
-			//this.load(this.data.file_name); 	
-			
+			this_obit = this;
+			client.writeFile(this.data.file_name, this.json(), function () {this_obit.loadEntries();});	
 		
 	}
 	this.save = function () {
 		this_obit = this;
+
 		$(form).find("input, textarea").each(function (i, element) {
 			if (element.name) {
 				if (!element.value&&this_obit.data.hasOwnProperty(element.name)) {
@@ -133,7 +132,8 @@ function obit(client, form, skybox) {
 				}
 			}
 		});
-		
+		this.data.mugshotName = this.data.name; 
+
 		this.write();
 	}
 	
