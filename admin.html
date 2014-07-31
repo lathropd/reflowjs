@@ -35,16 +35,20 @@
             <h2>The AJC multimedia multimedia obit, event and topic tool</h2>
             <hr>
             <h4>Select to edit a page</h4>
-            <div id="skybox" style="clear: right;";>
-            	<select size="10" style="padding:10px; min-width: 300px;" id="skyboxList" multiple="true"></select><div id="skyboxMessage"></div>
+                        <form id="adminForm">
+
+            <div id="skybox">
+            	<select size=5 style="overflow-y:scroll; padding:10px; min-width: 300px; " id="skyboxList"></select><div id="skyboxMessage"></div>
             </div>
+             <div><h3>JSON URL: <input style="font-size: 24px;width: 90%;" id="url" name="url"></div>	
+             <div><h3>Web URL: <input style="font-size: 24px;width: 90%;" id="webUrl" name="url" ></div>
+				
             <hr>
-            <form id="adminForm">
 
             <div>
-            	<button class="button" id="create" name="create">Create new</button>
-            	 <button class="button " style="background-color:#007aff" id="save">Save</button>
-                 <button type="reset"  class="button grey-button">Reset Form</button>
+            	<button class="button create" >Create new</button>
+            	 <button class="button save" style="background-color:#007aff">Save</button>
+                 <button type="reset"  class="button grey-button reset">Reset Form</button>
 			</div>
             <hr>
             <h1>Create/Edit a Page</h1>
@@ -53,7 +57,7 @@
             		Enter the name as you intend it to be displayed. 
             		Use  &amp;nbsp; (the "non-breaking space") to control where the line break
             		occurs.<br>
-            		<input id="mugshotName" name="mugshotName">
+            		<input id="name" name="name">
             	</p>
 
             	<h2>Additional text elements</h2>
@@ -117,7 +121,7 @@
             		for an AJC photo,  something from a government or official site
             		or something with a creative commons license allowing reuse.
             		<br>
-            		<input class="mdhtmlform-md" id="mugshotPhoto" name="mugshotPhoto"><br>
+            		<input id="mugshotPhoto" name="mugshotPhoto"><br>
             	</p>
             	<h4>Headline backdrop image URL <small><em>(optional)</em></small></h4>
             	<p>
