@@ -41,7 +41,7 @@
             	<select size=5 style="overflow-y:scroll; padding:10px; min-width: 300px; " id="skyboxList"></select><div id="skyboxMessage"></div>
             </div>
              <div><h3>JSON URL: <input style="font-size: 24px;width: 90%;" id="url" name="url"></div>	
-             <div><h3>Web URL: <input style="font-size: 24px;width: 90%;" id="webUrl" name="url" ></div>
+             <div><h3>Web URL: <input style="font-size: 24px;width: 90%;" id="webUrl" name="webUrl" ></div>
 				
             <hr>
 
@@ -93,7 +93,7 @@
 				
 				<br>
 				<!-- markdown input -->
-                <textarea class="mdhtmlform-md" data-mdhtmlform-group="2">
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="2" name="mugshotBio" id="mugshotBio">
                 </textarea>
                
                 <!-- html display -->
@@ -186,7 +186,7 @@
             	</p>
             	
                 <!-- Markdown group for the big multimedia element -->
-                <textarea class="mdhtmlform-md" data-mdhtmlform-group="0" id="bigMultimedia">## Write markdown in the textarea!</textarea>
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="0" name="bigMultimedia" id="bigMultimedia">## Write markdown in the textarea!</textarea>
                 <br /><br>
                 <!-- html display -->
                 <small>Preview</small><br>
@@ -220,7 +220,7 @@
                                                 <small>Preview</small><br>
 
                 <!-- html display -->
-                <div class="mdhtmlform-html" data-mdhtmlform-group="1"></div>
+                <div class="mdhtmlform-html" data-mdhtmlform-group="1" name="boxTwo" id="boxTwo"></div>
                 <!-- html submissionn -->
                 <textarea class="mdhtmlform-html" data-mdhtmlform-group="1" style="display: none;"></textarea>
                 <br /><br />
@@ -231,7 +231,7 @@
             	<!-- markdown input -->
             	 <h5>Large #2</h5>
 
-                <textarea class="mdhtmlform-md" data-mdhtmlform-group="2">
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="2" name="boxThree" id="boxThree">
                 </textarea>
                 <br /><br />
                 <!-- html display -->
@@ -247,7 +247,7 @@
                 
                 <!-- markdown input -->
                 <h5>Large #3</h5>
-                <textarea class="mdhtmlform-md" data-mdhtmlform-group="3"></textarea>
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="3" name="boxFour" id="boxFour"></textarea>
                 <br /><br />
                 <!-- html display -->
                 <div class="mdhtmlform-html" data-mdhtmlform-group="3"></div>
@@ -262,7 +262,7 @@
                  <!-- markdown input -->
                  <h5>Large #4</h5>
 
-                <textarea class="mdhtmlform-md" data-mdhtmlform-group="4"></textarea>
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="4" name="boxFive" id="boxFive"></textarea>
                 <br /><br />
                 <!-- html display -->
                 <div class="mdhtmlform-html" data-mdhtmlform-group="4"></div>
@@ -273,18 +273,7 @@
                 
                 
                 
-                
-                 <!-- markdown input -->
-                  <h5>Large #4</h5>
 
-                <textarea class="mdhtmlform-md" data-mdhtmlform-group="5"></textarea>
-                <br /><br />
-                <!-- html display -->
-                <div class="mdhtmlform-html" data-mdhtmlform-group="5"></div>
-                <!-- html submissionn -->
-                <textarea class="mdhtmlform-html" data-mdhtmlform-group="5" style="display: none;"></textarea>
-
-<!--<large><a id="addLarge" href="javascript:function(){return false;}">Add another</a></large>-->
                  <br /><br />               
                <h4>Small multimedia blocks <small>(optional)</small></h4>
                 <p>
@@ -299,7 +288,7 @@
                 <!-- markdown input -->
                                   <h5>Small #1</h5>
 
-                <textarea class="mdhtmlform-md" data-mdhtmlform-group="6">
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="6" name="boxOne" id="boxOne">
 
 
                 </textarea>
@@ -318,7 +307,7 @@
                 <!-- markdown input -->
                                   <h5>Small #2</h5>
 
-                <textarea class="mdhtmlform-md" data-mdhtmlform-group="7"></textarea>
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="7" name="boxSix" id="boxSix"></textarea>
                 <br /><br />
                 <!-- html display -->
                 <div class="mdhtmlform-html" data-mdhtmlform-group="7"></div>
@@ -332,7 +321,7 @@
                 <!-- markdown input -->
                                   <h5>Small #3</h5>
 
-                <textarea class="mdhtmlform-md" data-mdhtmlform-group="8"></textarea>
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="8" name="boxSeven" id="boxSeven"></textarea>
                 <br /><br />
                 <!-- html display -->
                 <div class="mdhtmlform-html" data-mdhtmlform-group="8"></div>
@@ -346,7 +335,7 @@
                 <!-- markdown input -->
                                   <h5>Small #4</h5>
 
-                <textarea class="mdhtmlform-md" data-mdhtmlform-group="9"></textarea>
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="9" name="boxEight" id="boxEight"></textarea>
                 <br /><br />
                 <!-- html display -->
                 <div class="mdhtmlform-html" data-mdhtmlform-group="9"></div>
@@ -360,7 +349,7 @@
                 <!-- markdown input -->
                                   <h5>Small #5</h5>
 
-                <textarea class="mdhtmlform-md" data-mdhtmlform-group="10"></textarea>
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="10" name="boxNine" id="boxNine"></textarea>
                 <br /><br />
                 <!-- html display -->
                 <div class="mdhtmlform-html" data-mdhtmlform-group="10"></div>
@@ -375,7 +364,7 @@
                  <!-- markdown input -->
                                    <h5>Small #6</h5>
 
-                <textarea class="mdhtmlform-md" data-mdhtmlform-group="11"></textarea>
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="11" name="boxTen" id="boxTen"></textarea>
                 <br /><br />
                 <!-- html display -->
                 <div class="mdhtmlform-html" data-mdhtmlform-group="11"></div>
