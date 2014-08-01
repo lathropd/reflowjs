@@ -224,13 +224,12 @@ window.onload=function() {
 				img.onload = function () {bgImage(pagedata)};
 				img.src = pagedata.bigImage;
 				document.getElementById('bigPicture').innerHTML = "<div>" + document.getElementById('bigPicture').innerHTML + "</div>";
-			
+			}
 			window.onresize = function () {bgImage(pagedata)};
 			swapLoop(strings, pagedata, swap);
 			swapLoop(boxen, pagedata, insert);
 			reflowSettings.maps.forEach(makeMap);
 			document.body.style.display="";
-			} else {}
 				
 		}
 
@@ -265,7 +264,7 @@ window.onload=function() {
 
         			
       			} else {
-        			alert("Geocode was not successful for the following reason: " + status);
+        			//alert("Geocode was not successful for the following reason: " + status);
       			}
    	 		});
 		}
