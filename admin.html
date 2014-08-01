@@ -10,19 +10,18 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
-        <script src="markdownform/vendor/modernizr-2.6.2.min.js"></script>
          <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900" rel="stylesheet" type="text/css">
          <link href="base-css.css" rel="stylesheet" type="text/css">
 		<style>
 			textarea.mdhtmlform-md { min-height: 50px; width: 600px;}
+			textarea.codeGenerator { min-height: 50px; width: 600px;}
 			input, textarea {margin-top: 3px;}
 			input {width: 600px;}
-			div.mdhtmlform-html { padding: 10px; border: 1px solid black;  width: 600px;}
+			div.mdhtmlform-html, div.generatedCode { padding: 10px; border: 1px solid black;  width: 600px;}
 			div.border {padding: 10px; border: 1px solid black; max-width: 300px;}
 			textarea { resize:vertical; }
 			
 		</style>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/dropbox.js/0.10.2/dropbox.min.js"></script>
 
     </head>
     <body>
@@ -41,7 +40,7 @@
             	<select size=5 style="overflow-y:scroll; padding:10px; min-width: 300px; " id="skyboxList"></select><div id="skyboxMessage"></div>
             </div>
              <div><h3>JSON URL: <input style="font-size: 24px;width: 90%;" id="url" name="url"></div>	
-             <div><h3>Web URL: <input style="font-size: 24px;width: 90%;" id="webUrl" name="url" ></div>
+             <div><h3>Web URL: <input style="font-size: 24px;width: 90%;" id="webUrl" name="webUrl" ></div>
 				
             <hr>
 
@@ -52,7 +51,7 @@
 			</div>
             <hr>
             <h1>Create/Edit a Page</h1>
-                <h4>Name</h4>
+                <h4>Name <small><em>(required)</em></small></h4>
             	<p>
             		Enter the name as you intend it to be displayed. 
             		Use  <code>&amp;nbsp;</code> (the "non-breaking space") to control where the line break
@@ -76,10 +75,10 @@
 				</p>
 				
 
-				<h4>Dates <small><em>(optional)</em></small></h4>
+				<h4>Dates/Subhed <small><em>(optional)</em></small></h4>
 				<p>
-					Appear directly under the name. Should  be year-of-birth hyphen 
-					year-of-death (e.g. 1955 - 2014) or the event date.
+					Appear directly under the name. For obits should be year-of-birth hyphen 
+					year-of-death (e.g. 1955 - 2014).
 					<br>
 					<input id="mugshotDates" name="mugshotDates">
 				
@@ -93,7 +92,7 @@
 				
 				<br>
 				<!-- markdown input -->
-                <textarea class="mdhtmlform-md" data-mdhtmlform-group="2">
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="2" name="mugshotBio" id="mugshotBio">
                 </textarea>
                
                 <!-- html display -->
@@ -113,7 +112,7 @@
 					Please size them appropriately in an image editor.
 				</p>
 				   	
-            	<h4>Mugshot URL</h4>
+            	<h4>Mugshot URL <small><em>(optional, but strongly encouraged)</em></small></h4>
             	<p> 
             		<em>Should be at least 256px wide. Preferably taller than it is wide.</em>  
             		This appears in the primary box along with the name and dates. It is 
@@ -172,9 +171,6 @@
             	<p>* Bullet Lists<br>* Of any<br>* length </p>
 				</small></ul>
 
-
-            	
-            	
             	<h4><h4>
             	<h4>Main multimedia block <small>(optional)</small></h4>
             	<p>
@@ -186,7 +182,7 @@
             	</p>
             	
                 <!-- Markdown group for the big multimedia element -->
-                <textarea class="mdhtmlform-md" data-mdhtmlform-group="0" id="bigMultimedia">## Write markdown in the textarea!</textarea>
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="0" name="bigMultimedia" id="bigMultimedia">## Write markdown in the textarea!</textarea>
                 <br /><br>
                 <!-- html display -->
                 <small>Preview</small><br>
@@ -214,13 +210,13 @@
                  
                 <!-- markdown input -->
                 <h5>Large #1</h5>
-                <textarea class="mdhtmlform-md" data-mdhtmlform-group="1">
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="1" name="boxTwo" id="boxTwo">
 				</textarea>
                 <br /><br />
                                                 <small>Preview</small><br>
 
                 <!-- html display -->
-                <div class="mdhtmlform-html" data-mdhtmlform-group="1"></div>
+                <div class="mdhtmlform-html" data-mdhtmlform-group="1" ></div>
                 <!-- html submissionn -->
                 <textarea class="mdhtmlform-html" data-mdhtmlform-group="1" style="display: none;"></textarea>
                 <br /><br />
@@ -231,7 +227,7 @@
             	<!-- markdown input -->
             	 <h5>Large #2</h5>
 
-                <textarea class="mdhtmlform-md" data-mdhtmlform-group="2">
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="2" name="boxThree" id="boxThree">
                 </textarea>
                 <br /><br />
                 <!-- html display -->
@@ -247,7 +243,7 @@
                 
                 <!-- markdown input -->
                 <h5>Large #3</h5>
-                <textarea class="mdhtmlform-md" data-mdhtmlform-group="3"></textarea>
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="3" name="boxFour" id="boxFour"></textarea>
                 <br /><br />
                 <!-- html display -->
                 <div class="mdhtmlform-html" data-mdhtmlform-group="3"></div>
@@ -262,7 +258,7 @@
                  <!-- markdown input -->
                  <h5>Large #4</h5>
 
-                <textarea class="mdhtmlform-md" data-mdhtmlform-group="4"></textarea>
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="4" name="boxFive" id="boxFive"></textarea>
                 <br /><br />
                 <!-- html display -->
                 <div class="mdhtmlform-html" data-mdhtmlform-group="4"></div>
@@ -273,18 +269,7 @@
                 
                 
                 
-                
-                 <!-- markdown input -->
-                  <h5>Large #4</h5>
 
-                <textarea class="mdhtmlform-md" data-mdhtmlform-group="5"></textarea>
-                <br /><br />
-                <!-- html display -->
-                <div class="mdhtmlform-html" data-mdhtmlform-group="5"></div>
-                <!-- html submissionn -->
-                <textarea class="mdhtmlform-html" data-mdhtmlform-group="5" style="display: none;"></textarea>
-
-<!--<large><a id="addLarge" href="javascript:function(){return false;}">Add another</a></large>-->
                  <br /><br />               
                <h4>Small multimedia blocks <small>(optional)</small></h4>
                 <p>
@@ -299,7 +284,7 @@
                 <!-- markdown input -->
                                   <h5>Small #1</h5>
 
-                <textarea class="mdhtmlform-md" data-mdhtmlform-group="6">
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="6" name="boxOne" id="boxOne">
 
 
                 </textarea>
@@ -318,7 +303,7 @@
                 <!-- markdown input -->
                                   <h5>Small #2</h5>
 
-                <textarea class="mdhtmlform-md" data-mdhtmlform-group="7"></textarea>
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="7" name="boxSix" id="boxSix"></textarea>
                 <br /><br />
                 <!-- html display -->
                 <div class="mdhtmlform-html" data-mdhtmlform-group="7"></div>
@@ -332,7 +317,7 @@
                 <!-- markdown input -->
                                   <h5>Small #3</h5>
 
-                <textarea class="mdhtmlform-md" data-mdhtmlform-group="8"></textarea>
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="8" name="boxSeven" id="boxSeven"></textarea>
                 <br /><br />
                 <!-- html display -->
                 <div class="mdhtmlform-html" data-mdhtmlform-group="8"></div>
@@ -346,7 +331,7 @@
                 <!-- markdown input -->
                                   <h5>Small #4</h5>
 
-                <textarea class="mdhtmlform-md" data-mdhtmlform-group="9"></textarea>
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="9" name="boxEight" id="boxEight"></textarea>
                 <br /><br />
                 <!-- html display -->
                 <div class="mdhtmlform-html" data-mdhtmlform-group="9"></div>
@@ -360,7 +345,7 @@
                 <!-- markdown input -->
                                   <h5>Small #5</h5>
 
-                <textarea class="mdhtmlform-md" data-mdhtmlform-group="10"></textarea>
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="10" name="boxNine" id="boxNine"></textarea>
                 <br /><br />
                 <!-- html display -->
                 <div class="mdhtmlform-html" data-mdhtmlform-group="10"></div>
@@ -375,7 +360,7 @@
                  <!-- markdown input -->
                                    <h5>Small #6</h5>
 
-                <textarea class="mdhtmlform-md" data-mdhtmlform-group="11"></textarea>
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="11" name="boxTen" id="boxTen"></textarea>
                 <br /><br />
                 <!-- html display -->
                 <div class="mdhtmlform-html" data-mdhtmlform-group="11"></div>
@@ -407,6 +392,22 @@
             		If you're not happy with the layout at one of the widths, tweaking the
             		order definitely makes a difference.
             	</p> 
+            	
+            	<h4>Want to make a table in one of your boxes?</h4>
+				<p>
+					Paste a table from a spreadsheet like Excel into the box below
+					and it will generate the HTML in the box below.
+				</p>
+				<textarea id="tableGenerator" class="codeGenerator">
+Header1	Header2	Header3	Header4
+Cell1	Cell2	Cell3	Cell4</textarea>
+				<br /><br>
+                <!-- code display -->
+                <small>HTML</small><br>
+                <small>
+				<div class="generatedCode" id="tableCode"></div>
+            	</small>
+            	<br><br>
             
             	<h4>So, what's Markdown?</h4>
             	<p>
@@ -495,9 +496,9 @@ You can also put text after the timeline.
 </pre>            	
 </small>            		
 				<li>
-            		<em>Brightcove</em><br>Use a Brightcove video's id number by itself in
-            		a field and it will automatically be placed in the correct, responsive
-            		player.
+            		<em>Brightcove</em><br>Use a Brightcove video's id number by itself on
+            		a line and it will automatically be placed in the correct, responsive
+            		player. 
 				</li>
 <small>
 <pre>
@@ -507,18 +508,20 @@ You can also put text after the timeline.
  			</ul>
  					     
  		</div>      	
-        
-        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/dropbox.js/0.10.2/dropbox.min.js"></script>
+        <script src="markdownform/vendor/modernizr-2.6.2.min.js"></script>
      
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="markdownform/vendor/jquery-1.9.1.min.js"><\/script>')</script>
         <script src="markdownform/plugins.js"></script>
 
+		<script src="markdownform/plugins.js"></script>
+
         <!-- MDWYSIWYG Dependencies -->
         <script src="markdownform/vendor/showdown.js"></script> <!-- Include Showdown before MDWYSIWYG! -->
-        <!-- The main MDWYSIWYG file -->
-        <!-- end MDWYSIWYG Dependencies -->
-        <script src="dropboxFiles.js"></script>
+        <script src="markdownform/mdhtmlform.js"></script> <!-- The main MDWYSIWYG file -->
+
+	   <script src="dropboxFiles.js"></script>
 
 
     </body>
