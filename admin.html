@@ -55,7 +55,7 @@
                 <h4>Name</h4>
             	<p>
             		Enter the name as you intend it to be displayed. 
-            		Use  &amp;nbsp; (the "non-breaking space") to control where the line break
+            		Use  <code>&amp;nbsp;</code> (the "non-breaking space") to control where the line break
             		occurs.<br>
             		<input id="name" name="name">
             	</p>
@@ -76,10 +76,10 @@
 				</p>
 				
 
-				<h4>Dates</h4>
+				<h4>Dates <small><em>(optional)</em></small></h4>
 				<p>
 					Appear directly under the name. Should  be year-of-birth hyphen 
-					year-of-death (e.g. 1955 - 2014).
+					year-of-death (e.g. 1955 - 2014) or the event date.
 					<br>
 					<input id="mugshotDates" name="mugshotDates">
 				
@@ -154,7 +154,7 @@
             		be checked by viewing the page before it's published.
             	</p>
    
-            	 <h4>Really basic Markdown syntax</h4>
+            	 <h4 id="markdown">Really basic Markdown syntax</h4>
             	<!-- insert  common stuff here --->
             	<p>
             		Since you may not know about Markdown, here's a quick primer: it's a
@@ -459,7 +459,7 @@ than it was downtown.
 </small>
             	<li>
             		<em>Slideshow</em><br>Begin a block with the word "slideshow" followed 
-            		by the complete url for the RSS feed of an AJC slideshow. Any text on following
+            		by the complete url for the RSS feed of an AJC slideshow (this is the "View on site" URL with "rss/" after "http://www.ajc.com/gallery/"). Any text on following
             		lines will be ignored.
             	</li>
 <small>
