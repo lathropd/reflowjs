@@ -14,9 +14,10 @@
          <link href="base-css.css" rel="stylesheet" type="text/css">
 		<style>
 			textarea.mdhtmlform-md { min-height: 50px; width: 600px;}
+			textarea.codeGenerator { min-height: 50px; width: 600px;}
 			input, textarea {margin-top: 3px;}
 			input {width: 600px;}
-			div.mdhtmlform-html { padding: 10px; border: 1px solid black;  width: 600px;}
+			div.mdhtmlform-html, div.generatedCode { padding: 10px; border: 1px solid black;  width: 600px;}
 			div.border {padding: 10px; border: 1px solid black; max-width: 300px;}
 			textarea { resize:vertical; }
 			
@@ -50,10 +51,10 @@
 			</div>
             <hr>
             <h1>Create/Edit a Page</h1>
-                <h4>Name</h4>
+                <h4>Name <small><em>(required)</em></small></h4>
             	<p>
             		Enter the name as you intend it to be displayed. 
-            		Use  &amp;nbsp; (the "non-breaking space") to control where the line break
+            		Use  <code>&amp;nbsp;</code> (the "non-breaking space") to control where the line break
             		occurs.<br>
             		<input id="name" name="name">
             	</p>
@@ -74,9 +75,9 @@
 				</p>
 				
 
-				<h4>Dates</h4>
+				<h4>Dates/Subhed <small><em>(optional)</em></small></h4>
 				<p>
-					Appear directly under the name. Should  be year-of-birth hyphen 
+					Appear directly under the name. For obits should be year-of-birth hyphen 
 					year-of-death (e.g. 1955 - 2014).
 					<br>
 					<input id="mugshotDates" name="mugshotDates">
@@ -111,7 +112,7 @@
 					Please size them appropriately in an image editor.
 				</p>
 				   	
-            	<h4>Mugshot URL</h4>
+            	<h4>Mugshot URL <small><em>(optional, but strongly encouraged)</em></small></h4>
             	<p> 
             		<em>Should be at least 256px wide. Preferably taller than it is wide.</em>  
             		This appears in the primary box along with the name and dates. It is 
@@ -170,9 +171,6 @@
             	<p>* Bullet Lists<br>* Of any<br>* length </p>
 				</small></ul>
 
-
-            	
-            	
             	<h4><h4>
             	<h4>Main multimedia block <small>(optional)</small></h4>
             	<p>
@@ -394,6 +392,22 @@
             		If you're not happy with the layout at one of the widths, tweaking the
             		order definitely makes a difference.
             	</p> 
+            	
+            	<h4>Want to make a table in one of your boxes?</h4>
+				<p>
+					Paste a table from a spreadsheet like Excel into the box below
+					and it will generate the HTML in the box below.
+				</p>
+				<textarea id="tableGenerator" class="codeGenerator">
+Header1	Header2	Header3	Header4
+Cell1	Cell2	Cell3	Cell4</textarea>
+				<br /><br>
+                <!-- code display -->
+                <small>HTML</small><br>
+                <small>
+				<div class="generatedCode" id="tableCode"></div>
+            	</small>
+            	<br><br>
             
             	<h4>So, what's Markdown?</h4>
             	<p>
@@ -495,8 +509,6 @@ You can also put text after the timeline.
  					     
  		</div>      	
         <script src="//cdnjs.cloudflare.com/ajax/libs/dropbox.js/0.10.2/dropbox.min.js"></script>
-
-        <script src="jquery.easyModal.js"></script>
         <script src="markdownform/vendor/modernizr-2.6.2.min.js"></script>
      
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
