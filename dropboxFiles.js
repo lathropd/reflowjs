@@ -63,7 +63,7 @@ function obit(client, form, skybox) {
 	this.create = function() {
 		console.log(1)
 		this.data = {};
-		this.data.name = window.prompt("Enter name of a new subject","J. Random Dead Guy");
+		this.data.name = window.prompt("Enter name of a new subject","");
 		this.data.file_name = this.data.name.toLowerCase().replace(/\W+/g, '_') + '.json';
 		if (this.entries.indexOf(this.data.file_name)>-1) {
 			//silently fail, keeping the old one
