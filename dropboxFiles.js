@@ -104,7 +104,7 @@ function obit(client, form, skybox) {
 							el.value=this_obit.data[el.id];
 						} 
 				});
-				
+				$("textarea.mdhtmlform-md").keyup();
 
 			}
 		});
@@ -128,8 +128,8 @@ function obit(client, form, skybox) {
 					this_obit.data[element.name] = "";
 				} else if (element.value){
 					console.log(element.value);
-					this_obit.data[element.name] = element.value;
-					this_obit.data[element.id] = element.value;
+					this_obit.data[element.name] = element.value.trim();
+					this_obit.data[element.id] = element.value.trim();
 					
 				}
 			}

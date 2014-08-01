@@ -10,7 +10,6 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
-        <script src="markdownform/vendor/modernizr-2.6.2.min.js"></script>
          <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900" rel="stylesheet" type="text/css">
          <link href="base-css.css" rel="stylesheet" type="text/css">
 		<style>
@@ -22,7 +21,6 @@
 			textarea { resize:vertical; }
 			
 		</style>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/dropbox.js/0.10.2/dropbox.min.js"></script>
 
     </head>
     <body>
@@ -214,13 +212,13 @@
                  
                 <!-- markdown input -->
                 <h5>Large #1</h5>
-                <textarea class="mdhtmlform-md" data-mdhtmlform-group="1">
+                <textarea class="mdhtmlform-md" data-mdhtmlform-group="1" name="boxTwo" id="boxTwo">
 				</textarea>
                 <br /><br />
                                                 <small>Preview</small><br>
 
                 <!-- html display -->
-                <div class="mdhtmlform-html" data-mdhtmlform-group="1" name="boxTwo" id="boxTwo"></div>
+                <div class="mdhtmlform-html" data-mdhtmlform-group="1" ></div>
                 <!-- html submissionn -->
                 <textarea class="mdhtmlform-html" data-mdhtmlform-group="1" style="display: none;"></textarea>
                 <br /><br />
@@ -484,9 +482,9 @@ You can also put text after the timeline.
 </pre>            	
 </small>            		
 				<li>
-            		<em>Brightcove</em><br>Use a Brightcove video's id number by itself in
-            		a field and it will automatically be placed in the correct, responsive
-            		player.
+            		<em>Brightcove</em><br>Use a Brightcove video's id number by itself on
+            		a line and it will automatically be placed in the correct, responsive
+            		player. 
 				</li>
 <small>
 <pre>
@@ -496,18 +494,22 @@ You can also put text after the timeline.
  			</ul>
  					     
  		</div>      	
-        
-        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/dropbox.js/0.10.2/dropbox.min.js"></script>
+
+        <script src="jquery.easyModal.js"></script>
+        <script src="markdownform/vendor/modernizr-2.6.2.min.js"></script>
      
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="markdownform/vendor/jquery-1.9.1.min.js"><\/script>')</script>
         <script src="markdownform/plugins.js"></script>
 
+		<script src="markdownform/plugins.js"></script>
+
         <!-- MDWYSIWYG Dependencies -->
         <script src="markdownform/vendor/showdown.js"></script> <!-- Include Showdown before MDWYSIWYG! -->
-        <!-- The main MDWYSIWYG file -->
-        <!-- end MDWYSIWYG Dependencies -->
-        <script src="dropboxFiles.js"></script>
+        <script src="markdownform/mdhtmlform.js"></script> <!-- The main MDWYSIWYG file -->
+
+	   <script src="dropboxFiles.js"></script>
 
 
     </body>
