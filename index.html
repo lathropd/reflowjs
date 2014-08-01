@@ -7,11 +7,48 @@
 	<link rel="stylesheet" type="text/css" href="base.css">
 	<link rel="stylesheet" href="simple-slideshow-styles.css">
 	<link rel="stylesheet" href="timeline.css">
+	<script src="http://admin.brightcove.com/js/BrightcoveExperiences.js" type="text/javascript" ></script>
+
+ 
+</head>
+
+
+
+<body style="display:none;">
+
+
+
+	<div id="bigPicture" class="fullwidth tall"><div><h1 id="bigHeadline"></h1></div></div>
+	<div id="content" class="reflow">
+			<div class="box" id="mugshot">
+				<div id="mugshotPhoto"></div>
+				<div id="mugshotCaption">
+					<h2 id="mugshotName"></h2>
+					<h3 id="mugshotDates"></h3>
+					<div class="indentLeft" id="mugshotBio"></div>
+				</div>
+			</div>
+			<div class="box w2col" id="bigMultimedia"></div>
+			<div class="box w1col" id="boxOne"></div>	
+			<div class="box w2col" id="boxTwo"></div>
+			<div class="box w2col" id="boxThree"></div>
+			<div class="box w2col" id="boxFour"></div>
+			<div class="box w2col" id="boxFive"></div>
+			<div class="box w1col" id="boxSix"></div>
+			<div class="box w1col" id="boxSeven"></div>
+		 	<div class="box w1col" id="boxEight"></div>
+			<div class="box w1col" id="boxNine"></div>
+			<div class="box w1col" id="boxTen"></div>
+			<div class="box w1col" id="boxEleven"></div>
+
+
+			
+	</div>
+	
 	<script src="marked.js"></script>
 	<script src="packery.pkgd.min.js"></script>
 	<script src="miso.ds.deps.ie.min.0.4.1.js"></script>
 	<script src="better-simple-slideshow.min.js"></script>
-	<script src="http://admin.brightcove.com/js/BrightcoveExperiences.js" type="text/javascript" ></script>
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYupoTfmCt-mh6tCqrNkQnIUmWXuFopQQ">
     </script>
 	<script>
@@ -126,7 +163,7 @@ window.onload=function() {
 				+'<object id="myExperience" class="BrightcoveExperience">'
 				+'  <param name="bgcolor" value="#FFFFFF" />'
 				+'  <param name="width" value="100%" />'
-				+'  <param name="height" value="100%" />'
+				+'  <param name="height" value="400px" />'
 				+'  <param name="playerID" value="2418610043001" />'
 				+'  <param name="playerKey" value="AQ~~,AAACLrx-GiE~,-R5NlQaAplIWhlMPcU5YDN5147VaN70m" />'
 				+'  <param name="isVid" value="true" />'
@@ -281,10 +318,10 @@ window.onload=function() {
 		function format(text, id) {
 		//console.log(text);
 			formatted = text;
-			var rawImage = /( |\n|^)(\S*\.(jpg|png|gif))( |\n|$)/g;
-			var isImage = /^\S*\.(jpg|png|gif)$/;
+			var rawImage = /( |\n|^)(\S*\.(jpe?g|png|gif))( |\n|$)/g;
+			var isImage = /^\S*\.(jpe?g|png|gif)$/;
 			var isBrightcove = /http:\/\/bcove.me.*/;
-			var isBrightcoveId = /^\d+$/;
+			var brightcoveId = /^\d{9,}$/mg;
 			var isYouTube = /^http:\/\/(youtu.be)|(youtube.com).*/;
 			var isSlideshow = /^slideshow\:?\s*(\S*)/;
 			var isTimeline = /^timeline\:?\n?/;
@@ -296,9 +333,6 @@ window.onload=function() {
 			if (isImage.test(text)) {
 				formatted = "<img src='"+text+"'>";
 			//console.log("i");
-			} else if (isBrightcoveId.test(text)) {
-				formatted = brightcovePlayer(text);
-			//console.log("b")
 			} else if (isSlideshow.test(text)) {
 				id = 'slid' + Math.round(Math.random()*10000);
 				formatted ="<div id='"+id+"' class='"+id+" bss-slides'></div>";
@@ -327,6 +361,8 @@ window.onload=function() {
 				
 			} else {
 				newText = text.replace(rawImage, "<img src='$2'>");
+				var brightcovePlayerText = brightcovePlayer("$1");
+				newText = newText.replace(brightcoveId, brightcovePlayerText);
 				formatted = marked(newText);
 			//console.log(rawImage.exec(text));
 				
@@ -396,45 +432,5 @@ window.onload=function() {
 
 
 
- 
-</head>
-
-
-
-<body style="display:none;">
-
-
-
-	<div id="bigPicture" class="fullwidth tall"><div><h1 id="bigHeadline"></h1></div></div>
-	<div id="content" class="reflow">
-			<div class="box" id="mugshot">
-				<div id="mugshotPhoto"></div>
-				<div id="mugshotCaption">
-					<h2 id="mugshotName"></h2>
-					<h3 id="mugshotDates"></h3>
-					<div class="indentLeft" id="mugshotBio"></div>
-				</div>
-			</div>
-			<div class="box w2col" id="bigMultimedia"></div>
-			<div class="box w1col" id="boxOne"></div>	
-			<div class="box w2col" id="boxTwo"></div>
-			<div class="box w2col" id="boxThree"></div>
-			<div class="box w2col" id="boxFour"></div>
-			<div class="box w2col" id="boxFive"></div>
-			<div class="box w1col" id="boxSix"></div>
-			<div class="box w1col" id="boxSeven"></div>
-		 	<div class="box w1col" id="boxEight"></div>
-			<div class="box w1col" id="boxNine"></div>
-			<div class="box w1col" id="boxTen"></div>
-			<div class="box w1col" id="boxEleven"></div>
-
-
-			
-	</div>
-	
-	<script type="text/javascript">
-	
-	</script>
- 
 </body>
 </html>

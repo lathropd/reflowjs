@@ -31,6 +31,29 @@ $(document).ready( function () {
 });
 
 
+function textToTable(element, target) {
+	contents = element.val();
+	rows = contents.trim().split("\n");
+	html = "<table>\n";
+	html += "<tr><th>";
+	html += rows.shift().split("\t").join("</th><th>");
+	html += "</th></tr>\n";
+
+	while (rows.length > 0) {
+		html += "<tr><td>";
+		html += rows.shift().split("\t").join("</td><td>");
+		html += "</td><td>\n";
+
+	} 
+	html +="</table>";
+	target.text(html);
+
+}
+
+$("textarea#tableGenerator").keyup(function () { textToTable($("textarea#tableGenerator"), $("#tableCode"));});
+$("textarea#tableGenerator").keyup();
+
+
 function obit(client, form, skybox) {
 	this.data = {};
 	this.form = form;
@@ -104,7 +127,7 @@ function obit(client, form, skybox) {
 							el.value=this_obit.data[el.id];
 						} 
 				});
-				
+				$("textarea.mdhtmlform-md").keyup();
 
 			}
 		});
@@ -128,8 +151,8 @@ function obit(client, form, skybox) {
 					this_obit.data[element.name] = "";
 				} else if (element.value){
 					console.log(element.value);
-					this_obit.data[element.name] = element.value;
-					this_obit.data[element.id] = element.value;
+					this_obit.data[element.name] = element.value.trim();
+					this_obit.data[element.id] = element.value.trim();
 					
 				}
 			}

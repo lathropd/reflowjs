@@ -213,7 +213,7 @@ div#mugshotPhoto div {
 
 #mugshotCaption { padding-top: 75px;}
 
-
+div#mugshotBio { padding-bottom: 0}
 
 
 
@@ -224,7 +224,7 @@ div#mugshotPhoto div {
 	#mugshotPhoto {padding-bottom: 10px;}
 	#mugshotPhoto {	max-width: 300px; }
 	 #mugshot  {width: 300px; ;}
-	#bigMultimedia { height: 450px; }
+	object { height: 400px; }
 	#mugshot { min-height: 450px; }
 	#bigHeadline { font-size: 4.5em;}
 	#mugshotBio {font-size: 1em;}
@@ -239,7 +239,7 @@ div#mugshotPhoto div {
 @media (min-width: 600px) and (max-width: 959px) {	 
 	#content { max-width: 610px; margin-left: auto; margin-right: auto; }
 	#mugshot, .box.w2col, .box.w3col  { width: 610px; }
-	#bigMultimedia { height: 450px; }
+	object { height: 400px; }
 	.box.w1col { width: 300; }
 	#mugshotCaption { margin-left: 0px; margin-right: 0px; }
 
@@ -250,7 +250,7 @@ div#mugshotPhoto div {
 	#content { max-width: 480px; margin-left: auto; margin-right: auto; }
 	 .box.w1col, .box.w2col, .box.w3col  { width: 480px; }
 	 #mugshot {width: 300px; margin-left: 90px; }
-	#bigMultimedia { height: 300px; }
+	 object { height: 300px; }
 	.bss-slides figcaption { visibility: hidden;}
 	.bss-slides:hover figcaption {visibility: visible;}
 	#mugshotCaption {  margin-left: 0px; margin-right: 0px; }
@@ -261,7 +261,7 @@ div#mugshotPhoto div {
 
 	#content { max-width: 320px; margin-left: auto; margin-right: auto; }
 	#mugshot, .box.w1col, .box.w2col, .box.w3col  { width: 300px; }
-	#bigMultimedia { height: 300px; }
+	object { height: 200px; }
 	.bss-slides figcaption { visibility: hidden;}
 	.bss-slides:hover figcaption {visibility: visible;}
 	#mugshotCaption {  margin-left: 0px; margin-right: 0px; }
