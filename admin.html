@@ -39,8 +39,10 @@
             <div id="skybox">
             	<select size=5 style="overflow-y:scroll; padding:10px; min-width: 300px; " id="skyboxList"></select><div id="skyboxMessage"></div>
             </div>
-             <div><h3>JSON URL: <input style="font-size: 24px;width: 90%;" id="url" name="url"></div>	
-             <div><h3>Web URL: <input style="font-size: 24px;width: 90%;" id="webUrl" name="webUrl" ></div>
+             <div>
+               <h4>JSON URL <small>(Location of the data file)</small>:</h4> <input readonly="readonly" placeholder="this will populate automatically" id="url" name="url">
+               <h4>Web URL <small>(for flatpage iFrame)</small>:</h4> <input readonly="readonly" placeholder="this will populate automatically" id="webUrl" name="webUrl"></span>
+             </div>
 				
             <hr>
 
@@ -153,7 +155,7 @@
             		be checked by viewing the page before it's published.
             	</p>
    
-            	 <h4>Really basic Markdown syntax</h4>
+            	 <h4 id="markdown">Really basic Markdown syntax</h4>
             	<!-- insert  common stuff here --->
             	<p>
             		Since you may not know about Markdown, here's a quick primer: it's a
@@ -431,9 +433,9 @@ Cell1	Cell2	Cell3	Cell4</textarea>
             		below the text box you're entering.
             	</p>
             	
-            	<h4>Read the <a href="http://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">
+            	<h4>Read the <a href="http://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">
             	Markdown Cheat Sheet</a></h4>
-            	<h4>Or read <a href="https://daringfireball.net/projects/markdown/basics">a more complete explanation</a></h4>
+            	<h4>Or read <a href="https://daringfireball.net/projects/markdown/basics" target="_blank">a more complete explanation</a></h4>
             	
             	<br><br>
             	<h4><a id="shortcuts">AJC shortcuts</a></h4>
@@ -460,7 +462,7 @@ than it was downtown.
 </small>
             	<li>
             		<em>Slideshow</em><br>Begin a block with the word "slideshow" followed 
-            		by the complete url for the RSS feed of an AJC slideshow. Any text on following
+            		by the complete url for the RSS feed of an AJC slideshow (this is the "View on site" URL with "rss/" after "http://www.ajc.com/gallery/"). Any text on following
             		lines will be ignored.
             	</li>
 <small>
