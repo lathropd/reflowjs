@@ -33,11 +33,18 @@
         <form id="adminForm">
 
             <div id="skybox">
-                <select size=5 style="overflow-y:scroll; padding:10px; min-width: 300px; " id="skyboxList"></select><div id="skyboxMessage"></div>
+                <select size=5 style="overflow-y:scroll; padding:10px; min-width: 300px; " id="skyboxList"></select>
+                <div id="skyboxMessage"></div>
             </div>
             <div>
-                <h4>JSON URL <small>(Location of the data file)</small>:</h4> <input readonly="readonly" placeholder="this will populate automatically" id="url" name="url">
-                <h4>Web URL <small>(for flatpage iFrame)</small>:</h4> <input readonly="readonly" placeholder="this will populate automatically" id="webUrl" name="webUrl"></span>
+                <h4>JSON URL <small>(Location of the data file)</small>:</h4> 
+                <h3><a href=""id="url">this will populate automatically</a></h3>
+                <!--<input readonly="readonly" placeholder="this will populate
+                automatically" id="url" name="url">-->
+                <h4>Web URL <small>(for flatpage iFrame)</small>:</h4>
+                <h3><a href=""id="webUrl">this will populate automatically</a></h3>
+                <!--<input readonly="readonly" placeholder="this will populate
+                automatically" id="webUrl" name="webUrl"></span>-->
         </div>
 
         <hr>
@@ -511,16 +518,16 @@ You can also put text after the timeline.
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="markdownform/vendor/jquery-1.9.1.min.js"><\/script>')</script>
-        <script src="markdownform/plugins.js"></script>
+            <script src="static/vendor/markdownform/plugins.js"></script>
 
-        <script src="static/vendor/markdownform/plugins.js"></script>
+            <script src="static/vendor/markdownform/plugins.js"></script>
 
-        <!-- MDWYSIWYG Dependencies -->
-        <script src="static/vendor/markdownform/vendor/showdown.js"></script> <!-- Include Showdown before MDWYSIWYG! -->
-        <script src="static/vendor/markdownform/mdhtmlform.js"></script> <!-- The main MDWYSIWYG file -->
+            <!-- MDWYSIWYG Dependencies -->
+            <script src="static/vendor/markdownform/vendor/showdown.js"></script> <!-- Include Showdown before MDWYSIWYG! -->
+            <script src="static/vendor/markdownform/mdhtmlform.js"></script> <!-- The main MDWYSIWYG file -->
 
-        <script src="static/js/admin.js"></script>
+            <script src="static/js/admin.js"></script>
 
 
-    </body>
-</html>
+        </body>
+    </html>

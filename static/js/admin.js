@@ -104,6 +104,7 @@ function obit(client, form, skybox) {
     this.load = function (name) {
         this_obit = this;
         form.find("input, textarea").val("");
+        form.find("a#url, a#webUrl").text("").prop("href","");
         $("button#reset").click();
         this.data.file_name = name;
         client.readFile(name, function (error, results) {
@@ -113,11 +114,19 @@ function obit(client, form, skybox) {
                 this.data.file_name  = name;
                 this.data = JSON.parse(results);
                 if (!this.data.url||!this.data.webUrl) {
+                    thisObit = this;
                     client.makeUrl(name, {downloadHack: true}, function (error, result) {
-                        $("#url").val(result.url);
-                        $("#webUrl").val("https://lathropd.github.com/reflowjs/?file="+result.url.replace(/https?\:\/\//,""));
+                        webUrl = "https://lathropd.github.com/reflowjs/?file="+result.url.replace(/https?\:\/\//,"");
+                        $("#url").text(result.url).prop("href", result.url);
+                        $("#webUrl").text(webUrl).prop("href",webUrl);
+                        thisObit.data.url = result.url;
+                        thisObit.data.webUrl = webUrl;
                     });
 
+                } else {
+
+                    $("#url").text(this.data.url).prop("href", this.data.url);
+                    $("#webUrl").text(this.data.webUrl).prop("href",this.data.webUrl);
                 }
 
 
