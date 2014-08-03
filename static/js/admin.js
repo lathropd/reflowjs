@@ -104,7 +104,7 @@ function obit(client, form, skybox) {
     this.load = function (name) {
         this_obit = this;
         form.find("input, textarea").val("");
-        form.find("a#url, a#webUrl").text("").prop("href","");
+        form.find("a#url, a#webUrl").text("this will populate automatically").prop("href","");
         $("button#reset").click();
         this.data.file_name = name;
         client.readFile(name, function (error, results) {
