@@ -1,7 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Montserrat|Josefin+Slab:100);
 * {	
 	font: 700 1em/1.25em 'Josefin Slab';
-
 }
 
 h1 { font-family: 'Montserrat', 'Helvetica', sans-serif; font-weight: 700; font-size: 2em; margin: 10px 0 5px 0; padding: 0;}
@@ -17,12 +16,6 @@ p {
 
 }
 
-
 li { 
 	font: 100 1em/1.35em 'Josefin Slab';
-
-
 }
-
-
-

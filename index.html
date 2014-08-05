@@ -3,21 +3,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width">
-
         <link rel="stylesheet" type="text/css" href="static/css/base.css">
         <link rel="stylesheet" href="static/vendor/css/simple-slideshow-styles.css">
         <link rel="stylesheet" href="static/css/timeline.css">
         <script src="http://admin.brightcove.com/js/BrightcoveExperiences.js" type="text/javascript" ></script>
-
-
     </head>
-
-
-
     <body style="display:none;">
-
-
-
         <div id="bigPicture" class="fullwidth tall"><div><h1 id="bigHeadline"></h1></div></div>
         <div id="content" class="reflow">
             <div class="box" id="mugshot">
@@ -40,9 +31,6 @@
             <div class="box w1col" id="boxNine"></div>
             <div class="box w1col" id="boxTen"></div>
             <div class="box w1col" id="boxEleven"></div>
-
-
-
         </div>
 
         <script src="static/vendor/js/marked.js"></script>
@@ -93,11 +81,12 @@
 
             marked.setOptions({
                 smartypants: true,
+
+
             });
 
 
         </script>
-
         <script type="text/javascript">
 
             brightcove.createExperiences();
@@ -106,10 +95,6 @@
 
             // responsive slideshow from Mark Lee
             // http://themarklee.com/2013/12/26/simple-diy-responsive-slideshow-made-html5-css3-javascript/
-
-
-
-
             //loader
             window.onload=function() {
                 request = new window.XMLHttpRequest();
@@ -127,10 +112,6 @@
                         //"rowHeight": 20,
                         //"transitionDuration": "0.4s",	
                     });
-
-
-
-
                     pack();
 
                     var i = setInterval(pack, 100);
@@ -140,8 +121,6 @@
 
                 request.send();
             }
-
-
 
 
 
@@ -202,9 +181,6 @@ function insert(id, content) {
     //pckry
 
 }
-
-
-
 var boxen = ['bigMultimedia','boxOne','boxTwo','boxThree','boxFour','boxFive','boxSix',
     'boxSeven','boxEight','boxNine','boxTen','boxEleven',"mugshotPhoto",'mugshotBio',];
 var strings = ['bigHeadline', "mugshotName", "mugshotDates",];
@@ -220,9 +196,6 @@ function swapLoop(id_list, data, fn) {
         }
     }
 }
-
-
-
 
 
 function bgImage(pagedata) {
@@ -241,7 +214,6 @@ function bgImage(pagedata) {
                 bigDiv.style.height = "400px";
                 } else if (img.height >= 300) {
                 bigDiv.style.height = "300px";
-
                 } else if (img.height >= 250) {
                 bigDiv.style.height = "250px";
                 } else {
@@ -250,10 +222,7 @@ function bgImage(pagedata) {
                 }
                 }
 }
-
 function init(pagedata) {
-
-
     img = new Image();
     if (pagedata.hasOwnProperty('bigImage')&pagedata.bigImage!="") {
         bigDiv =  document.getElementById('bigPicture');
@@ -261,7 +230,6 @@ function init(pagedata) {
                 img.onload = function () {bgImage(pagedata)};
                 img.src = pagedata.bigImage;
                 document.getElementById('bigPicture').innerHTML = "<div>" + document.getElementById('bigPicture').innerHTML + "</div>";
-
                 }
                 window.onresize = function () {bgImage(pagedata)};
                 swapLoop(strings, pagedata, swap);
@@ -270,9 +238,6 @@ function init(pagedata) {
                 document.body.style.display="";
 
                 }
-
-
-
                 function makeMap(a, b, c) {
                 console.log(a.div);
                 console.log(a.address);
@@ -290,17 +255,13 @@ var map = new google.maps.Map(document.getElementById(a.div), mapOptions);
 var marker = new google.maps.Marker({
 map: map,
 position: results[0].geometry.location,
-
 });
-
 var infowindow = new google.maps.InfoWindow({
 content: a.bubble,
 });
 google.maps.event.addListener(marker, 'click', function() {
     infowindow.open(map,marker);
     });
-
-
 } else {
     //alert("Geocode was not successful for the following reason: " + status);
 }
@@ -312,8 +273,6 @@ function pack() {
     pckry.layout();
     //console.log('p');
 }
-
-
 
 function format(text, id) {
     //console.log(text);
@@ -344,7 +303,6 @@ function format(text, id) {
         newText = text.replace(isTimeline,"");
         formatted = marked(newText, {renderer: timelineRenderer});
         //console.log("tl");
-
     } else if (isHTML.test(text)) {
         formatted = text; // leave it as is
         //console.log("h");
@@ -358,18 +316,15 @@ div: 'map'+id,
         }
         formatted = "<div class='map' id='map"+id+"'></div>";
         reflowSettings.maps.push(resultObj);
-
     } else {
         newText = text.replace(rawImage, "<img src='$2'>");
         var brightcovePlayerText = brightcovePlayer("$1");
         newText = newText.replace(brightcoveId, brightcovePlayerText);
         formatted = marked(newText);
         //console.log(rawImage.exec(text));
-
     }
     return formatted;
 }
-
 
 /* parameter getter from james padolsey                                        */
 /* http://james.padolsey.com/javascript/bujs-1-getparameterbyname/             */
@@ -384,9 +339,6 @@ function getParameterByName(name) {
 
 }
 
-
-
-
 function slideshow(url, div) {
     var new_url = 'http://pipes.yahoo.com/pipes/pipe.run?_id=2FV68p9G3BGVbc7IdLq02Q&_render=json&feedcount=100&feedurl='+encodeURIComponent(url)+'&_callback=';
     //console.log(new_url);
@@ -397,8 +349,6 @@ jsonp: true,
 extract: function(data){ return data.value.items;}
 
 });
-
-
 
 slideds.fetch({
 success: function() {
@@ -415,22 +365,9 @@ el.parentElement.outerHTML = el.outerHTML;
 makeBSS('.'+div, opts);
 pack();
 }
-
 });
-
-
 }
 
-
-
-
-
-
-
-
 </script>
-
-
-
 </body>
 </html>

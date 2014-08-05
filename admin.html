@@ -16,9 +16,7 @@
         div.mdhtmlform-html, div.generatedCode { padding: 10px; border: 1px solid black;  width: 600px;}
         div.border {padding: 10px; border: 1px solid black; max-width: 300px;}
         textarea { resize:vertical; }
-
     </style>
-
 </head>
 <body>
     <!--[if lt IE 7]>
@@ -33,13 +31,13 @@
         <form id="adminForm">
 
             <div id="skybox">
-                <select size=5 style="overflow-y:scroll; padding:10px; min-width: 300px; " id="skyboxList"></select>
+                <select size=5 style="overflow-y:scroll; padding:10px; min-width: 300px;" id="skyboxList"></select>
                 <div id="skyboxMessage"></div>
             </div>
             <div>
-                <h4>JSON URL <small>(Location of the data file)</small>:</h4> 
                 <!--<input readonly="readonly" placeholder="this will populate
                 automatically" id="url" name="url">-->
+                <h4>JSON URL <small>(Location of the data file)</small>:</h4>
                 <h3><a href="" id="url" target="_blank">this will populate automatically</a></h3>
                 <h4>Web URL <small>(for flatpage iFrame)</small>:</h4>
                 <!--<input readonly="readonly" placeholder="this will populate
@@ -58,7 +56,7 @@
         <h1>Create/Edit a Page</h1>
         <h4>Name <small><em>(required)</em></small></h4>
         <p>
-        Enter the name as you intend it to be displayed. 
+        Enter the name as you intend it to be displayed.
         Use  <code>&amp;nbsp;</code> (the "non-breaking space") to control where the line break
         occurs.<br>
         <input id="name" name="name">
@@ -66,7 +64,7 @@
 
         <h2>Additional text elements</h2>
         <p>
-        The following contain only text formatted in markdown and/or HTML. 
+        The following contain only text formatted in markdown and/or HTML.
         They shouldn't include multimedia elements.
         </p>
 
@@ -76,9 +74,7 @@
         there is a background it will have a 1 pixel white outline.
         <br>
         <input id="bigHeadline" name="bigHeadline">
-
         </p>
-
 
         <h4>Dates/Subhed <small><em>(optional)</em></small></h4>
         <p>
@@ -86,7 +82,6 @@
         year-of-death (e.g. 1955 - 2014).
         <br>
         <input id="mugshotDates" name="mugshotDates">
-
         </p>
 
         <h4>Short bio <small><em>(optional)</em></small></h4>
@@ -94,7 +89,6 @@
         A few lines. Displays under the dates. A bullet list or short
         paragraph is best. Longer bio material should go in a multimedia
         block.
-
         <br>
         <!-- markdown input -->
         <textarea class="mdhtmlform-md" data-mdhtmlform-group="2" name="mugshotBio" id="mugshotBio">
@@ -105,8 +99,6 @@
         <!-- html submissionn -->
         <textarea class="mdhtmlform-html" data-mdhtmlform-group="2" style="display: none;"></textarea>
         </p>
-
-
         <hr>
 
         <h2>Images</h2>
@@ -118,18 +110,19 @@
         </p>
 
         <h4>Mugshot URL <small><em>(optional, but strongly encouraged)</em></small></h4>
-        <p> 
-        <em>Should be at least 256px wide. Preferably taller than it is wide.</em>  
+        <p>
+        <em>Should be at least 256px wide. Preferably taller than it is wide.</em>
         This appears in the primary box along with the name and dates. It is 
         quite possibly the most important thing on the page. Please search
-        for an AJC photo,  something from a government or official site
+        for an AJC photo, something from a government or official site
         or something with a creative commons license allowing reuse.
         <br>
         <input id="mugshotPhoto" name="mugshotPhoto"><br>
         </p>
+
         <h4>Headline backdrop image URL <small><em>(optional)</em></small></h4>
         <p>
-        <em>Should be an at least 900px wide. PNG files are preferred.</em> 
+        <em>Should be an at least 900px wide. PNG files are preferred.</em>
         This will appear full frame no matter how wide the use sets the page.
         The height will cleverly adjust, but please use a horizontal image.
         Vertical and square images will likely be too tall at larger screen
@@ -140,19 +133,16 @@
         </p>
         <hr>
 
-
-
         <h2>Multimedia blocks</h2>
         <p>
         These are the big elements that make up the page. <em>Remember, just 
-            because they're called "multimedia" doesn't mean they can't be 
-            text, tables, lists, etc.</em>
+        because they're called "multimedia" doesn't mean they can't be 
+        text, tables, lists, etc.</em>
         </p>
         <p>
         See the <a href="#instructions">instructions below</a> for the 
         explanation on how to fill these out. You can use HTML, 
-        <a href="#markdown">Markdown</a>, or <a href="#shortcuts">shortcuts</a>. 
-
+        <a href="#markdown">Markdown</a>, or <a href="#shortcuts">shortcuts</a>.
         As you enter information in the text fields, HTML and markdown will 
         display in the preview underneath. <strong>Shortcuts do not preview,</strong> but can
         be checked by viewing the page before it's published.
@@ -162,7 +152,7 @@
         <!-- insert  common stuff here -->
         <p>
         Since you may not know about Markdown, here's a quick primer: it's a
-        quick way of marking up text to generate HTML (HTML can be mixed in). 
+        quick way of marking up text to generate HTML (HTML can be mixed in).
         </p>
         <small>
             <p>*Italics*</p>
@@ -195,9 +185,6 @@
                 <textarea class="mdhtmlform-html" data-mdhtmlform-group="0" style="display: none;"></textarea>
                 <br><br>
 
-
-
-
                 <h4>Large multimedia blocks <small>(optional)</small></h4>
                 <p>
                 The following multimedia blocks will appear full width on phones, 
@@ -209,7 +196,6 @@
                 <!-- clicking the "Add another" link -->
                 The order does matter as it determines the page layout.
                 </p>
-
 
                 <!-- markdown input -->
                 <h5>Large #1</h5>
@@ -224,12 +210,8 @@
                 <textarea class="mdhtmlform-html" data-mdhtmlform-group="1" style="display: none;"></textarea>
                 <br><br>
 
-
-
-
                 <!-- markdown input -->
                 <h5>Large #2</h5>
-
                 <textarea class="mdhtmlform-md" data-mdhtmlform-group="2" name="boxThree" id="boxThree">
                 </textarea>
                 <br><br>
@@ -238,11 +220,6 @@
                 <!-- html submissionn -->
                 <textarea class="mdhtmlform-html" data-mdhtmlform-group="2" style="display: none;"></textarea>
                 <br><br>
-
-
-
-
-
 
                 <!-- markdown input -->
                 <h5>Large #3</h5>
@@ -254,13 +231,8 @@
                 <textarea class="mdhtmlform-html" data-mdhtmlform-group="3" style="display: none;"></textarea>
                 <br><br>
 
-
-
-
-
                 <!-- markdown input -->
                 <h5>Large #4</h5>
-
                 <textarea class="mdhtmlform-md" data-mdhtmlform-group="4" name="boxFive" id="boxFive"></textarea>
                 <br><br>
                 <!-- html display -->
@@ -268,10 +240,6 @@
                 <!-- html submissionn -->
                 <textarea class="mdhtmlform-html" data-mdhtmlform-group="4" style="display: none;"></textarea>
                 <hr>
-
-
-
-
 
                 <br /><br />               
 
@@ -281,32 +249,20 @@
                 <!-- clicking the "Add another" link -->
                 The order does matter as it determines the page layout.
                 </p>
-
-
-
-
                 <!-- markdown input -->
                 <h5>Small #1</h5>
-
                 <textarea class="mdhtmlform-md" data-mdhtmlform-group="6" name="boxOne" id="boxOne">
-
-
                 </textarea>
                 <br><br>
                 <!-- html display -->
                 <small>Preview</small><br>
-
                 <div class="mdhtmlform-html" data-mdhtmlform-group="6"></div>
                 <!-- html submissionn -->
                 <textarea class="mdhtmlform-html" data-mdhtmlform-group="6" style="display: none;"></textarea>
                 <br><br>
 
-
-
-
                 <!-- markdown input -->
                 <h5>Small #2</h5>
-
                 <textarea class="mdhtmlform-md" data-mdhtmlform-group="7" name="boxSix" id="boxSix"></textarea>
                 <br><br>
                 <!-- html display -->
@@ -315,12 +271,8 @@
                 <textarea class="mdhtmlform-html" data-mdhtmlform-group="7" style="display: none;"></textarea>
                 <br><br>
 
-
-
-
                 <!-- markdown input -->
                 <h5>Small #3</h5>
-
                 <textarea class="mdhtmlform-md" data-mdhtmlform-group="8" name="boxSeven" id="boxSeven"></textarea>
                 <br><br>
                 <!-- html display -->
@@ -329,12 +281,8 @@
                 <textarea class="mdhtmlform-html" data-mdhtmlform-group="8" style="display: none;"></textarea>
                 <br><br>
 
-
-
-
                 <!-- markdown input -->
                 <h5>Small #4</h5>
-
                 <textarea class="mdhtmlform-md" data-mdhtmlform-group="9" name="boxEight" id="boxEight"></textarea>
                 <br><br>
                 <!-- html display -->
@@ -343,12 +291,8 @@
                 <textarea class="mdhtmlform-html" data-mdhtmlform-group="9" style="display: none;"></textarea>
                 <br><br>
 
-
-
-
                 <!-- markdown input -->
                 <h5>Small #5</h5>
-
                 <textarea class="mdhtmlform-md" data-mdhtmlform-group="10" name="boxNine" id="boxNine"></textarea>
                 <br><br>
                 <!-- html display -->
@@ -357,21 +301,15 @@
                 <textarea class="mdhtmlform-html" data-mdhtmlform-group="10" style="display: none;"></textarea>
                 <br><br>
 
-
-
-
-
                 <!-- markdown input -->
                 <h5>Small #6</h5>
-
                 <textarea class="mdhtmlform-md" data-mdhtmlform-group="11" name="boxTen" id="boxTen"></textarea>
                 <br><br>
                 <!-- html display -->
                 <div class="mdhtmlform-html" data-mdhtmlform-group="11"></div>
                 <!-- html submissionn -->
                 <textarea class="mdhtmlform-html" data-mdhtmlform-group="11" style="display: none;"></textarea>
-
-                <!--<large><a id="addSmall" href="javascript:function(){return false;}">Add another</a></large>    -->           
+                <!--<large><a id="addSmall" href="javascript:function(){return false;}">Add another</a></large>    -->
                 <br><br>
             </form>
             <hr>
@@ -390,7 +328,7 @@
             <p>
             If you're not happy with the layout at one of the widths, tweaking the
             order definitely makes a difference.
-            </p> 
+            </p>
 
             <h4>Want to make a table in one of your boxes?</h4>
             <p>
@@ -442,19 +380,19 @@
             </p>
             <ul>
                 <li>
-                <em>Google map with info window</em><br>Begin a block with  
+                <em>Google map with info window</em><br>Begin a block with 
                 "map" (all lower case) one one line, the address to map on a second 
                 line and
                 the material for the info window on the third and subsequent lines.
                 The info window can contain basic formatting. Use &lt;br&gt; to add
-                line breaks within the window. 
+                line breaks within the window.
                 </li>
                 <small>
 <pre>
 map
-223 Perimeter Center Pkwy, Atlanta, GA 30346 
+223 Perimeter Center Pkwy, Atlanta, GA 30346
 The offices of the Atlanta Journal-Constitution are lovely and the parking is much better
-than it was downtown.           		
+than it was downtown.
 </pre>
                 </small>
                 <li>
@@ -464,9 +402,9 @@ than it was downtown.
                 </li>
                 <small>
 <pre>
-slideshow: http://www.ajc.com/gallery/rss/sports/golf/georgia-golfers-british-open/gCL8d/#5732554        		
-</pre>            	
-                </small>            		
+slideshow: http://www.ajc.com/gallery/rss/sports/golf/georgia-golfers-british-open/gCL8d/#5732554
+</pre>
+                </small>
                 <li>
                 <em>Timeline</em><br>Begin a block with the word "timeline" followed 
                 by any headline or setup material, followed by a bullet list
@@ -492,21 +430,21 @@ This is some setup text
 * Stock market crash sets off the Great Depression.
 
 You can also put text after the timeline.
-</pre>            	
-                </small>            		
+</pre>
+                </small>
                 <li>
                 <em>Brightcove</em><br>Use a Brightcove video's id number by itself on
                 a line and it will automatically be placed in the correct, responsive
-                player. 
+                player.
                 </li>
                 <small>
 <pre>
 3666574943001
-</pre>            	
-                </small>      
+</pre>
+                </small>
             </ul>
 
-        </div>      	
+        </div>
         <script src="//cdnjs.cloudflare.com/ajax/libs/dropbox.js/0.10.2/dropbox.min.js"></script>
         <script src="static/vendor/markdownform/vendor/modernizr-2.6.2.min.js"></script>
 
@@ -517,9 +455,6 @@ You can also put text after the timeline.
             <!-- MDWYSIWYG Dependencies -->
             <script src="static/vendor/markdownform/vendor/showdown.js"></script> <!-- Include Showdown before MDWYSIWYG! -->
             <script src="static/vendor/markdownform/mdhtmlform.js"></script> <!-- The main MDWYSIWYG file -->
-
             <script src="static/js/admin.js"></script>
-
-
         </body>
     </html>

@@ -8,14 +8,9 @@ var skyboxHTML;
 
 var elementtest;
 $(document).ready( function () {
-
-
     client = new Dropbox.Client({key: 'phovkvef0jhkx4i', token:'zy9Bs1eG-scAAAAAAAABQywH6g14oaZPKxItX9tMUbQ-D7ca2fJ3_9p6iEBwOY-g'});
 
-
     //client.onError.addListener(function(error) { alert("there's been an error. please reload the page.\n\n"+error); client.reset();});
-
-
     client.authenticate();
     //client.makeUrl('hello_world.txt', {downloadHack: true}, function(a,b) { console.log(a); console.log(b);});
     form = $("#adminForm");
@@ -23,7 +18,7 @@ $(document).ready( function () {
     skyboxHTML =$(skybox).html();
 
     $(skybox).html(skyboxHTML);
-    O = obit(client, form, skybox);	
+    O = obit(client, form, skybox);
     $("button.create").click(function(e){O.create();return false;});
     $("button.save").click(function(e){O.save();return false;});
     $("button.reset").click(function(e){O.data.file_name ="";});
@@ -43,11 +38,9 @@ function textToTable(element, target) {
         html += "<tr><td>";
         html += rows.shift().split("\t").join("</td><td>");
         html += "</td><td>\n";
-
-    } 
+    }
     html +="</table>";
     target.text(html);
-
 }
 
 $("textarea#tableGenerator").keyup(function () { textToTable($("textarea#tableGenerator"), $("#tableCode"));});
@@ -75,13 +68,11 @@ function obit(client, form, skybox) {
                     } else {
                         $(skyboxList).append("<option class='filename' id='"+idString+"'>"+name+"</option>");
                     }
-                }				
+                }
             }
             $("option.filename").on("click", function (event) {this_obit.load(this.id+".json")});
             $("#"+(this.data.file_name||"nothing").replace(/.json/,"")).click();
-
         });
-
     };
     this.create = function() {
         console.log(1)
@@ -92,14 +83,8 @@ function obit(client, form, skybox) {
             //silently fail, keeping the old one
         } else {
             this.write();
-
         }
-
-
-
     };
-
-
 
     this.load = function (name) {
         this_obit = this;
@@ -122,34 +107,25 @@ function obit(client, form, skybox) {
                         thisObit.data.url = result.url;
                         thisObit.data.webUrl = webUrl;
                     });
-
                 } else {
-
                     $("#url").text(this.data.url).prop("href", this.data.url);
                     $("#webUrl").text(this.data.webUrl).prop("href",this.data.webUrl);
                 }
 
-
                 $("input, textarea").each(function (i, el) {
-
                     if (this_obit.data.hasOwnProperty(el.id)) {
                         el.value=this_obit.data[el.id];
-                    } 
+                    }
                 });
                 $("textarea.mdhtmlform-md").keyup();
-
             }
         });
-
-
-
     }
 
     this.json = function () { return JSON.stringify(this.data);};
     this.write = function() {
         this_obit = this;
-        client.writeFile(this.data.file_name, this.json(), function () {this_obit.loadEntries();});	
-
+        client.writeFile(this.data.file_name, this.json(), function () {this_obit.loadEntries();});
     }
     this.save = function () {
         this_obit = this;
@@ -162,11 +138,10 @@ function obit(client, form, skybox) {
                     console.log(element.value);
                     this_obit.data[element.name] = element.value.trim();
                     this_obit.data[element.id] = element.value.trim();
-
                 }
             }
         });
-        this.data.mugshotName = this.data.name; 
+        this.data.mugshotName = this.data.name;
 
         this.write();
     }
@@ -174,10 +149,3 @@ function obit(client, form, skybox) {
     this.loadEntries();
     return this;
 }
-
-
-
-
-
-
-
