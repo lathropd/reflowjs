@@ -2,6 +2,7 @@
 /* Simple, responsive CSS  for reflow.js-based        */
 /* projects.                                          */
 /* (c) 2014 Daniel Lathrop                            */
+/* Released under the MIT license                     */
 /* ================================================== */
 @import url(http://fonts.googleapis.com/css?family=Montserrat|Josefin+Slab:100);
 * {
@@ -104,13 +105,11 @@ a:hover {
 
 .box {
     border: 1px solid #f4f4f4;
-    /* min-height: 200px;
-     */
-float: left;
-background-color: white;
-/*margin: 0 auto;*/
-/*margin-bottom: 0px;*/
-
+    /* min-height: 200px;*/
+    float: left;
+    background-color: white;
+    /*margin: 0 auto;*/
+    /*margin-bottom: 0px;*/
 }
 
 /* center container with CSS */
@@ -135,7 +134,8 @@ div.map * {
     padding: 0px;
 }
 
-div.map img{max-width:none;
+div.map img {
+    max-width:none;
     width: auto;
 }
 
@@ -145,7 +145,8 @@ div.indentLeft {
     padding-left: 5px;
     width: 100%;
 }
-div.indentLeft div {padding:0px;
+div.indentLeft div {
+    padding:0px;
 }
 
 div#mugshotPhoto div {
@@ -197,10 +198,12 @@ div#mugshotPhoto div {
     margin-right: auto;
 }
 
-.box.w1col {width: 300px;
+.box.w1col {
+    width: 300px;
 }
 
-.box img {width: 100%;
+.box img {
+    width: 100%;
 }
 
 .box.w2col {
@@ -219,7 +222,8 @@ div#mugshotPhoto div {
     width:100%;
 }
 
-.box.tall img {height: 200px;
+.box.tall img {
+    height: 200px;
 }
 
 #mugshotCaption {
@@ -227,113 +231,120 @@ div#mugshotPhoto div {
 }
 
 div#mugshotBio {
-    padding-bottom: 0}
+    padding-bottom: 0;
+}
 
 @media (min-width: 960px) {
     #content  {
         max-width: 960px;
         margin-left: auto;
         margin-right: auto;
+    }
+    #mugshotCaption {
+        padding-top: 20px;
+        font-size: 0.9em;
+    }
+    #mugshotPhoto {
+        padding-bottom: 10px;
+    }
+    #mugshotPhoto {
+        max-width: 300px;
+    }
+    #mugshot  {
+        width: 300px;
+    }
+    object {
+        height: 400px;
+    }
+    #mugshot {
+        min-height: 450px;
+    }
+    #bigHeadline {
+        font-size: 4.5em;
+    }
+    #mugshotBio {
+        font-size: 1em;
+    }
 }
-#mugshotCaption {
-    padding-top: 20px;
-    font-size: 0.9em;
- }
 
- #mugshotPhoto {padding-bottom: 10px;
-}
-#mugshotPhoto {	max-width: 300px;
-}
-#mugshot  {width: 300px;
-    ;
-}
-object {
-    height: 400px;
-}
-#mugshot {
-    min-height: 450px;
-}
-#bigHeadline {
-    font-size: 4.5em;
-}
-#mugshotBio {font-size: 1em;
-}
-}
-@media (min-width: 600px) and (max-width: 959px) {	 
+@media (min-width: 600px) and (max-width: 959px) {
     #content {
         max-width: 610px;
         margin-left: auto;
         margin-right: auto;
+    }
+    #mugshot, .box.w2col, .box.w3col {
+        width: 610px;
+    }
+    object {
+        height: 400px;
+    }
+    .box.w1col {
+        width: 300;
+    }
+    #mugshotCaption {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
 }
-#mugshot, .box.w2col, .box.w3col  {
-    width: 610px;
-}
-object {
-    height: 400px;
-}
-.box.w1col {
-    width: 300;
-}
-#mugshotCaption {
-    margin-left: 0px;
-    margin-right: 0px;
-}
-}
-@media (min-width: 480px) and  (max-width: 599px) {	 
+
+@media (min-width: 480px) and  (max-width: 599px) {
     #content {
         max-width: 480px;
         margin-left: auto;
         margin-right: auto;
-}
-.box.w1col, .box.w2col, .box.w3col  {
-    width: 480px;
-}
-#mugshot {width: 300px;
-    margin-left: 90px;
-}
-object {
-    height: 300px;
-}
-.bss-slides figcaption {
-    visibility: hidden;
-}
-.bss-slides:hover figcaption {visibility: visible;
-}
-#mugshotCaption {
-    margin-left: 0px;
-    margin-right: 0px;
-}
+    }
+    .box.w1col, .box.w2col, .box.w3col {
+        width: 480px;
+    }
+    #mugshot {
+        width: 300px;
+        margin-left: 90px;
+    }
+    object {
+        height: 300px;
+    }
+    .bss-slides figcaption {
+        visibility: hidden;
+    }
+    .bss-slides:hover figcaption {
+        visibility: visible;
+    }
+    #mugshotCaption {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
 }
 
-@media (min-width: 320px) and  (max-width: 479px) {	
-
+@media (min-width: 320px) and (max-width: 479px) {
     #content {
         max-width: 320px;
         margin-left: auto;
         margin-right: auto;
-}
-#mugshot, .box.w1col, .box.w2col, .box.w3col  {
-    width: 300px;
-}
-object {
-    height: 200px;
-}
-.bss-slides figcaption {
-    visibility: hidden;
-}
-.bss-slides:hover figcaption {visibility: visible;
-}
-#mugshotCaption {
-    margin-left: 0px;
-    margin-right: 0px;
+    }
+    #mugshot, .box.w1col, .box.w2col, .box.w3col {
+        width: 300px;
+    }
+    object {
+        height: 200px;
+    }
+    .bss-slides figcaption {
+        visibility: hidden;
+    }
+    .bss-slides:hover figcaption {
+        visibility: visible;
+    }
+    #mugshotCaption {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
 }
 
-} 
 @media (max-device-width: 480px) {
     html, body {
         width:100%;
         overflow:hidden;
-}
+    }
 }
 
 /* ================================================== */
@@ -347,8 +358,7 @@ object {
     border-style: none !important;
 }
 
-.gm-style-iw
-{
+.gm-style-iw {
     font: 100 1em/1.2em 'Josefin Slab';
     max-width: 150px;
     max-height: 400px;

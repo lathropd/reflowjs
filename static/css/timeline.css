@@ -46,19 +46,19 @@
 
 /* line 32, ../scss/timeline.scss */
 .timeline .year, .timeline.v1 .year {
-  background: #727272;
-  font-weight: 700;
-  font-size: 2em;
-  max-width: 4em;
-  clear: both;
-  margin: 1em auto;
-  color: white;
-  border-radius: 10% / 100%;
-  text-align: center;
-  margin-top: 50px;
+    background: #727272;
+    font-weight: 700;
+    font-size: 2em;
+    max-width: 4em;
+    clear: both;
+    margin: 1em auto;
+    color: white;
+    border-radius: 10% / 100%;
+    text-align: center;
+    margin-top: 50px;
     padding-top: 0.25em;
-  padding-bottom: 0.25em;
-  /*
+    padding-bottom: 0.25em;
+    /*
     thanks to Lukas Knuth ( https://github.com/christian-fei/Timeline.css/issues/1 )
     */
 }
@@ -74,9 +74,9 @@
 
 .year {margin-top: 20px;}
 
-.year + .year {margin-top: -20px;} 
+.year + .year {margin-top: -20px;}
 
- div h1 {text-align: center;}
+div h1 {text-align: center;}
 
 ul.timeline li:last-child { background: white; margin-top: -20px; margin-bottom: 0; height: 0.5em; width: 3em;}
 
