@@ -144,6 +144,8 @@ function obit(client, form, skybox) {
         this.data.mugshotName = this.data.name;
 
         this.write();
+        alert("Changes saved");
+
     }
 
     this.loadEntries();
