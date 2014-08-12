@@ -94,7 +94,7 @@
         request.open("GET", "https://"+getParameterByName("file"), false);
         request.onload = function(e){
             obitdata = JSON.parse(this.response);
-            console.log(obitdata);
+            //console.log(obitdata);
             init(obitdata);
             var container = document.querySelector('#content');
             pckry = new Packery( container, {
@@ -227,93 +227,122 @@
         document.body.style.display="";
     }
     function makeMap(a, b, c) {
-        console.log(a.div);
-        console.log(a.address);
-        console.log(a.bubble);
-        toGeocode = { address: a.address, };
-        reflowSettings.geocoder.geocode(toGeocode, function(results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                var mapOptions = {
-                    zoom: reflowSettings.zoomLevel,
-                    center: results[0].geometry.location
-                }
-                document.getElementById(a.div).style.height = document.getElementById(a.div).parentElement.parentElement.clientWidth + "px";
-                var map = new google.maps.Map(document.getElementById(a.div), mapOptions);
-                var marker = new google.maps.Marker({
-                    map: map,
-                    position: results[0].geometry.location,
-                });
+        //console.log(a.div);
+        //console.log(a.address);
+        //console.log(a.bubble);
+        document.getElementById(a.div).style.height = document.getElementById(a.div).parentElement.parentElement.clientWidth + "px";
+        var bounds = new google.maps.LatLngBounds();
+        var mapOptions = {	zoom: reflowSettings.zoomLevel, };
+        var map = new google.maps.Map(document.getElementById(a.div), mapOptions);
+        //console.log(a);
+        var markers = [];
+        var windows = [];
+        var infowindow = new google.maps.InfoWindow({ content: ""});
+        
+        for (i in a.points ) {
+        	//console.log(a.points);
+        	windows.push(a.points[i][1]);
+        	toGeocode = { address: a.points[i][0], };
+        	reflowSettings.geocoder.geocode(toGeocode, function(results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					marker = new google.maps.Marker({
+						map: map,
+						position: results[0].geometry.location,
+					});
+					markers.push(marker);
+					google.maps.event.addListener(marker, 'click', function() {
+						infowindow.setContent(windows[markers.indexOf(this)]);
+						infowindow.open(map,this);
+						//console.log(this);
+					});
+					bounds.extend(results[0].geometry.location);
+					map.setCenter(bounds.getCenter());
+					if (a.points.length > 1) {
+						map.fitBounds(bounds);
+					}
 
-                var infowindow = new google.maps.InfoWindow({
-                    content: a.bubble,
-                });
-                google.maps.event.addListener(marker, 'click', function() {
-                    infowindow.open(map,marker);
-                });
-            } else {
-                //alert("Geocode was not successful for the following reason: " + status);
-            }
-        });
+				} else {
+					//alert("Geocode was not successful for the following reason: " + status);
+				}
+			
+			});
+		}
+
+	
+
+        
     }
 
-function pack() {
-    pckry.layout();
-    //console.log('p');
-}
+	function pack() {
+   		pckry.layout();
+    	//console.log('p');
+	}
 
-function format(text, id) {
-    //console.log(text);
-    formatted = text;
-    var rawImage = /( |\n|^)(\S*\.(jpe?g|png|gif))( |\n|$)/gi;
-    var isImage = /^\S*\.(jpe?g|png|gif)$/i;
-    var isBrightcove = /http:\/\/bcove.me.*/;
-    var brightcoveId = /^(\d{9,})$/mg;
-    var isSlideshow = /^slideshow\:?\s*([\s\S]*)\s(http.*)/;
-    var isTimeline = /^timeline\:?\n?/;
-    var isLink = /^(http)?\:\/\/\S+\.\S+\s*$/;
-    var isHTML = /^\<.*\>$/;
-    var isMap = /(map)\:?\s*(.+)\n(.+)/;
+	function format(text, id) {
+		//console.log(text);
+		formatted = text;
+		var rawImage = /( |\n|^)(\S*\.(jpe?g|png|gif))( |\n|$)/gi;
+		var isImage = /^\S*\.(jpe?g|png|gif)$/i;
+		var isBrightcove = /http:\/\/bcove.me.*/;
+		var brightcoveId = /^(\d{9,})$/mg;
+		var isSlideshow = /^slideshow\:?\s*([\s\S]*)\s(http.*)/;
+		var isTimeline = /^timeline\:?\n?/;
+		var isLink = /^(http)?\:\/\/\S+\.\S+\s*$/;
+		var isHTML = /^\<.*\>$/;
+		var isMap = /map\:?\s*([\s\S]+)/;
 
-    if (isImage.test(text)) {
-        formatted = "<img src='"+text+"'>";
-        //console.log("i");
-    } else if (isSlideshow.test(text)) {
-        id = 'slid' + Math.round(Math.random()*10000);
-        slideshowDiv ="<div id='"+id+"' class='"+id+" bss-slides'>";
-        //console.log(isSlideshow.exec(text));
-        slideshowSetup = isSlideshow.exec(text)[1];
-        link = isSlideshow.exec(text)[2];
-        formatted = '<div class="noMargin">' + marked(slideshowSetup) +'</div>' + slideshowDiv  ;
-        slideshow(link, id);
-    } else if (isTimeline.test(text)) {
-        text = text.replace(rawImage, "<img src='$2'>");
-        newText = text.replace(isTimeline,"");
-        formatted = marked(newText, {renderer: timelineRenderer});
-        //console.log("tl");
-    } else if (isHTML.test(text)) {
-        formatted = text; // leave it as is
-        //console.log("h");
-    } else if (isMap.test(text)) {
-        // build inline google map;
-        regexResult = isMap.exec(text);
-        resultObj =  {
-            div: 'map'+id,
-            address: regexResult[2],
-            bubble: regexResult[3],
-        }
-        formatted = "<div class='map' id='map"+id+"'></div>";
-        reflowSettings.maps.push(resultObj);
-    } else {
-        newText = text.replace(rawImage, "<img src='$2'>");
-        newText = newText.replace(brightcoveId, brightcovePlayer("$1"));
-        formatted = marked(newText);
-        //console.log(rawImage.exec(text));
-    }
-    return formatted;
-}
+		if (isImage.test(text)) {
+			formatted = "<img src='"+text+"'>";
+			//console.log("i");
+		} else if (isSlideshow.test(text)) {
+			id = 'slid' + Math.round(Math.random()*10000);
+			slideshowDiv ="<div id='"+id+"' class='"+id+" bss-slides'>";
+			//console.log(isSlideshow.exec(text));
+			slideshowSetup = isSlideshow.exec(text)[1];
+			link = isSlideshow.exec(text)[2];
+			formatted = '<div class="noMargin">' + marked(slideshowSetup) +'</div>' + slideshowDiv  ;
+			slideshow(link, id);
+		} else if (isTimeline.test(text)) {
+			text = text.replace(rawImage, "<img src='$2'>");
+			newText = text.replace(isTimeline,"");
+			formatted = marked(newText, {renderer: timelineRenderer});
+			//console.log("tl");
+		} else if (isHTML.test(text)) {
+			formatted = text; // leave it as is
+			//console.log("h");
+		} else if (isMap.test(text)) {
+			// build inline google map;
+			//console.log(isMap.exec(text));
+			regexResult = isMap.exec(text)[1];
+			points = regexResult.split(';');
+			//console.log(points);
+			resultObj =  {
+				div: 'map'+id,
+				points: [],
+			}
+			for (var index in points) {
+				fields = /(.+)\n(.+)/.exec(points[index]);
+				//console.log(points[index]);
+				//console.log(fields);
+				mapPoint = [fields[1], fields[2]];
+				resultObj.points[index] = mapPoint;
+				resultObj.address = fields[1];
+				resultObj.bubble = fields[2];
+					
+			}
+			formatted = "<div class='map' id='map"+id+"'></div>";
+			reflowSettings.maps.push(resultObj);
+		} else {
+			newText = text.replace(rawImage, "<img src='$2'>");
+			newText = newText.replace(brightcoveId, brightcovePlayer("$1"));
+			formatted = marked(newText);
+			//console.log(rawImage.exec(text));
+		}
+		return formatted;
+	}
 
-/* parameter getter from james padolsey                                        */
-/* http://james.padolsey.com/javascript/bujs-1-getparameterbyname/             */
+	/* parameter getter from james padolsey                                        */
+	/* http://james.padolsey.com/javascript/bujs-1-getparameterbyname/             */
     function getParameterByName(name) {
         var match = RegExp('[?&]' + name + '=([^&]*)')
         .exec(window.location.search);
@@ -351,6 +380,6 @@ function format(text, id) {
             }
         });
     }
-</script>
+	</script>
 </body>
 </html>
