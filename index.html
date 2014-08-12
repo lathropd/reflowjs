@@ -147,9 +147,12 @@
         // 				+'as the line is read by the browser. If you wish to have the player instantiated only after'
         // 				+'the rest of the HTML is processed and the page load is complete, remove the line.'
         // 				+'-->'
-        // 				//+'<script type="text/javascript">brightcove.createExperiences();\<\/script>'
+        + '<script type="text/javascript">brightcove.createExperiences();\<\/script>'
         // 				+''
         // 				+'<!-- End of Brightcove Player -->'
+        
+        
+        
         return html;
     }
 
@@ -264,7 +267,7 @@ function format(text, id) {
     var rawImage = /( |\n|^)(\S*\.(jpe?g|png|gif))( |\n|$)/g;
     var isImage = /^\S*\.(jpe?g|png|gif)$/;
     var isBrightcove = /http:\/\/bcove.me.*/;
-    var brightcoveId = /^\d{9,}$/mg;
+    var brightcoveId = /^(\d{9,})$/mg;
     var isYouTube = /^http:\/\/(youtu.be)|(youtube.com).*/;
     var isSlideshow = /^slideshow\:?\s*(\S*)/;
     var isTimeline = /^timeline\:?\n?/;
@@ -302,8 +305,7 @@ function format(text, id) {
         reflowSettings.maps.push(resultObj);
     } else {
         newText = text.replace(rawImage, "<img src='$2'>");
-        var brightcovePlayerText = brightcovePlayer("$1");
-        newText = newText.replace(brightcoveId, brightcovePlayerText);
+        newText = newText.replace(brightcoveId, brightcovePlayer("$1"));
         formatted = marked(newText);
         //console.log(rawImage.exec(text));
     }
