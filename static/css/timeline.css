@@ -44,26 +44,23 @@
 .timeline li.event h5 { font-size: .83em; }
 .timeline li.event h6 { font-size: .83em; }
 
-
-
-
 /* line 32, ../scss/timeline.scss */
 .timeline .year, .timeline.v1 .year {
-  background: #727272;
-  font-weight: 700;
-  font-size: 2em;
-  max-width: 4em;
-  clear: both;
-  margin: 1em auto;
-  color: white;
-  border-radius: 10% / 100%;
-  text-align: center;
-  margin-top: 50px;
+    background: #727272;
+    font-weight: 700;
+    font-size: 2em;
+    max-width: 4em;
+    clear: both;
+    margin: 1em auto;
+    color: white;
+    border-radius: 10% / 100%;
+    text-align: center;
+    margin-top: 50px;
     padding-top: 0.25em;
-  padding-bottom: 0.25em;
-  /*
+    padding-bottom: 0.25em;
+    /*
     thanks to Lukas Knuth ( https://github.com/christian-fei/Timeline.css/issues/1 )
-  */
+    */
 }
 
 .timeline .long, .timeline.v1 .long {
@@ -73,19 +70,15 @@
   margin-bottom: 30px;
   padding-top: 0.25em;
   padding-bottom: 0.25em;
-
 }
 
 .year {margin-top: 20px;}
 
-.year + .year {margin-top: -20px;} 
+.year + .year {margin-top: -20px;}
 
- div h1 {text-align: center;}
- 
- 
+div h1 {text-align: center;}
 
 ul.timeline li:last-child { background: white; margin-top: -20px; margin-bottom: 0; height: 0.5em; width: 3em;}
-
 
 /* line 43, ../scss/timeline.scss */
 .timeline .year:first-of-type, .timeline.v1 .year:first-of-type {
@@ -96,8 +89,6 @@ ul.timeline li:last-child { background: white; margin-top: -20px; margin-bottom:
   margin-top: -1em;
 }
 /* line 60, ../scss/timeline.scss */
-
-
 
 .timeline .event, .timeline.v1 .event {
   position: relative;
@@ -121,9 +112,6 @@ ul.timeline li:last-child { background: white; margin-top: -20px; margin-bottom:
   -o-transition: background .15s linear;
   transition: background .15s linear;
 }
-
-
-
 
 /* line 97, ../scss/timeline.scss */
 .timeline .event.offset-first, .timeline.v1 .event.offset-first {

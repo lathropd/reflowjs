@@ -1,28 +1,20 @@
 @import url(http://fonts.googleapis.com/css?family=Montserrat|Josefin+Slab:100);
-* {	
-	font: 700 1em/1.25em 'Josefin Slab';
-
+* {
+    font: 700 1em/1.25em 'Josefin Slab';
 }
 
-h1 { font-family: 'Montserrat', 'Helvetica', sans-serif; font-weight: 700; font-size: 2em; margin: 10px 0 5px 0; padding: 0;}
-h2 { font-family: 'Montserrat', 'Helvetica', sans-serif; font-weight: 700; font-size: 1.5em; margin: 10px 0 5px 0; padding: 0;}
-h3 { font-family: 'Montserrat', 'Helvetica', sans-serif; font-weight: 700; font-size: 1.17em; margin: 10px 0 5px 0; padding: 0;}
-h5 { font-family: 'Montserrat', 'Helvetica', sans-serif; font-weight: 700; font-size: .83em; margin: 10px 0 5px 0; padding: 0;}
-h6 { font-family: 'Montserrat', 'Helvetica', sans-serif; font-weight: 700; font-size: .75em; margin: 0px 0 5px 0; padding: 0;}
+h1 { font-family: 'Montserrat', 'Helvetica', sans-serif; font-weight: 700; font-size: 2em; margin: 10px 0 5px 0; padding: 0; }
+h2 { font-family: 'Montserrat', 'Helvetica', sans-serif; font-weight: 700; font-size: 1.5em; margin: 10px 0 5px 0; padding: 0; }
+h3 { font-family: 'Montserrat', 'Helvetica', sans-serif; font-weight: 700; font-size: 1.17em; margin: 10px 0 5px 0; padding: 0; }
+h5 { font-family: 'Montserrat', 'Helvetica', sans-serif; font-weight: 700; font-size: .83em; margin: 10px 0 5px 0; padding: 0; }
+h6 { font-family: 'Montserrat', 'Helvetica', sans-serif; font-weight: 700; font-size: .75em; margin: 0px 0 5px 0; padding: 0; }
 
-p { 
-	font: 100 1em/1.35em 'Josefin Slab';
-	margin: 5px 0 0 0;
-	padding: 0;
-
+p {
+    font: 100 1em/1.35em 'Josefin Slab';
+    margin: 5px 0 0 0;
+    padding: 0;
 }
 
-
-li { 
-	font: 100 1em/1.35em 'Josefin Slab';
-
-
+li {
+    font: 100 1em/1.35em 'Josefin Slab';
 }
-
-
-
