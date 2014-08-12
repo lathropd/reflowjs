@@ -149,6 +149,20 @@ div.indentLeft div {
     padding:0px;
 }
 
+
+div.noMargin {
+	margin: 0px;
+	padding: 0px;
+}
+
+div.bss-slides {
+	margin-left: -20px;
+	margin-right: -20px;
+	margin-bottom: -20px;
+	margin-top: -20px;
+	
+}
+
 div#mugshotPhoto div {
     margin: 0;
     padding: 0;

@@ -264,16 +264,14 @@ function pack() {
 function format(text, id) {
     //console.log(text);
     formatted = text;
-    var rawImage = /( |\n|^)(\S*\.(jpe?g|png|gif))( |\n|$)/g;
-    var isImage = /^\S*\.(jpe?g|png|gif)$/;
+    var rawImage = /( |\n|^)(\S*\.(jpe?g|png|gif))( |\n|$)/gi;
+    var isImage = /^\S*\.(jpe?g|png|gif)$/i;
     var isBrightcove = /http:\/\/bcove.me.*/;
     var brightcoveId = /^(\d{9,})$/mg;
-    var isYouTube = /^http:\/\/(youtu.be)|(youtube.com).*/;
-    var isSlideshow = /^slideshow\:?\s*(\S*)/;
+    var isSlideshow = /^slideshow\:?\s*([\s\S]*)\s(http.*)/;
     var isTimeline = /^timeline\:?\n?/;
     var isLink = /^(http)?\:\/\/\S+\.\S+\s*$/;
     var isHTML = /^\<.*\>$/;
-    //var isMap = /^map\:?\s*(.*)?\n(.*)$/;
     var isMap = /(map)\:?\s*(.+)\n(.+)/;
 
     if (isImage.test(text)) {
@@ -281,10 +279,12 @@ function format(text, id) {
         //console.log("i");
     } else if (isSlideshow.test(text)) {
         id = 'slid' + Math.round(Math.random()*10000);
-        formatted ="<div id='"+id+"' class='"+id+" bss-slides'></div>";
-        link = isSlideshow.exec(text)[1]
+        slideshowDiv ="<div id='"+id+"' class='"+id+" bss-slides'>";
+        //console.log(isSlideshow.exec(text));
+        slideshowSetup = isSlideshow.exec(text)[1];
+        link = isSlideshow.exec(text)[2];
+        formatted = '<div class="noMargin">' + marked(slideshowSetup) +'</div>' + slideshowDiv  ;
         slideshow(link, id);
-        //console.log("ss")
     } else if (isTimeline.test(text)) {
         text = text.replace(rawImage, "<img src='$2'>");
         newText = text.replace(isTimeline,"");
@@ -336,6 +336,7 @@ function format(text, id) {
         slideds.fetch({
             success: function() {
                 el = document.getElementById(div);
+                text = el.innerHTML;
                 var a = "";
                 slideds.each(function(row, rowIndex) {
                     a +=  "<figure><img  width='100%' src='"+row.enclosure.url + "'>"
@@ -343,8 +344,8 @@ function format(text, id) {
                     a +=  row.description;
                     a +=  "</figcaption></figure>";
                 });
-                el.innerHTML = a;
-                el.parentElement.outerHTML = el.outerHTML;
+                el.innerHTML =  a;
+                //el.parentElement.outerHTML = el.outerHTML;
                 makeBSS('.'+div, opts);
                 pack();
             }
