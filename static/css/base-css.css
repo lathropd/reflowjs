@@ -472,6 +472,8 @@ input::-moz-focus-inner {
     position: relative;
 }
 
+
+
 .button:hover {
     background-color: #f43f3f;
 }
@@ -1510,6 +1512,20 @@ a:active {
 .grid .row {
     padding-top: 10px;
     padding-bottom: 0;
+}
+
+
+#sticky_toolbar { 
+	background: white;
+
+}
+
+.cheat1 {
+	padding-left: 1px;
+}
+hr {
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 @media only screen and (min-width: 740px) and (max-width: 959px) {
