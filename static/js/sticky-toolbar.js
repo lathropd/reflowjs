@@ -15,7 +15,7 @@ $(function() {
 		var scroll_top = $(window).scrollTop(); // our current vertical position from the top
 		
 		// if we've scrolled more than the navigation, change its position to fixed to stick to top, otherwise change it back to relative
-		if (scroll_top > sticky_navigation_offset_top + 5 ) { 
+		if (scroll_top > sticky_navigation_offset_top  ) { 
 			$('#sticky_toolbar').css({ 'position': 'fixed', 'top':0, 'padding-top': 5, 'width': sticky_navigation_width });
 		} else {
 			$('#sticky_toolbar').css({ 'position': 'relative', 'padding-top': 0,  }); 
