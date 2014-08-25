@@ -1517,7 +1517,7 @@ a:active {
 
 #sticky_toolbar { 
 	background: white;
-
+    width: 100%;
 }
 
 .cheat1 {
