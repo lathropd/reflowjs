@@ -9,7 +9,6 @@ var skyboxHTML;
 var elementtest;
 $(document).ready( function () {
     client = new Dropbox.Client({key: 'adhp94h23c2mapg'});
-    client.reset();
     client.authenticate();
     form = $("#adminForm");
     form[0].reset();
@@ -85,7 +84,7 @@ function admin( options ) {
         $(skybox).html(skyboxHTML);
         client.readdir("/AJC-Reflow/Drafts", function (error, entries) {
             this.entries = entries;
-            var skyboxList = skybox + " #skyboxList";
+            var skyboxList = skybox + " #skyboxDraftList";
             $(skyboxList).html();
             for (entry in entries) {
                 if (entries[entry].match(/\.json$/)) {
@@ -138,14 +137,18 @@ function admin( options ) {
                     thisObit = this;
                     client.makeUrl(this.data.file_name, {downloadHack: true}, function (error, result) {
                         webUrl = "https://lathropd.github.com/reflowjs/?file="+result.url.replace(/https?\:\/\//,"");
-                        $("#url").text(result.url).prop("href", result.url);
-                        $("#webUrl").text(webUrl).prop("href",webUrl);
+                        previewUrl = "preview.html?file="+this.data.file_name;
+                        $("#url").text("json").prop("href", result.url);
+                        $("#webUrl").text("published").prop("href",webUrl);
+                        $("#previewUrl").text("preview").prop("href",previewUrl);
                         thisObit.data.url = result.url;
                         thisObit.data.webUrl = webUrl;
+                        thisObit.data.previewUrl = previewUrl;
                     });
                 } else {
-                    $("#url").text(this.data.url).prop("href", this.data.url);
-                    $("#webUrl").text(this.data.webUrl).prop("href",this.data.webUrl);
+                    $("#url").text("json").prop("href", this.data.url);
+                    $("#webUrl").text("published").prop("href",this.data.webUrl);
+                    $("#previewUrl").text("preview").prop("href",this.data.previewUrl);
                 }
 
                 $("input, textarea").each(function (i, el) {
@@ -181,12 +184,26 @@ function admin( options ) {
             }
         });
         this.data.mugshotName = this.data.name;
-
         this.write();
         alert("Changes saved");
 
     }
-	
+
+    this.publish = function () {
+        console.log(this.data.file_name);
+    }
+
+    this.unpublish = function () {
+        console.log(this.data.file_name);
+    }
+
+    this.rename = function (newName) {
+        console.log(this.data.file_name, newName);
+    }
+    
+    this.delete = function () {
+        console.log(this.data.file_name);
+    }
 	// load the initial set of entries
     this.loadEntries();
     
