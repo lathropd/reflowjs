@@ -31,7 +31,13 @@
         <form id="adminForm">
 
             <div id="skybox">
-                <select size=5 style="overflow-y:scroll; padding:10px; min-width: 300px;" id="skyboxList"></select>
+                Drafts<br>
+                <select size=5 style="overflow-y:scroll; padding:10px;
+                    min-width: 300px;" id="skyboxDraftList"></select>
+                <br>
+                Published<br>
+                <select size=5 style="overflow-y:scroll;  padding:10px;
+                    min-width: 300px;" id="skyboxPubList"></select>
                 <div id="skyboxMessage"></div>
             </div>
             <div>
@@ -40,15 +46,23 @@
                 <!--<input readonly="readonly" placeholder="this will populate automatically" id="url" name="url">-->
                 <h4>Web URL <small>(for flatpage iFrame)</small>:</h4>
                 <h3><a href="" id="webUrl" target="_blank">this will populate automatically</a></h3>
+                <h4>Preview URL <small>(for flatpage iFrame)</small>:</h4>
+                <h3><a href="" id="previewUrl" target="_blank">this will populate
+                        automatically</a></h3>
                 <!--<input readonly="readonly" placeholder="this will populate automatically" id="webUrl" name="webUrl"></span>-->
             </div>
             
 			<hr>
 			<div id="sticky_toolbar">
 				<div>
-					<button class="button create">Create new</button>
-					<button class="button save" style="background-color:#007aff">Save</button>
-					<button type="reset" class="button grey-button reset">Reset Form</button>
+					<button class="button create">Create</button>
+					<button class="button blue-button save">Save</button>
+                    <button type="reset" class="button grey-button
+                        reset">Reset</button>
+                    <br><br>
+                    <button class="button delete">Delete</button>
+                    <button class="button blue-button publish">Publish</button>
+                    <button class="button rename grey-button">Rename</button>
 				</div>
 				<hr>
             </div>

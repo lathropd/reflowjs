@@ -470,6 +470,7 @@ input::-moz-focus-inner {
     color: #fff;
     text-decoration: none;
     position: relative;
+    min-width: 200px;
 }
 
 
@@ -489,6 +490,13 @@ input::-moz-focus-inner {
 
 .grey-button:hover {
     background-color: #f1f1f1;
+}
+.blue-button {
+    background-color:#007aff;
+}
+
+.blue-button:hover {
+    background-color:#118bff;
 }
 
 .button[disabled],
