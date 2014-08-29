@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="static/vendor/css/simple-slideshow-styles.css">
+    <link rel="stylesheet" href="static/css/timeline.css">
+    <script src="http://admin.brightcove.com/js/BrightcoveExperiences.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="static/css/base.css">
+
+</head>
+<body style="display:none;">
+    <div id="bigPicture" class="fullwidth tall"><div><h1 id="bigHeadline"></h1></div></div>
+    <div id="content" class="reflow">
+        <div class="box" id="mugshot">
+            <div id="mugshotPhoto"></div>
+            <div id="mugshotCaption">
+                <h2 id="mugshotName"></h2>
+                <h3 id="mugshotDates"></h3>
+                <div class="indentLeft" id="mugshotBio"></div>
+            </div>
+        </div>
+        <div class="box w2col" id="bigMultimedia"></div>
+        <div class="box w1col" id="boxOne"></div>
+        <div class="box w2col" id="boxTwo"></div>
+        <div class="box w2col" id="boxThree"></div>
+        <div class="box w2col" id="boxFour"></div>
+        <div class="box w2col" id="boxFive"></div>
+        <div class="box w1col" id="boxSix"></div>
+        <div class="box w1col" id="boxSeven"></div>
+        <div class="box w1col" id="boxEight"></div>
+        <div class="box w1col" id="boxNine"></div>
+        <div class="box w1col" id="boxTen"></div>
+        <div class="box w1col" id="boxEleven"></div>
+    </div>
+
+    <script src="static/vendor/js/marked.js"></script>
+    <script src="static/vendor/js/packery.pkgd.min.js"></script>
+    <script src="static/vendor/js/miso.ds.deps.ie.min.0.4.1.js"></script>
+    <script src="static/vendor/js/better-simple-slideshow.min.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYupoTfmCt-mh6tCqrNkQnIUmWXuFopQQ"></script>
+	<script type="text/javascript">
+	var reflowSettings = {
+		googleKey: '1UwyrO_goSqP9UM-kjTNLM5lKNVj3y__coN_3KJWSLJo',
+		maps: [],
+		geocoder: new google.maps.Geocoder(),
+		zoomLevel: 10,
+	}
+	//slideshow JS
+	var opts = {
+		auto : false,
+		fullScreen : false
+	};
+	
+	window.onload=function() { 
+		start();
+	}
+	</script>
+	
+	
+    <script src="static/js/reflow.js" type="text/javascript"></script>
+</body>
+</html>

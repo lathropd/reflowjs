@@ -8,18 +8,25 @@ var skyboxHTML;
 
 var elementtest;
 $(document).ready( function () {
-    client = new Dropbox.Client({key: 'adhp94h23c2mapg'});
-    client.reset();
+    client = new Dropbox.Client({key:'phovkvef0jhkx4i', token: 'zy9Bs1eG-scAAAAAAAABcENGysKLGOoM8mRzbrmwphmBrhHyB0cjm_eNbOd4Bi1i' });
     client.authenticate();
     form = $("#adminForm");
     form[0].reset();
     skyboxHTML = $(skybox).html();
     $(skybox).html(skyboxHTML);
-    O = admin({client: client, form:form, skybox:skybox, folder: 'AJC-Reflow'});
+    O = admin({
+        client: client, 
+        form:form, 
+        skybox:skybox, 
+        folder: '',
+        webUrl: 'https://lathropd.github.com/reflowjs/'
+        });
     $("button.create").click(function(e){O.create();return false;});
     $("button.save").click(function(e){O.save();return false;});
     $("button.rename").click(function(e){O.rename();return false;});
     $("button.reset").click(function(e){O.data.file_name ="";});
+    $("button.delete").click(function(e){O.deleteFile();return false;});
+    $("button.publish").click(function(e){O.publish();return false;});
     $("textarea#tableGenerator").keyup(function () { textToTable($("textarea#tableGenerator"), $("#tableCode"));});
 	$("textarea#tableGenerator").keyup();
 
@@ -56,6 +63,8 @@ function admin( options ) {
 		folder: '',
 		drafts: '/Drafts',
 		published: '/Published',
+        webUrl: 'index.html',
+        previewUrl: 'preview.html',
 		data: {}
 	}
 	
@@ -83,23 +92,39 @@ function admin( options ) {
     	// create a variable we can pass to callbacks
         this_admin = this;
         $(skybox).html(skyboxHTML);
-        client.readdir("/AJC-Reflow/Drafts", function (error, entries) {
-            this.entries = entries;
-            var skyboxList = skybox + " #skyboxList";
-            $(skyboxList).html();
+        client.readdir(this.options.folder+this.options.drafts, function (error, entries) {
+            this.drafts = entries;
+            var skyboxList = skybox + " #skyboxDraftList";
+            //$(skyboxList).html();
             for (entry in entries) {
                 if (entries[entry].match(/\.json$/)) {
-                    idString  = entries[entry].replace(/\.json$/,'');
+                    idString  = entries[entry].replace(/\.json$/,'').replace(/\//g,'');
                     name = idString.replace(/[\W_]/g, ' ');
-                    if ('/AJC-Reflow/Drafts/' + entries[entry] == this.data.file_name) {
+                    if (this.options.folder+this.options.drafts + entries[entry] == this.data.file_name) {
                         $(skyboxList).append("<option class='filename' id='"+idString+"' selected='selected'>"+name+"</option>");
                     } else {
                         $(skyboxList).append("<option class='filename' id='"+idString+"'>"+name+"</option>");
                     }
                 }
             }
-            $("option.filename").on("click", function (event) {this_admin.load(this.id+".json")});
-            $("#"+(this.data.file_name||"nothing").replace(/.json/,"")).click();
+            $("#skyboxDraftList option.filename").on("click", function (event) {this_admin.load(this.id+".json")});
+            //$("#"+(this.data.file_name||"nothing").replace(/.json/,"")).click();
+        });
+        client.readdir(this.options.folder+this.options.published, function (error, entries) {
+            this.published = entries;
+            var skyboxList = skybox + " #skyboxPubList";
+            for (entry in entries) {
+                if (entries[entry].match(/\.json$/)) {
+                    idString  = entries[entry].replace(/\.json$/,'').replace(/\//g,'');
+                    name = idString.replace(/[\W_]/g, ' ');
+                    if (this.options.folder+this.options.published + entries[entry] == this.data.file_name) {
+                        $(skyboxList).append("<option class='filename' id='"+idString+"' selected='selected'>"+name+"</option>");
+                    } else {
+                        $(skyboxList).append("<option class='filename' id='"+idString+"'>"+name+"</option>");
+                    }
+                }
+                $("#skyboxPubList option.filename").on("click", function (event) {this_admin.load(this.id+".json", 'published'); console.log("t")});
+            }
         });
     };
     
@@ -107,10 +132,9 @@ function admin( options ) {
     this.create = function() {
         // create a variable we can pass to callbacks
         this_admin = this;
-        console.log(1)
-            this.data = {};
+        this.data = {};
         this.data.name = window.prompt("Enter name of a new subject","");
-        this.data.file_name = '/AJC-Reflow/Drafts/' + this.data.name.toLowerCase().replace(/\W+/g, '_') + '.json';
+        this.data.file_name = this.options.folder+this.options.drafts+'/' + this.data.name.toLowerCase().replace(/\W+/g, '_') + '.json';
         if (this.entries.indexOf(this.data.file_name)>-1) {
             //silently fail, keeping the old one
         } else {
@@ -118,34 +142,43 @@ function admin( options ) {
         }
     };
 
-    this.load = function (name) {
+    this.load = function (name, draft) {
     	// create a variable we can pass to callbacks
         this_admin = this;
         form.find("input, textarea").val("");
-        form.find("a#url, a#webUrl").text("this will populate automatically").prop("href","");
+        form.find("a#url, a#webUrl, a#previewUrl").text("this will populate automatically").prop("href","");
         $("button#reset").click();
-        this.data.file_name = '/AJC-Reflow/Drafts/' + name;
+        if (draft == 'published'){
+            this.data.file_name = this.options.folder + this.options.published+'/' + name;
+        }
+        else{
+            this.data.file_name = this.options.folder + this.options.drafts +'/'+ name;
+        }
         thisFileName = this.data.file_name;
         client.readFile(this.data.file_name, function (error, results) {
             if (error) {
                 return error;
             } else {
                 //this.data.file_name  = name;
-                
                 this.data = JSON.parse(results);
                 this.data.file_name = thisFileName;
-                if (!this.data.url||!this.data.webUrl) {
+                if (true) { //(!this.data.url||!this.data.webUrl) {
                     thisObit = this;
                     client.makeUrl(this.data.file_name, {downloadHack: true}, function (error, result) {
-                        webUrl = "https://lathropd.github.com/reflowjs/?file="+result.url.replace(/https?\:\/\//,"");
-                        $("#url").text(result.url).prop("href", result.url);
-                        $("#webUrl").text(webUrl).prop("href",webUrl);
+                        webUrl = this.options.webUrl +"?file=" +result.url.replace(/https?\:\/\//,"");
+                        previewUrl = this.options.previewUrl+"?file="+this.data.file_name;
+                        $("#url").text("json").prop("href", result.url);
+                        $("#webUrl").text("published").prop("href",webUrl);
+                        $("#previewUrl").text("preview").prop("href",previewUrl);
                         thisObit.data.url = result.url;
                         thisObit.data.webUrl = webUrl;
+                        thisObit.data.previewUrl = previewUrl;
                     });
                 } else {
-                    $("#url").text(this.data.url).prop("href", this.data.url);
-                    $("#webUrl").text(this.data.webUrl).prop("href",this.data.webUrl);
+                    previewUrl = this.options.previewUrl+"?file="+this.data.file_name;
+                    $("#url").text("json").prop("href", this.data.url);
+                    $("#webUrl").text("published").prop("href",this.data.webUrl);
+                    $("#previewUrl").text("preview").prop("href",previewUrl);
                 }
 
                 $("input, textarea").each(function (i, el) {
@@ -181,12 +214,26 @@ function admin( options ) {
             }
         });
         this.data.mugshotName = this.data.name;
-
         this.write();
         alert("Changes saved");
 
     }
-	
+
+    this.publish = function () {
+        console.log(this.data.file_name);
+    }
+
+    this.unpublish = function () {
+        console.log(this.data.file_name);
+    }
+
+    this.rename = function (newName) {
+        console.log(this.data.file_name, newName);
+    }
+    
+    this.deleteFile = function () {
+        console.log(this.data.file_name);
+    }
 	// load the initial set of entries
     this.loadEntries();
     
