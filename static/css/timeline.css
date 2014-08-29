@@ -120,7 +120,7 @@ ul.timeline li:last-child { background: white; margin-top: -20px; margin-bottom:
 /* line 101, ../scss/timeline.scss */
 .timeline .event img, .timeline.v1 .event img {
   margin-top: 10px;
-  max-width: 100%;
+  width: 100%;
 }
 /* line 106, ../scss/timeline.scss */
 .timeline .event:hover, .timeline.v1 .event:hover {
