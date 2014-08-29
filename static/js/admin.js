@@ -8,7 +8,7 @@ var skyboxHTML;
 
 var elementtest;
 $(document).ready( function () {
-    client = new Dropbox.Client({key: 'adhp94h23c2mapg'});
+    client = new Dropbox.Client({key:'phovkvef0jhkx4i', token: 'zy9Bs1eG-scAAAAAAAABcENGysKLGOoM8mRzbrmwphmBrhHyB0cjm_eNbOd4Bi1i' });
     client.authenticate();
     form = $("#adminForm");
     form[0].reset();
@@ -18,7 +18,7 @@ $(document).ready( function () {
         client: client, 
         form:form, 
         skybox:skybox, 
-        folder: 'AJC-Reflow',
+        folder: '',
         webUrl: 'https://lathropd.github.com/reflowjs/'
         });
     $("button.create").click(function(e){O.create();return false;});
@@ -162,7 +162,7 @@ function admin( options ) {
                 //this.data.file_name  = name;
                 this.data = JSON.parse(results);
                 this.data.file_name = thisFileName;
-                if (!this.data.url||!this.data.webUrl) {
+                if (true) { //(!this.data.url||!this.data.webUrl) {
                     thisObit = this;
                     client.makeUrl(this.data.file_name, {downloadHack: true}, function (error, result) {
                         webUrl = this.options.webUrl +"?file=" +result.url.replace(/https?\:\/\//,"");
