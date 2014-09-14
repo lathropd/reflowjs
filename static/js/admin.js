@@ -8,16 +8,14 @@ var skyboxHTML;
 
 var elementtest;
 $(document).ready( function () {
-    client = new Dropbox.Client({key:'phovkvef0jhkx4i', token: 'zy9Bs1eG-scAAAAAAAABcENGysKLGOoM8mRzbrmwphmBrhHyB0cjm_eNbOd4Bi1i' });
-    client.authenticate();
     form = $("#adminForm");
     form[0].reset();
     skyboxHTML = $(skybox).html();
     $(skybox).html(skyboxHTML);
     O = admin({
-        client: client, 
-        form:form, 
-        skybox:skybox, 
+        client: new Dropbox.Client({key:'phovkvef0jhkx4i', token: 'zy9Bs1eG-scAAAAAAAABcENGysKLGOoM8mRzbrmwphmBrhHyB0cjm_eNbOd4Bi1i' }),
+        form:form,
+        skybox:skybox,
         folder: '',
         webUrl: 'https://lathropd.github.com/reflowjs/'
         });
@@ -28,7 +26,7 @@ $(document).ready( function () {
     $("button.delete").click(function(e){O.deleteFile();return false;});
     $("button.publish").click(function(e){O.publish();return false;});
     $("textarea#tableGenerator").keyup(function () { textToTable($("textarea#tableGenerator"), $("#tableCode"));});
-	$("textarea#tableGenerator").keyup();
+    $("textarea#tableGenerator").keyup();
 
 });
 
@@ -56,7 +54,7 @@ function textToTable(element, target) {
 function admin( options ) {
 
 	//set default options
-	this.options = {
+  this.options = {
 		client: null,
 		form: '#adminForm',
 		skybox: '#skyBoxForm',
@@ -67,26 +65,29 @@ function admin( options ) {
         previewUrl: 'preview.html',
 		data: {}
 	}
-	
+
 	// pass in the actual options
 	$.extend(this.options, options);
-	
+
+
 	// create a local variable for the client
 	client = this.options.client;
-	
+
+	client.authenticate();
+
 	// load initial data (normally blank)
     this.data = this.options.data;
-    
+
     // load the form selector
     this.form = this.options.form;
-    
+
     // start with empty list of entries
     this.entries = [];
-    
-    
+
+
     // define the object's methods
     // (technically these are attributes containing functions)
-    
+
     // load entries
     this.loadEntries = function() {
     	// create a variable we can pass to callbacks
@@ -127,8 +128,8 @@ function admin( options ) {
             }
         });
     };
-    
-    // create 
+
+    // create
     this.create = function() {
         // create a variable we can pass to callbacks
         this_admin = this;
@@ -195,13 +196,13 @@ function admin( options ) {
     this.write = function() {
     	// create a variable we can pass to callbacks
         this_admin = this;
-        
+
         client.writeFile(this.data.file_name, this.json(), function () {this_admin.loadEntries();});
     }
     this.save = function () {
     	// create a variable we can pass to callbacks
         this_admin = this;
-        
+
         $(form).find("input, textarea").each(function (i, element) {
             if (element.name) {
                 if (!element.value&&this_admin.data.hasOwnProperty(element.name)) {
@@ -220,23 +221,41 @@ function admin( options ) {
     }
 
     this.publish = function () {
+        var oldName = this.data.file_name;
+        this.data.file_name = this.data.file_name.replace(this.options.drafts, this.options.published);
+        this.write();
+        client.delete(oldName);
         console.log(this.data.file_name);
     }
 
     this.unpublish = function () {
+        var oldName = this.data.file_name;
+        this.data.file_name = this.data.file_name.replace(this.options.drafts, this.options.published);
+        this.save();
+        client.delete(oldName);
         console.log(this.data.file_name);
     }
 
     this.rename = function (newName) {
-        console.log(this.data.file_name, newName);
+        var oldName = this.data.file_name;
+        if (oldName.search(this.data.published) >= 0 ) {
+          this.data.file_name = this.options.published + '/' + newName;
+        } else {
+          this.data.file_name = this.options.drafts + '/' + newName;
+        }
+        this.save();
+        client.delete(oldName);
+        window.reload();
     }
-    
+
     this.deleteFile = function () {
+        client.delete(this.data.file_name);
+        window.reload();
         console.log(this.data.file_name);
     }
 	// load the initial set of entries
     this.loadEntries();
-    
+
     // return the function as a JS object
     return this;
 }
