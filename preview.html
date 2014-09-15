@@ -3,12 +3,11 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width">
-
     <link rel="stylesheet" href="static/vendor/css/simple-slideshow-styles.css">
     <link rel="stylesheet" href="static/css/timeline.css">
     <script src="http://admin.brightcove.com/js/BrightcoveExperiences.js" type="text/javascript"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/dropbox.js/0.10.2/dropbox.min.js"></script>
     <link rel="stylesheet" type="text/css" href="static/css/base.css">
-
 </head>
 <body style="display:none;">
     <div id="bigPicture" class="fullwidth tall"><div><h1 id="bigHeadline"></h1></div></div>
@@ -49,16 +48,18 @@
 	}
 	//slideshow JS
 	var opts = {
-		auto : false,
-		fullScreen : false
+		auto: false,
+		fullScreen: false,
+
 	};
-	
-	window.onload=function() { 
-		start();
+
+	window.onload=function() {
+    client = new Dropbox.Client({key:'phovkvef0jhkx4i', token:'zy9Bs1eG-scAAAAAAAABcENGysKLGOoM8mRzbrmwphmBrhHyB0cjm_eNbOd4Bi1i' });
+		preview(client);
 	}
 	</script>
-	
-	
+
+
     <script src="static/js/reflow.js" type="text/javascript"></script>
 </body>
 </html>

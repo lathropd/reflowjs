@@ -43,7 +43,7 @@ function start() {
 		var container = document.querySelector('#content');
 		pckry = new Packery( container, {
 			"column": 320,
-			"itemSelector": ".box", 
+			"itemSelector": ".box",
 			"gutter": 10,
 		});
 		pack();
@@ -51,9 +51,29 @@ function start() {
 		setTimeout(function(){clearInterval(i)},120000);
 		brightcove.createExperiences();
 	}
-
 	request.send();
 }
+
+
+function preview(client) {
+	file = getParameterByName("file");
+	client.readFile(file, function (error, results) {
+	obitdata = JSON.parse(results);
+	init(obitdata);
+	var container = document.querySelector('#content');
+	pckry = new Packery( container, {
+		"column": 320,
+		"itemSelector": ".box",
+		"gutter": 10,
+	});
+	pack();
+	var i = setInterval(pack, 100);
+	setTimeout(function(){clearInterval(i)},120000);
+	brightcove.createExperiences();
+
+	});
+}
+
 
 function brightcovePlayer(id) {
 	html = '<!-- Start of Brightcove Player -->'
@@ -70,7 +90,7 @@ function brightcovePlayer(id) {
 	+'  <param name="@videoPlayer" value="'+id+'" /> <!-- replace value with video ID -->'
 	+'</object>'
 	+ '<script type="text/javascript">brightcove.createExperiences();\<\/script>'
-		
+
 	return html;
 }
 
@@ -146,7 +166,7 @@ function makeMap(a, b, c) {
 	var markers = [];
 	var windows = [];
 	var infowindow = new google.maps.InfoWindow({ content: ""});
-	
+
 	for (i in a.points ) {
 		windows.push(a.points[i][1]);
 		toGeocode = { address: a.points[i][0], };
@@ -169,13 +189,13 @@ function makeMap(a, b, c) {
 
 			} else {
 			}
-		
+
 		});
 	}
 
 
 
-	
+
 }
 
 function pack() {
@@ -223,7 +243,7 @@ function format(text, id) {
 			resultObj.points[index] = mapPoint;
 			resultObj.address = fields[1];
 			resultObj.bubble = fields[2];
-				
+
 		}
 		formatted = "<div class='map' id='map"+id+"'></div>";
 		reflowSettings.maps.push(resultObj);
@@ -248,7 +268,7 @@ function getParameterByName(name) {
 
 function slideshow(url, div) {
 	var new_url = 'http://pipes.yahoo.com/pipes/pipe.run?_id=2FV68p9G3BGVbc7IdLq02Q&_render=json&feedcount=100&feedurl='+encodeURIComponent(url)+'&_callback=';
-	var slideds = new Miso.Dataset({ 
+	var slideds = new Miso.Dataset({
 		url:  new_url,
 		jsonp: true,
 		extract: function(data){ return data.value.items;}
