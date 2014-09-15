@@ -451,7 +451,6 @@
     </div>
     <script src="//cdnjs.cloudflare.com/ajax/libs/dropbox.js/0.10.2/dropbox.min.js"></script>
     <script src="static/vendor/markdownform/vendor/modernizr-2.6.2.min.js"></script>
-
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="markdownform/vendor/jquery-1.9.1.min.js"><\/script>')</script>
     <script src="static/vendor/markdownform/plugins.js"></script>
@@ -461,5 +460,30 @@
     <script src="static/vendor/markdownform/mdhtmlform.js"></script> <!-- The main MDWYSIWYG file -->
     <script src="static/js/admin.js"></script>
     <script src="static/js/sticky-toolbar.js"></script>
+    <script type="text/javascript">
+    $(document).ready( function () {
+        form = $("#adminForm");
+        form[0].reset();
+        skyboxHTML = $(skybox).html();
+        $(skybox).html(skyboxHTML);
+        O = admin({
+          client: new Dropbox.Client({key:'phovkvef0jhkx4i', token: 'zy9Bs1eG-scAAAAAAAABcENGysKLGOoM8mRzbrmwphmBrhHyB0cjm_eNbOd4Bi1i' }),
+          form:form,
+          skybox:skybox,
+          folder: '',
+          webUrl: 'https://lathropd.github.com/reflowjs/',
+          previewUrl: 'https://lathropd.github.com/reflowjs/preview.html'
+        });
+        $("button.create").click(function(e){O.create();return false;});
+        $("button.save").click(function(e){O.save();return false;});
+        $("button.rename").click(function(e){O.rename();return false;});
+        $("button.reset").click(function(e){O.data.file_name ="";});
+        $("button.delete").click(function(e){O.deleteFile();return false;});
+        $("button.publish").click(function(e){O.publish();return false;});
+        $("textarea#tableGenerator").keyup(function () { textToTable($("textarea#tableGenerator"), $("#tableCode"));});
+        $("textarea#tableGenerator").keyup();
+
+    });
+    </script>
 </body>
 </html>

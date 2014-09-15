@@ -7,46 +7,24 @@ var ul;
 var skyboxHTML;
 
 var elementtest;
-$(document).ready( function () {
-    form = $("#adminForm");
-    form[0].reset();
-    skyboxHTML = $(skybox).html();
-    $(skybox).html(skyboxHTML);
-    O = admin({
-        client: new Dropbox.Client({key:'phovkvef0jhkx4i', token: 'zy9Bs1eG-scAAAAAAAABcENGysKLGOoM8mRzbrmwphmBrhHyB0cjm_eNbOd4Bi1i' }),
-        form:form,
-        skybox:skybox,
-        folder: '',
-        webUrl: 'https://lathropd.github.com/reflowjs/',
-        previewUrl: 'https://lathropd.github.com/reflowjs/preview.html'
-        });
-    $("button.create").click(function(e){O.create();return false;});
-    $("button.save").click(function(e){O.save();return false;});
-    $("button.rename").click(function(e){O.rename();return false;});
-    $("button.reset").click(function(e){O.data.file_name ="";});
-    $("button.delete").click(function(e){O.deleteFile();return false;});
-    $("button.publish").click(function(e){O.publish();return false;});
-    $("textarea#tableGenerator").keyup(function () { textToTable($("textarea#tableGenerator"), $("#tableCode"));});
-    $("textarea#tableGenerator").keyup();
 
-});
 
 
 function textToTable(element, target) {
-    contents = element.val();
-    rows = contents.trim().split("\n");
-    html = "<table>\n";
-    html += "<tr><th>";
-    html += rows.shift().split("\t").join("</th><th>");
-    html += "</th></tr>\n";
+  contents = element.val();
+  rows = contents.trim().split("\n");
+  html = "<table>\n";
+  html += "<tr><th>";
+  html += rows.shift().split("\t").join("</th><th>");
+  html += "</th></tr>\n";
 
-    while (rows.length > 0) {
-        html += "<tr><td>";
-        html += rows.shift().split("\t").join("</td><td>");
-        html += "</td><td>\n";
-    }
-    html +="</table>";
-    target.text(html);
+  while (rows.length > 0) {
+      html += "<tr><td>";
+      html += rows.shift().split("\t").join("</td><td>");
+      html += "</td><td>\n";
+  }
+  html +="</table>";
+  target.text(html);
 }
 
 
@@ -210,22 +188,22 @@ function admin( options ) {
 
   this.save = function () {
     // create a variable we can pass to callbacks
-      this_admin = this;
+    this_admin = this;
 
-      $(form).find("input, textarea").each(function (i, element) {
-          if (element.name) {
-              if (!element.value&&this_admin.data.hasOwnProperty(element.name)) {
-                  this_admin.data[element.name] = "";
-              } else if (element.value){
-                  console.log(element.value);
-                  this_admin.data[element.name] = element.value.trim();
-                  this_admin.data[element.id] = element.value.trim();
-              }
-          }
-      });
-      this.data.mugshotName = this.data.name;
-      this.write();
-      alert("Changes saved");
+    $(form).find("input, textarea").each(function (i, element) {
+      if (element.name) {
+        if (!element.value&&this_admin.data.hasOwnProperty(element.name)) {
+          this_admin.data[element.name] = "";
+        } else if (element.value){
+          console.log(element.value);
+          this_admin.data[element.name] = element.value.trim();
+          this_admin.data[element.id] = element.value.trim();
+        }
+      }
+    });
+    this.data.mugshotName = this.data.name;
+    this.write();
+    alert("Changes saved");
 
   }
 
@@ -246,23 +224,23 @@ function admin( options ) {
   }
 
   this.rename = function (newName) {
-      var oldName = this.data.file_name;
-      if (oldName.search(this.data.published) >= 0 ) {
-        this.data.file_name = this.options.published + '/' + newName;
-      } else {
-        this.data.file_name = this.options.drafts + '/' + newName;
-      }
-      this.save();
-      client.delete(oldName);
-      window.reload();
+    var oldName = this.data.file_name;
+    if (oldName.search(this.data.published) >= 0 ) {
+      this.data.file_name = this.options.published + '/' + newName;
+    } else {
+      this.data.file_name = this.options.drafts + '/' + newName;
+    }
+    this.save();
+    client.delete(oldName);
+    window.reload();
   }
 
   this.deleteFile = function () {
-      client.delete(this.data.file_name);
-      window.reload();
-      console.log(this.data.file_name);
+    client.delete(this.data.file_name);
+    window.reload();
+    console.log(this.data.file_name);
   }
-// load the initial set of entries
+  // load the initial set of entries
   this.loadEntries();
 
   // return the function as a JS object
