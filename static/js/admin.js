@@ -121,6 +121,8 @@ function admin( options ) {
         this.write();
     }
     this.data.url = this.data.file_name;
+    $('.publishing').unbind('click').removeClass('unpublish').addClass('publish').text('Publish');
+    $("button.publish").click(function(e){O.publish();return false;});
   };
 
   this.load = function (name, draft) {
@@ -131,9 +133,13 @@ function admin( options ) {
     $("button#reset").click();
     if (draft == 'published'){
       this.data.file_name = this.options.folder + this.options.published+'/' + name;
+      $('.publishing').unbind('click').removeClass('publish').addClass('unpublish').text('Unpublish');
+      $("button.unpublish").click(function(e){O.unpublish();return false;});
     }
     else {
       this.data.file_name = this.options.folder + this.options.drafts +'/'+ name;
+      $('.publishing').unbind('click').removeClass('unpublish').addClass('publish').text('Publish');
+      $("button.publish").click(function(e){O.publish();return false;});
     }
     thisFileName = this.data.file_name;
     client.readFile(this.data.file_name, function (error, results) {
@@ -213,6 +219,7 @@ function admin( options ) {
     client.delete(oldName);
     this.write();
     this.load(this.name, 'published');
+
   }
 
   this.unpublish = function () {
@@ -236,9 +243,16 @@ function admin( options ) {
   }
 
   this.deleteFile = function () {
-    client.delete(this.data.file_name);
-    window.reload();
-    console.log(this.data.file_name);
+    del = prompt("Enter 'Yes, please' to delete.");
+    if (del == 'Yes, please') {
+      client.delete(this.data.file_name,  function () {
+        this.loadEntries();
+      });
+
+    } else {
+      alert('Delete canceled.');
+    }
+
   }
   // load the initial set of entries
   this.loadEntries();

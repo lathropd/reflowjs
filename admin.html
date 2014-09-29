@@ -52,9 +52,13 @@
 			<hr>
   		<div id="sticky_toolbar">
   			<div>
-					<button class="button create">Create</button>
+
 					<button class="button blue-button save">Save</button>
-          <button type="reset" class="button grey-button reset">Reset</button>
+          <button class="button blue-button publishing">Publish</button>
+          <button class="button create">Create</button>
+          <button class="button delete">Delete</button>
+          <button class="button grey-button rename">Rename</button>
+
 				</div>
 				<hr>
       </div>
@@ -477,7 +481,6 @@
         $("button.create").click(function(e){O.create();return false;});
         $("button.save").click(function(e){O.save();return false;});
         $("button.rename").click(function(e){O.rename();return false;});
-        $("button.reset").click(function(e){O.data.file_name ="";});
         $("button.delete").click(function(e){O.deleteFile();return false;});
         $("button.publish").click(function(e){O.publish();return false;});
         $("textarea#tableGenerator").keyup(function () { textToTable($("textarea#tableGenerator"), $("#tableCode"));});
