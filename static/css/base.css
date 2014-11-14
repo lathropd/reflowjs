@@ -166,18 +166,24 @@ div.bss-slides {
 }
 
 div.bss-slides figure {
-    max-width: 100%;
+    width: 100%;
     height: auto;
     text-align: center;
 }
 
+.bss-slides figure:first-child {
+    /* overrides simple-slideshow-styles.css, but it may have been there for a reason */
+    padding: 20px 20px 0 0;
+}
 
 .bss-slides figure img{
     max-height: 400px;
+    max-width: 100%;
 }
 
 .bss-slides figcaption {
     background: rgba(0,0,0, .4);
+    text-align: left;
 }
 
 
