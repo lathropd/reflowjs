@@ -117,10 +117,10 @@ function swapLoop(id_list, data, fn) {
 	}
 }
 
-function bgImage(pagedata) {
-	if (img.src) {
+function bgImage(img) {
+	if (img) {
 		var bigDiv =  document.getElementById('bigPicture');
-		bigDiv.style.backgroundImage = 'url(' + pagedata.bigImage + ')';
+		bigDiv.style.backgroundImage = 'url(' + img.src + ')';
 		if (document.body.clientWidth > img.width) {
 			bigDiv.style.backgroundSize = 100 + "%";
 		} else {
@@ -146,12 +146,11 @@ function init(pagedata) {
 	var img = new Image();
 	if (pagedata.hasOwnProperty('bigImage')&pagedata.bigImage!="") {
 		var bigDiv =  document.getElementById('bigPicture');
-		img.onload = function () {bgImage(pagedata)};
+		img.onload = function(){ bgImage(img) };
 		bigDiv.style.backgroundImage = 'url(' + pagedata.bigImage + ')';
 		img.src = pagedata.bigImage;
-		document.getElementById('bigPicture').innerHTML = "<div>" + document.getElementById('bigPicture').innerHTML + "</div>";
 	}
-	window.onresize = function () {bgImage(pagedata)};
+	window.onresize = function(){ bgImage(img) };
 	swapLoop(strings, pagedata, swap);
 	swapLoop(boxen, pagedata, insert);
 	reflowSettings.maps.forEach(makeMap);
