@@ -12,6 +12,7 @@ timelineRenderer.list = function(body, ordered) {
 timelineRenderer.listitem = function(text) {
 	var dateRegex = /^((January|Jan\.?|February|Feb\.?|March|April|May|June|July|August|Aug\.?|September|Sept\.?|October|Oct\.?|November|Nov\.?|December|Dec\.?) ?(\d{1,2}(rd|nd|st)?\,? ?)?)?(\d{4})?$/,
 	yearRegex = /^(\d{4})(\s*\-\s*\d{4})?$/;
+
 	if (yearRegex.test(text)) {
 		return '<li class="year">' + text + '</li>\n';
 	} else if (dateRegex.test(text)) {
@@ -58,19 +59,18 @@ function start() {
 function preview(client) {
 	var file = getParameterByName("file");
 	client.readFile(file, function (error, results) {
-	var obitdata = JSON.parse(results);
-	init(obitdata);
-	var container = document.querySelector('#content');
-	pckry = new Packery( container, {
-		"column": 320,
-		"itemSelector": ".box",
-		"gutter": 10,
-	});
-	pack();
-	var i = setInterval(pack, 100);
-	setTimeout(function(){clearInterval(i)},120000);
-	brightcove.createExperiences();
-
+		var obitdata = JSON.parse(results);
+		init(obitdata);
+		var container = document.querySelector('#content');
+		pckry = new Packery( container, {
+			"column": 320,
+			"itemSelector": ".box",
+			"gutter": 10,
+		});
+		pack();
+		var i = setInterval(pack, 100);
+		setTimeout(function(){clearInterval(i)},120000);
+		brightcove.createExperiences();
 	});
 }
 
@@ -95,12 +95,11 @@ function brightcovePlayer(id) {
 }
 
 function swap(id, content) {
-	document.getElementById(id).innerHTML=content;
-
+	document.getElementById(id).innerHTML = content;
 }
 
 function insert(id, content) {
-	document.getElementById(id).innerHTML="<div>"+format(content,id)+"</div>";
+	document.getElementById(id).innerHTML = "<div>"+format(content,id)+"</div>";
 }
 
 var boxen = ['bigMultimedia','boxOne','boxTwo','boxThree','boxFour','boxFive','boxSix',
@@ -121,7 +120,7 @@ function swapLoop(id_list, data, fn) {
 function bgImage(pagedata) {
 	if (img.src) {
 		var bigDiv =  document.getElementById('bigPicture');
-		bigDiv.style.backgroundImage = 'url('+pagedata.bigImage+')';
+		bigDiv.style.backgroundImage = 'url(' + pagedata.bigImage + ')';
 		if (document.body.clientWidth > img.width) {
 			bigDiv.style.backgroundSize = 100 + "%";
 		} else {
@@ -147,8 +146,8 @@ function init(pagedata) {
 	var img = new Image();
 	if (pagedata.hasOwnProperty('bigImage')&pagedata.bigImage!="") {
 		var bigDiv =  document.getElementById('bigPicture');
-		bigDiv.style.backgroundImage = 'url('+pagedata.bigImage+')';
 		img.onload = function () {bgImage(pagedata)};
+		bigDiv.style.backgroundImage = 'url(' + pagedata.bigImage + ')';
 		img.src = pagedata.bigImage;
 		document.getElementById('bigPicture').innerHTML = "<div>" + document.getElementById('bigPicture').innerHTML + "</div>";
 	}
@@ -156,7 +155,7 @@ function init(pagedata) {
 	swapLoop(strings, pagedata, swap);
 	swapLoop(boxen, pagedata, insert);
 	reflowSettings.maps.forEach(makeMap);
-	document.body.style.display="";
+	document.body.style.display = "";
 }
 function makeMap(a, b, c) {
 	document.getElementById(a.div).style.height = document.getElementById(a.div).parentElement.parentElement.clientWidth + "px";
@@ -189,13 +188,8 @@ function makeMap(a, b, c) {
 
 			} else {
 			}
-
 		});
 	}
-
-
-
-
 }
 
 function pack() {
@@ -222,7 +216,7 @@ function format(text, id) {
 		var slideshowDiv ="<div id='"+id+"' class='"+id+" bss-slides'></div>",
 		slideshowSetup = isSlideshow.exec(text)[1],
 		link = isSlideshow.exec(text)[2];
-		formatted = '<div class="noMargin">' + marked(slideshowSetup) +'</div>' + slideshowDiv  ;
+		formatted = '<div class="noMargin">' + marked(slideshowSetup) +'</div>' + slideshowDiv;
 		slideshow(link, id);
 	} else if (isTimeline.test(text)) {
 		text = text.replace(rawImage, "<img src='$2'>");
@@ -244,7 +238,6 @@ function format(text, id) {
 			resultObj.points[index] = mapPoint;
 			resultObj.address = fields[1];
 			resultObj.bubble = fields[2];
-
 		}
 		formatted = "<div class='map' id='map"+id+"'></div>";
 		reflowSettings.maps.push(resultObj);
@@ -272,7 +265,7 @@ function slideshow(url, div) {
 	var slideds = new Miso.Dataset({
 		url:  new_url,
 		jsonp: true,
-		extract: function(data){ return data.value.items;}
+		extract: function(data){ return data.value.items; }
 	});
 
 	slideds.fetch({
