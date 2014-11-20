@@ -119,7 +119,7 @@ function swapLoop(id_list, data, fn) {
 
 function bgImage(img) {
 	if (img) {
-		var bigDiv =  document.getElementById('bigPicture');
+		var bigDiv =  document.getElementById('banner');
 		bigDiv.style.backgroundImage = 'url(' + img.src + ')';
 		if (document.body.clientWidth > img.width) {
 			bigDiv.style.backgroundSize = 100 + "%";
@@ -145,7 +145,8 @@ function bgImage(img) {
 function init(pagedata) {
 	var img = new Image();
 	if (pagedata.hasOwnProperty('bigImage')&pagedata.bigImage!="") {
-		var bigDiv =  document.getElementById('bigPicture');
+		var bigDiv =  document.getElementById('banner');
+		bigDiv.classList.add('hasBG');
 		img.onload = function(){ bgImage(img) };
 		bigDiv.style.backgroundImage = 'url(' + pagedata.bigImage + ')';
 		img.src = pagedata.bigImage;
@@ -154,7 +155,7 @@ function init(pagedata) {
 	swapLoop(strings, pagedata, swap);
 	swapLoop(boxen, pagedata, insert);
 	reflowSettings.maps.forEach(makeMap);
-	document.body.style.display = "";
+	document.body.className = "visible";
 }
 function makeMap(a, b, c) {
 	document.getElementById(a.div).style.height = document.getElementById(a.div).parentElement.parentElement.clientWidth + "px";
