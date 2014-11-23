@@ -250,6 +250,11 @@ div#mugshotPhoto div {
     width: 300px;
 }
 
+
+.box.w1col object {
+  height: 200px;
+}
+
 .box img {
     max-width: 100%;
 }
@@ -395,6 +400,9 @@ div#mugshotBio {
         width:100%;
         overflow:hidden;
     }
+    object {
+      height: 200px;
+    }
 }
 
 /* ================================================== */
@@ -446,5 +454,5 @@ thead {
 
 th {
   font-weight: bold;
-  
+
 }
