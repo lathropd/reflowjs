@@ -413,3 +413,38 @@ div#mugshotBio {
     max-width: 150px;
     max-height: 400px;
 }
+
+
+/* table layout */
+
+table {
+  border: solid 1px black;
+  text-align: left;
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+  padding: 2px;
+}
+
+tr {
+  border: solid 1px black;
+
+}
+
+
+td, th {
+  border: solid 1px black;
+  padding: 3px;
+
+}
+
+
+thead {
+  background-color: #cccccc;
+
+}
+
+th {
+  font-weight: bold;
+  
+}
