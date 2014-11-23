@@ -157,29 +157,42 @@ div.noMargin {
 }
 
 div.bss-slides {
-	margin-left: -20px;
-	margin-right: -20px;
-	margin-bottom: -20px;
-	margin-top: -20px;
-	
+    margin: 0 -20px 5px 0;
+    padding: 0;
+}
+
+.bss-prev {
+    margin-left: -20px;
 }
 
 div.bss-slides figure {
-    margin: auto;
+    width: 100%;
     height: auto;
+    text-align: center;
 }
 
+.bss-slides figure:first-child {
+    /* overrides simple-slideshow-styles.css, but it may have been there for a reason */
+    padding: 20px 20px 0 0;
+}
 
-.bss-slides figure img{
-    width: 100%;
+.bss-slides figure img {
     max-height: 400px;
+    max-width: 100%;
 }
 
 .bss-slides figcaption {
     background: rgba(0,0,0, .4);
+    text-align: left;
 }
 
 
+body.hidden {
+  display: none;
+}
+body.visible {
+  display: block;
+}
 
 div#mugshotPhoto div {
     margin: 0;
@@ -195,7 +208,7 @@ div#mugshotPhoto div {
     max-width: 278px;
 }
 
-#bigPicture {
+#banner {
     background-position: center;
     background-repeat: no-repeat;
     margin-bottom: 20px;
@@ -204,11 +217,14 @@ div#mugshotPhoto div {
     vertical-align: bottom;
 }
 
-#bigPicture div {
+#banner div {
     width: 100%;
     text-align: center;
-    position: absolute;
-    bottom: 10px;
+}
+
+#banner.hasBG div {
+  position: absolute;
+  bottom: 10px;
 }
 
 #bigHeadline {
@@ -235,7 +251,7 @@ div#mugshotPhoto div {
 }
 
 .box img {
-    width: 100%;
+    max-width: 100%;
 }
 
 .box.w2col {

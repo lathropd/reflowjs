@@ -10,8 +10,9 @@ timelineRenderer.list = function(body, ordered) {
 };
 
 timelineRenderer.listitem = function(text) {
-	dateRegex = /^((January|Jan\.?|February|Feb\.?|March|April|May|June|July|August|Aug\.?|September|Sept\.?|October|Oct\.?|November|Nov\.?|December|Dec\.?) ?(\d{1,2}(rd|nd|st)?\,? ?)?)?(\d{4})?$/;
+	var dateRegex = /^((January|Jan\.?|February|Feb\.?|March|April|May|June|July|August|Aug\.?|September|Sept\.?|October|Oct\.?|November|Nov\.?|December|Dec\.?) ?(\d{1,2}(rd|nd|st)?\,? ?)?)?(\d{4})?$/,
 	yearRegex = /^(\d{4})(\s*\-\s*\d{4})?$/;
+
 	if (yearRegex.test(text)) {
 		return '<li class="year">' + text + '</li>\n';
 	} else if (dateRegex.test(text)) {
@@ -35,10 +36,10 @@ var pckry = {};
 
 //loader
 function start() {
-	request = new window.XMLHttpRequest();
+	var request = new window.XMLHttpRequest();
 	request.open("GET", "https://"+getParameterByName("file"), false);
 	request.onload = function(e){
-		obitdata = JSON.parse(this.response);
+		var obitdata = JSON.parse(this.response);
 		init(obitdata);
 		var container = document.querySelector('#content');
 		pckry = new Packery( container, {
@@ -56,27 +57,26 @@ function start() {
 
 
 function preview(client) {
-	file = getParameterByName("file");
+	var file = getParameterByName("file");
 	client.readFile(file, function (error, results) {
-	obitdata = JSON.parse(results);
-	init(obitdata);
-	var container = document.querySelector('#content');
-	pckry = new Packery( container, {
-		"column": 320,
-		"itemSelector": ".box",
-		"gutter": 10,
-	});
-	pack();
-	var i = setInterval(pack, 100);
-	setTimeout(function(){clearInterval(i)},120000);
-	brightcove.createExperiences();
-
+		var obitdata = JSON.parse(results);
+		init(obitdata);
+		var container = document.querySelector('#content');
+		pckry = new Packery( container, {
+			"column": 320,
+			"itemSelector": ".box",
+			"gutter": 10,
+		});
+		pack();
+		var i = setInterval(pack, 100);
+		setTimeout(function(){clearInterval(i)},120000);
+		brightcove.createExperiences();
 	});
 }
 
 
 function brightcovePlayer(id) {
-	html = '<!-- Start of Brightcove Player -->'
+	var html = '<!-- Start of Brightcove Player -->'
 	+'<object id="myExperience" class="BrightcoveExperience">'
 	+'  <param name="bgcolor" value="#FFFFFF" />'
 	+'  <param name="width" value="100%" />'
@@ -95,12 +95,11 @@ function brightcovePlayer(id) {
 }
 
 function swap(id, content) {
-	document.getElementById(id).innerHTML=content;
-
+	document.getElementById(id).innerHTML = content;
 }
 
 function insert(id, content) {
-	document.getElementById(id).innerHTML="<div>"+format(content,id)+"</div>";
+	document.getElementById(id).innerHTML = "<div>"+format(content,id)+"</div>";
 }
 
 var boxen = ['bigMultimedia','boxOne','boxTwo','boxThree','boxFour','boxFive','boxSix',
@@ -108,8 +107,8 @@ var boxen = ['bigMultimedia','boxOne','boxTwo','boxThree','boxFour','boxFive','b
 var strings = ['bigHeadline', "mugshotName", "mugshotDates",];
 
 function swapLoop(id_list, data, fn) {
-	for (i=0; i < id_list.length; i++) {
-		val = id_list[i];
+	for (var i=0; i < id_list.length; i++) {
+		var val = id_list[i];
 		if (data.hasOwnProperty(val)&data[val]!=""&data[val]!=null){
 			fn(val, data[val]);
 		} else {
@@ -118,10 +117,10 @@ function swapLoop(id_list, data, fn) {
 	}
 }
 
-function bgImage(pagedata) {
-	if (img.src) {
-		bigDiv =  document.getElementById('bigPicture');
-		bigDiv.style.backgroundImage = 'url('+pagedata.bigImage+')';
+function bgImage(img) {
+	if (img) {
+		var bigDiv =  document.getElementById('banner');
+		bigDiv.style.backgroundImage = 'url(' + img.src + ')';
 		if (document.body.clientWidth > img.width) {
 			bigDiv.style.backgroundSize = 100 + "%";
 		} else {
@@ -144,19 +143,19 @@ function bgImage(pagedata) {
 }
 
 function init(pagedata) {
-	img = new Image();
+	var img = new Image();
 	if (pagedata.hasOwnProperty('bigImage')&pagedata.bigImage!="") {
-		bigDiv =  document.getElementById('bigPicture');
-		bigDiv.style.backgroundImage = 'url('+pagedata.bigImage+')';
-		img.onload = function () {bgImage(pagedata)};
+		var bigDiv =  document.getElementById('banner');
+		bigDiv.classList.add('hasBG');
+		img.onload = function(){ bgImage(img) };
+		bigDiv.style.backgroundImage = 'url(' + pagedata.bigImage + ')';
 		img.src = pagedata.bigImage;
-		document.getElementById('bigPicture').innerHTML = "<div>" + document.getElementById('bigPicture').innerHTML + "</div>";
 	}
-	window.onresize = function () {bgImage(pagedata)};
+	window.onresize = function(){ bgImage(img) };
 	swapLoop(strings, pagedata, swap);
 	swapLoop(boxen, pagedata, insert);
 	reflowSettings.maps.forEach(makeMap);
-	document.body.style.display="";
+	document.body.className = "visible";
 }
 function makeMap(a, b, c) {
 	document.getElementById(a.div).style.height = document.getElementById(a.div).parentElement.parentElement.clientWidth + "px";
@@ -167,12 +166,12 @@ function makeMap(a, b, c) {
 	var windows = [];
 	var infowindow = new google.maps.InfoWindow({ content: ""});
 
-	for (i in a.points ) {
+	for (var i in a.points ) {
 		windows.push(a.points[i][1]);
-		toGeocode = { address: a.points[i][0], };
+		var toGeocode = { address: a.points[i][0], };
 		reflowSettings.geocoder.geocode(toGeocode, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
-				marker = new google.maps.Marker({
+				var marker = new google.maps.Marker({
 					map: map,
 					position: results[0].geometry.location,
 				});
@@ -189,13 +188,8 @@ function makeMap(a, b, c) {
 
 			} else {
 			}
-
 		});
 	}
-
-
-
-
 }
 
 function pack() {
@@ -203,7 +197,7 @@ function pack() {
 }
 
 function format(text, id) {
-	formatted = text;
+	var formatted = text;
 	var rawImage = /( |\n|^)(\S*\.(jpe?g|png|gif))( |\n|$)/gi;
 	var isImage = /^\S*\.(jpe?g|png|gif)$/i;
 	var isBrightcove = /http:\/\/bcove.me.*/;
@@ -213,15 +207,16 @@ function format(text, id) {
 	var isLink = /^(http)?\:\/\/\S+\.\S+\s*$/;
 	var isHTML = /^\<.*\>$/;
 	var isMap = /map\:?\s*([\s\S]+)/;
+	var newText = "";
 
 	if (isImage.test(text)) {
 		formatted = "<img src='"+text+"'>";
 	} else if (isSlideshow.test(text)) {
 		id = 'slid' + Math.round(Math.random()*10000);
-		slideshowDiv ="<div id='"+id+"' class='"+id+" bss-slides'>";
-		slideshowSetup = isSlideshow.exec(text)[1];
+		var slideshowDiv ="<div id='"+id+"' class='"+id+" bss-slides'></div>",
+		slideshowSetup = isSlideshow.exec(text)[1],
 		link = isSlideshow.exec(text)[2];
-		formatted = '<div class="noMargin">' + marked(slideshowSetup) +'</div>' + slideshowDiv  ;
+		formatted = '<div class="noMargin">' + marked(slideshowSetup) +'</div>' + slideshowDiv;
 		slideshow(link, id);
 	} else if (isTimeline.test(text)) {
 		text = text.replace(rawImage, "<img src='$2'>");
@@ -231,19 +226,18 @@ function format(text, id) {
 		formatted = text; // leave it as is
 	} else if (isMap.test(text)) {
 		// build inline google map;
-		regexResult = isMap.exec(text)[1];
-		points = regexResult.split(';');
+		var regexResult = isMap.exec(text)[1],
+		points = regexResult.split(';'),
 		resultObj =  {
 			div: 'map'+id,
 			points: [],
 		}
 		for (var index in points) {
-			fields = /(.+)\n(.+)/.exec(points[index]);
+			var fields = /(.+)\n(.+)/.exec(points[index]),
 			mapPoint = [fields[1], fields[2]];
 			resultObj.points[index] = mapPoint;
 			resultObj.address = fields[1];
 			resultObj.bubble = fields[2];
-
 		}
 		formatted = "<div class='map' id='map"+id+"'></div>";
 		reflowSettings.maps.push(resultObj);
@@ -271,15 +265,15 @@ function slideshow(url, div) {
 	var slideds = new Miso.Dataset({
 		url:  new_url,
 		jsonp: true,
-		extract: function(data){ return data.value.items;}
+		extract: function(data){ return data.value.items; }
 	});
 
 	slideds.fetch({
 		success: function() {
-			el = document.getElementById(div);
-			text = el.innerHTML;
-			var a = "";
-			images = [];
+			var el = document.getElementById(div),
+			text = el.innerHTML,
+			a = "",
+			images = [],
 			i = 0;
 			slideds.each(function(row, rowIndex) {
 				images[i] = new Image();
