@@ -194,6 +194,7 @@ div.bss-slides figure {
 body.hidden {
   display: none;
 }
+
 body.visible {
   display: block;
 }
@@ -250,6 +251,10 @@ div#mugshotPhoto div {
     margin-right: auto;
 }
 
+#mugshot  {
+  width: 300px;
+}
+
 .box.w1col {
     width: 300px;
 }
@@ -267,9 +272,11 @@ div#mugshotPhoto div {
     width: 610px;
 }
 
-.box.w3col {
+.box.w3col, #mugshot.w3col {
     width: 920px;
 }
+
+
 
 .box.fullwidth {
     width:100%;
@@ -307,9 +314,7 @@ div#mugshotBio {
     #mugshotPhoto {
         max-width: 300px;
     }
-    #mugshot  {
-        width: 300px;
-    }
+
     object {
         height: 400px;
     }
@@ -352,13 +357,14 @@ div#mugshotBio {
         margin-left: auto;
         margin-right: auto;
     }
-    .box.w1col, .box.w2col, .box.w3col {
+    #mugshot {
+      width: 300px;
+      margin-left: 90px;
+    }
+    .box.w1col, .box.w2col, .box.w3col, #mugshot.w3col {
         width: 480px;
     }
-    #mugshot {
-        width: 300px;
-        margin-left: 90px;
-    }
+
     object {
         height: 300px;
     }

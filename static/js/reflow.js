@@ -155,6 +155,10 @@ function init(pagedata) {
 	swapLoop(strings, pagedata, swap);
 	swapLoop(boxen, pagedata, insert);
 	reflowSettings.maps.forEach(makeMap);
+	if (document.getElementById('bigMultimedia') == null) {
+		main_class = document.getElementById('mugshot').className;
+		document.getElementById('mugshot').className = main_class +" w3col";
+	}
 	document.body.className = "visible";
 }
 function makeMap(a, b, c) {
