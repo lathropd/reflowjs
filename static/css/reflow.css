@@ -6,7 +6,7 @@
 /* ================================================== */
 @import url(http://fonts.googleapis.com/css?family=Montserrat|Josefin+Slab:100);
 * {
-    font: 100 1em/1.25em 'Josefin Slab';
+    font: 100 1em/1.25em 'Helvetica', sans-serif;
 }
 
 #content {
@@ -40,14 +40,13 @@ h6 {
 }
 
 p {
-    font: 100 1em/1.35em 'Josefin Slab';
+    font: 100 1em/1.35em  'Helvetica', sans-serif;
 }
 
 li {
-    font: 100 1em/1.35em 'Josefin Slab';
+    font: 100 1em/1.35em  'Helvetica', sans-serif;
+
 }
-
-
 /* ================================================== */
 /* Elegant from   Joe Richardson                      */
 /* http://webdesign.tutsplus.com/articles/            */
@@ -422,7 +421,7 @@ div#mugshotBio {
 }
 
 .gm-style-iw {
-    font: 100 1em/1.2em 'Josefin Slab';
+    font: 100 1em/1.2em 'Josefin Slab', 'Times', serif;
     max-width: 150px;
     max-height: 400px;
 }
