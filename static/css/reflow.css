@@ -454,6 +454,7 @@ td, th {
   border: solid 1px black;
   padding: 5px;
 
+
 }
 
 
@@ -464,6 +465,7 @@ thead {
 
 th {
   font-weight: bold;
+  background-color: #fafafa;
 
 }
 
@@ -473,4 +475,17 @@ th {
 .timeline .event, .timeline.v1 .event,  .timeline.v1 .year,  .timeline .year {
   border-radius: 10px;
 
+}
+
+
+.timeline .event, .timeline.v1 .event, .timeline.v2 .year, .timeline.v1.v2 .year,
+.timeline.v2 .event, .timeline.v1.v2 .event {
+  border: solid 1px #f4f4f4;
+
+}
+
+
+.timeline .event:hover, .timeline.v1 .event:hover,.timeline .event:hover:after,
+.timeline.v1 .event:hover:after {
+  background-color: #fafafa;
 }
