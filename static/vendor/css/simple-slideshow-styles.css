@@ -1,6 +1,6 @@
 .bss-slides{
   position: relative;
-  display: block;    
+  display: block;
 }
 .bss-slides:focus{
  outline: 0;
@@ -55,7 +55,7 @@
   opacity: 1;
 }
 .bss-slides figcaption a{
-  color: #fff;    
+  color: #fff;
 }
 .bss-next, .bss-prev{
   color: #fff;
@@ -91,20 +91,20 @@
 .bss-fullscreen{
   display: block;
   width: 24px;
-  height: 24px;    
-  background: rgba(0,0,0,.6) url(../img/arrows-alt_ffffff_64.png); 
-  -webkit-background-size: contain; 
+  height: 24px;
+  background: rgba(0,0,0,.6) url(../img/arrows-alt_ffffff_64.png);
+  -webkit-background-size: contain;
   background-size: contain;
   position: absolute;
   bottom: 10px;
   left: 7px;
   border: 1px solid rgba(255,255,255,.5);
-  border-radius: 3px;    
-  cursor: pointer;    
+  border-radius: 3px;
+  cursor: pointer;
   opacity: .3;
-} 
+}
 .bss-fullscreen:hover{
-  opacity: 1;   
+  opacity: 1;
 }
 :-webkit-full-screen .bss-fullscreen{
     background: rgba(0,0,0,.6) url(../img/compress_ffffff_64.png);
@@ -142,24 +142,3 @@
     -webkit-background-size: contain;
     background-size: contain;
 }
-
-.w1col div:hover figcaption {
-		display: block;
-
-}
-
-.w1col div figcaption {
-	display: none;
-}
-
-/*
-
-.w1col .bss-slides figcaption {
-	visibility: hidden;
-}
-
-.w1col .bss-slides figcaption:hover {
-	visibility: visible;
-}
-		
-	*/
