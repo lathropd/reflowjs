@@ -211,6 +211,10 @@ function format(text, id) {
 	var isLink = /^(http)?\:\/\/\S+\.\S+\s*$/;
 	var isHTML = /^\<.*\>$/;
 	var isMap = /map\:?\s*([\s\S]+)/;
+	/* Fix markdown list items where the user neglects to include a space
+	   after the bullet */
+	var brokenListItem = /^([\*\-\+])(\S)/gm;
+
 	var newText = "";
 
 	if (isImage.test(text)) {
@@ -223,8 +227,8 @@ function format(text, id) {
 		formatted = '<div class="noMargin">' + marked(slideshowSetup) +'</div>' + slideshowDiv;
 		slideshow(link, id);
 	} else if (isTimeline.test(text)) {
-		text = text.replace(rawImage, "<img src='$2'>");
-		newText = text.replace(isTimeline,"");
+		newText = text.replace(rawImage, "<img src='$2'>");
+		newText = newText.replace(brokenListItem,"$1 $2");
 		formatted = marked(newText, {renderer: timelineRenderer});
 	} else if (isHTML.test(text)) {
 		formatted = text; // leave it as is
@@ -247,6 +251,7 @@ function format(text, id) {
 		reflowSettings.maps.push(resultObj);
 	} else {
 		newText = text.replace(rawImage, "<img src='$2'>");
+		newText = newText.replace(brokenListItem,"$1 $2");
 		newText = newText.replace(brightcoveId, brightcovePlayer("$1"));
 		formatted = marked(newText);
 	}
