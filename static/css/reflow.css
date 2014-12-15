@@ -6,7 +6,7 @@
 /* ================================================== */
 @import url(http://fonts.googleapis.com/css?family=Montserrat|Josefin+Slab:100);
 * {
-    font: 100 1em/1.25em 'Helvetica', sans-serif;
+    font: 100 1em/1.25em 'Georgia', 'Times New Roman', serif;
 }
 
 #content {
@@ -14,37 +14,37 @@
 }
 
 h1 {
-    font-family: 'Montserrat', 'Helvetica', sans-serif;
+    font-family: 'Publico','Georgia', 'Times New Roman', serif;
     font-weight: 700;
     font-size: 2em;
 }
 h2 {
-    font-family: 'Montserrat', 'Helvetica', sans-serif;
+    font-family: 'Publico', 'Georgia', 'Times New Roman', serif;
     font-weight: 700;
     font-size: 1.5em;
 }
 h3 {
-    font-family: 'Montserrat', 'Helvetica', sans-serif;
+    font-family: 'Publico', 'Georgia', 'Times New Roman', serif;
     font-weight: 700;
     font-size: 1.17em;
 }
 h5 {
-    font-family: 'Montserrat', 'Helvetica', sans-serif;
+    font-family: 'Publico', 'Georgia', 'Times New Roman', serif;
     font-weight: 700;
     font-size: .83em;
 }
 h6 {
-    font-family: 'Montserrat', 'Helvetica', sans-serif;
+    font-family: 'Publico', 'Georgia', 'Times New Roman', serif;
     font-weight: 700;
     font-size: .75em;
 }
 
 p {
-    font: 100 1em/1.35em  'Helvetica', sans-serif;
+    font: 100 1em/1.35em  'Georgia', 'Times New Roman', serif;
 }
 
 li {
-    font: 100 1em/1.35em  'Helvetica', sans-serif;
+    font: 100 1em/1.35em  'Georgia', 'Times New Roman', serif;
 
 }
 /* ================================================== */
@@ -85,7 +85,7 @@ ul, ol {
 /* begin css */
 
 li.year {
-    font-family: 'Montserrat', 'Helvetica', sans-serif;
+    font-family: 'Publico', 'Georgia', 'Times New Roman', serif;
 }
 
 .fullwidth {
@@ -427,7 +427,7 @@ div#mugshotBio {
 }
 
 .gm-style-iw {
-    font: 100 1em/1.2em 'Josefin Slab', 'Times', serif;
+    font: 100 1em/1.2em 'Georgia', 'Times New Roman', serif;
     max-width: 150px;
     max-height: 400px;
 }
