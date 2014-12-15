@@ -103,7 +103,7 @@ a:hover {
 }
 
 .box {
-    border: 1px solid #f4f4f4;
+    border: 1px solid #eeeeee;
     /* min-height: 200px;*/
     float: left;
     background-color: white;
@@ -436,7 +436,6 @@ div#mugshotBio {
 /* table layout */
 
 table {
-  border: solid 1px black;
   text-align: left;
   width: 100%;
   border-spacing: 0;
@@ -445,27 +444,22 @@ table {
 }
 
 tr {
-  border: solid 1px black;
+  border: solid 1px #eeeeee;
 
 }
 
 
 td, th {
-  border: solid 1px black;
+  border: solid 1px #eeeeee;
   padding: 5px;
 
 
 }
 
 
-thead {
-  background-color: #cccccc;
-
-}
-
 th {
   font-weight: bold;
-  background-color: #fafafa;
+  background-color:#eeeeee;
 
 }
 
@@ -480,12 +474,12 @@ th {
 
 .timeline .event, .timeline.v1 .event, .timeline.v2 .year, .timeline.v1.v2 .year,
 .timeline.v2 .event, .timeline.v1.v2 .event {
-  border: solid 1px #f4f4f4;
+  border: solid 1px #eeeeee;
 
 }
 
 
 .timeline .event:hover, .timeline.v1 .event:hover,.timeline .event:hover:after,
 .timeline.v1 .event:hover:after {
-  background-color: #fafafa;
+  background-color: #eeeeee;
 }
