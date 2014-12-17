@@ -22,7 +22,7 @@ timelineRenderer.listitem = function(text) {
 	}
 };
 marked.setOptions({
-	smartypants: true,
+	smartypants: true
 });
 
 
@@ -45,7 +45,7 @@ function start() {
 		pckry = new Packery( container, {
 			"column": 320,
 			"itemSelector": ".box",
-			"gutter": 10,
+			"gutter": 10
 		});
 		pack();
 		var i = setInterval(pack, 100);
@@ -65,7 +65,7 @@ function preview(client) {
 		pckry = new Packery( container, {
 			"column": 320,
 			"itemSelector": ".box",
-			"gutter": 10,
+			"gutter": 10
 		});
 		pack();
 		var i = setInterval(pack, 100);
@@ -103,8 +103,8 @@ function insert(id, content) {
 }
 
 var boxen = ['bigMultimedia','boxOne','boxTwo','boxThree','boxFour','boxFive','boxSix',
-	'boxSeven','boxEight','boxNine','boxTen','boxEleven',"mugshotPhoto",'mugshotBio',];
-var strings = ['bigHeadline', "mugshotName", "mugshotDates",];
+	'boxSeven','boxEight','boxNine','boxTen','boxEleven',"mugshotPhoto",'mugshotBio'];
+var strings = ['bigHeadline', "mugshotName", "mugshotDates"];
 
 function swapLoop(id_list, data, fn) {
 	for (var i=0; i < id_list.length; i++) {
@@ -168,9 +168,9 @@ function makeMap(a, b, c) {
 
 	for (var i in a.points ) {
 		windows.push(a.points[i][1]);
-		var toGeocode = { address: a.points[i][0], };
 		reflowSettings.geocoder.geocode(toGeocode, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
+		var toGeocode = { address: a.points[i][0] };
 				var marker = new google.maps.Marker({
 					map: map,
 					position: results[0].geometry.location,
