@@ -101,12 +101,22 @@ div.left, div.right {
   float: left;
 }
 
+
+@media (min-width: 721px) {
+  div.left, div.right {
+    height: 600px;
+    overflow: scroll;
+  }
+}
+
 @media (max-width: 720px) {
   div.left, div.right {
     width: 100%;
   }
 
 }
+
+
 
 
 
