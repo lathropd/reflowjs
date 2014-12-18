@@ -21,7 +21,7 @@ function textToTable(element, target) {
   while (rows.length > 0) {
       html += "<tr><td>";
       html += rows.shift().split("\t").join("</td><td>");
-      html += "</td>";
+      html += "</td></tr>";
   }
   html +="</table>";
   target.text(html);
