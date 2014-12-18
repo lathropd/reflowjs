@@ -164,3 +164,8 @@ pre {
 .left h4 {
   clear: both;
 }
+
+
+p {
+  margin:  5px 0px 20px 0px;
+}
