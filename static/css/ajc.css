@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'Publico';
-  src: url('http://media.cmgdigital.com/shared/media/2014-12-12-19-49-14/web/common/premium/font/Publico Headline Web-Roman.eot');
-  src: url('http://media.cmgdigital.com/shared/media/2014-12-12-19-49-14/web/common/premium/font/Publico Headline Web-Roman.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('../font/Publico Headline Web-Roman.woff') format('woff'), /* Modern Browsers */ url('http://media.cmgdigital.com/shared/media/2014-12-12-19-49-14/web/common/premium/font/font/Publico Headline Web-Roman.ttf') format('truetype'), /* Safari, Android, iOS */ url('http://media.cmgdigital.com/shared/media/2014-12-12-19-49-14/web/common/premium/font/Publico Headline Web-Roman.svg#Publico Headline Web-Roman') format('svg');
+  src: url('../vendor/font/Publico Headline Web-Roman.eot');
+  src: url('../vendor/font/Publico Headline Web-Roman.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('../vendor/font/Publico Headline Web-Roman.woff') format('woff'), /* Modern Browsers */ url('../vendor/font/font/Publico Headline Web-Roman.ttf') format('truetype'), /* Safari, Android, iOS */ url('../vendor/font/Publico%20Headline%20Web-Roman.svg#Publico Headline Web-Roman') format('svg');
   font-weight: normal;
   font-weight: 300;
   font-style: normal;
@@ -11,8 +11,8 @@
 }
 @font-face {
   font-family: 'Publico';
-  src: url('http://media.cmgdigital.com/shared/media/2014-12-12-19-49-14/web/common/premium/font/Publico Headline Web-Bold.eot');
-  src: url('http://media.cmgdigital.com/shared/media/2014-12-12-19-49-14/web/common/premium/font/Publico Headline Web-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('http://media.cmgdigital.com/shared/media/2014-12-12-19-49-14/web/common/premium/font/Publico Headline Web-Bold.woff') format('woff'), /* Modern Browsers */ url('http://media.cmgdigital.com/shared/media/2014-12-12-19-49-14/web/common/premium/font/Publico Headline Web-Bold.ttf') format('truetype'), /* Safari, Android, iOS */ url('http://media.cmgdigital.com/shared/media/2014-12-12-19-49-14/web/common/premium/font/Publico Headline Web-Bold.svg#Publico Headline Web-Bold') format('svg');
+  src: url('../vendor/font/Publico Headline Web-Bold.eot');
+  src: url('../vendor/font/Publico Headline Web-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('../vendor/font/Publico Headline Web-Bold.woff') format('woff'), /* Modern Browsers */ url('../vendor/font/Publico Headline Web-Bold.ttf') format('truetype'), /* Safari, Android, iOS */ url('../vendor/font/Publico%20Headline%20Web-Bold.svg#Publico Headline Web-Bold') format('svg');
   font-weight: bold;
   font-weight: 700;
   font-style: normal;
@@ -20,10 +20,11 @@
   /* IE9 Compat Modes */
   /* Legacy iOS */
 }
+
 @font-face {
   font-family: 'Publico';
-  src: url('http://media.cmgdigital.com/shared/media/2014-12-12-19-49-14/web/common/premium/font/Publico Headline Web-Black.eot');
-  src: url('http://media.cmgdigital.com/shared/media/2014-12-12-19-49-14/web/common/premium/font/Publico Headline Web-Black.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('http://media.cmgdigital.com/shared/media/2014-12-12-19-49-14/web/common/premium/font/Publico Headline Web-Black.woff') format('woff'), /* Modern Browsers */ url('http://media.cmgdigital.com/shared/media/2014-12-12-19-49-14/web/common/premium/font/Publico Headline Web-Black.ttf') format('truetype'), /* Safari, Android, iOS */ url('http://media.cmgdigital.com/shared/media/2014-12-12-19-49-14/web/common/premium/font/Publico Headline Web-Black.svg#Publico Headline Web-Black') format('svg');
+  src: url('../vendor/font/Publico Headline Web-Black.eot');
+  src: url('../vendor/font/Publico Headline Web-Black.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('../vendor/font/Publico Headline Web-Black.woff') format('woff'), /* Modern Browsers */ url('../vendor/font/Publico Headline Web-Black.ttf') format('truetype'), /* Safari, Android, iOS */ url('../vendor/font/Publico Headline Web-Black.svg#Publico Headline Web-Black') format('svg');
   font-weight: bold;
   font-weight: 900;
   font-style: normal;

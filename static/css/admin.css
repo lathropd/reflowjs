@@ -101,6 +101,13 @@ div.left, div.right {
   float: left;
 }
 
+@media (max-width: 720px) {
+  div.left, div.right {
+    width: 100%;
+  }
+
+}
+
 
 
 
@@ -113,6 +120,7 @@ input, textarea {
 
 div.mdhtmlform-html, div.generatedCode {
   padding: 10px;
+  margin: 5px;
   border-radius: 10px;
   border: 1px solid #ededed;
   width: 90%;
@@ -135,8 +143,10 @@ textarea {
   font-size: 14px;
 }
 
-textarea {
+textarea, input {
   width: 90%;
+  border: 1px solid #ededed;
+
 }
 
 
@@ -148,4 +158,9 @@ pre {
   overflow: hidden;
   padding: 5px;
   border-radius: 10px;
+}
+
+
+.left h4 {
+  clear: both;
 }
