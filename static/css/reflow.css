@@ -494,3 +494,10 @@ th {
 .w1col div figcaption {
   display: none;
 }
+
+
+/* reset slideshow fonts */
+
+.bss-slides figcaption{
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
