@@ -104,7 +104,7 @@ div.left, div.right {
 
 @media (min-width: 721px) {
   div.left, div.right {
-    height: 600px;
+    height: 100vh;
     overflow: scroll;
   }
 }
