@@ -228,6 +228,7 @@ function format(text, id) {
 		slideshow(link, id);
 	} else if (isTimeline.test(text)) {
 		newText = text.replace(rawImage, "<img src='$2'>");
+		newText = newText.replace(isTimeline,"");
 		newText = newText.replace(brokenListItem,"$1 $2");
 		formatted = marked(newText, {renderer: timelineRenderer});
 	} else if (isHTML.test(text)) {
