@@ -26,13 +26,16 @@
       <h4>Select to edit a page</h4>
 
       <div id="skybox">
+        <div class="control">
           Drafts<br>
           <select size=5 style="overflow-y:scroll; padding:10px;
               min-width: 300px;" id="skyboxDraftList"></select>
-          <br>
+        </div>
+        <div class="control">
           Published<br>
           <select size=5 style="overflow-y:scroll;  padding:10px;
               min-width: 300px;" id="skyboxPubList"></select>
+        </div>
           <div id="skyboxMessage"></div>
       </div>
       <div>
@@ -77,14 +80,6 @@
           <p>
             The following contain only text formatted in markdown and/or HTML.
             They shouldn't include multimedia elements.
-          </p>
-
-          <h4>Headline <small><em>(optional)</em></small></h4>
-          <p>
-            This can be anything. It displays very, very large at the top. If
-            there is a background it will have a 1 pixel white outline.
-            <br>
-            <input id="bigHeadline" name="bigHeadline">
           </p>
 
           <h4>Dates/Subhed <small><em>(optional)</em></small></h4>

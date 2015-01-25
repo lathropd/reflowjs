@@ -11,6 +11,29 @@ button {
     margin: 10px;
 }
 
+* {
+  font-family: 'Montserrat','Open Sans', 'Helvetica', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat','Open Sans', 'Helvetica', sans-serif;
+
+}
+
+div.left input,  div.left input#bigHeadline {
+  font-size: 25px;
+}
+
+div.left input, div.left textarea, div.left select {
+  border-color: #999;
+}
+
+
+p {
+  font-size: 16px;
+  margin:  5px 0px 20px 0px;
+  font-family: 'Times New Roman', 'Georgia', serif;
+}
 
 
 button::-moz-focus-inner,
@@ -88,10 +111,21 @@ input::-moz-focus-inner {
 
 
 
+textarea.mdhtmlform-md {
+  height: 200px;
+}
+
 div#sticky_toolbar {
   background-color: white;
 }
 
+div#skybox div.control {
+  float: left;
+}
+
+div#skyboxMessage {
+  clear: both;
+}
 
 
 div.left, div.right {
@@ -163,7 +197,7 @@ textarea, input {
 pre {
   border: 1px solid #ededed;
   background-color:#ededed;
-  font-size: 12px;
+  /*font-size: 12px;*/
   font-family: Lucidatypewriter, Courier New, Courier, monospace;
   overflow: hidden;
   padding: 5px;
@@ -173,9 +207,4 @@ pre {
 
 .left h4 {
   clear: both;
-}
-
-
-p {
-  margin:  5px 0px 20px 0px;
 }
