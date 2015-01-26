@@ -112,7 +112,7 @@ a:hover {
     /* min-height: 200px;*/
     float: left;
     background-color: white;
-    border-radius: 10px;
+    border-radius: 3px;
     /*margin: 0 auto;*/
     /*margin-bottom: 0px;*/
 }
@@ -472,7 +472,7 @@ th {
 
 /* overloading timeline.css */
 .timeline .event, .timeline.v1 .event,  .timeline.v1 .year,  .timeline .year {
-  border-radius: 10px;
+  border-radius: 3px;
 
 }
 
