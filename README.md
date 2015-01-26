@@ -51,3 +51,7 @@ So, here goes:
   * [Sticky Toolbar](http://www.backslash.gr/content/blog/webdevelopment/6-navigation-menu-that-stays-on-top-with-jquery) by Nick Tsaganos.
 
 If you have feature requests, suggestions or need assistance, email me: daniel.lathrop at gmail.com.
+
+Warnings
+--
+At present there are a few things lingering about this project that are specific to the Atlanta Journal-Constituion and MyAJC.com in the directions and in the handling of Brightcove. Expect a *non-AJC* branch in the near future.
