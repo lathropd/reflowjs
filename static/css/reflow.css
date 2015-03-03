@@ -6,7 +6,7 @@
 /* ================================================== */
 @import url(http://fonts.googleapis.com/css?family=Montserrat|Josefin+Slab:100);
 * {
-    font: 100 1em/1.25em 'Josefin Slab';
+    font: 100 1em/1.25em 'Georgia', 'Times New Roman', serif;
 }
 
 #content {
@@ -14,40 +14,44 @@
 }
 
 h1 {
-    font-family: 'Montserrat', 'Helvetica', sans-serif;
+    font-family: 'Publico','Georgia', 'Times New Roman', serif;
     font-weight: 700;
     font-size: 2em;
 }
 h2 {
-    font-family: 'Montserrat', 'Helvetica', sans-serif;
+    font-family: 'Publico', 'Georgia', 'Times New Roman', serif;
     font-weight: 700;
     font-size: 1.5em;
 }
 h3 {
-    font-family: 'Montserrat', 'Helvetica', sans-serif;
+    font-family: 'Publico', 'Georgia', 'Times New Roman', serif;
     font-weight: 700;
     font-size: 1.17em;
 }
+h4 {
+  font-family: 'Publico', 'Georgia', 'Times New Roman', serif;
+  font-weight: 700;
+  font-size: 1em;
+}
 h5 {
-    font-family: 'Montserrat', 'Helvetica', sans-serif;
+    font-family: 'Publico', 'Georgia', 'Times New Roman', serif;
     font-weight: 700;
     font-size: .83em;
 }
 h6 {
-    font-family: 'Montserrat', 'Helvetica', sans-serif;
+    font-family: 'Publico', 'Georgia', 'Times New Roman', serif;
     font-weight: 700;
     font-size: .75em;
 }
 
 p {
-    font: 100 1em/1.35em 'Josefin Slab';
+    font: 100 1em/1.35em  'Georgia', 'Times New Roman', serif;
 }
 
 li {
-    font: 100 1em/1.35em 'Josefin Slab';
+    font: 100 1em/1.35em  'Georgia', 'Times New Roman', serif;
+
 }
-
-
 /* ================================================== */
 /* Elegant from   Joe Richardson                      */
 /* http://webdesign.tutsplus.com/articles/            */
@@ -86,7 +90,7 @@ ul, ol {
 /* begin css */
 
 li.year {
-    font-family: 'Montserrat', 'Helvetica', sans-serif;
+    font-family: 'Publico', 'Georgia', 'Times New Roman', serif;
 }
 
 .fullwidth {
@@ -95,22 +99,27 @@ li.year {
 
 a {
     text-decoration: none;
-    color: #9a9a9a;
+    color: #696969;
 }
 
 a:hover {
     text-decoration: underline;
-    /*color: #c3c3c3;*/
+    color: #c3c3c3;
 }
 
 .box {
-    border: 1px solid #f4f4f4;
+    border: 1px solid #ededed;
     /* min-height: 200px;*/
     float: left;
     background-color: white;
+    border-radius: 3px;
     /*margin: 0 auto;*/
     /*margin-bottom: 0px;*/
 }
+
+
+
+
 
 /* center container with CSS */
 
@@ -190,6 +199,7 @@ div.bss-slides figure {
 body.hidden {
   display: none;
 }
+
 body.visible {
   display: block;
 }
@@ -230,10 +240,10 @@ div#mugshotPhoto div {
 #bigHeadline {
     font-size: 4em;
     text-shadow:
-    -0.5px -0.5px 0 #fff,
-    0.5px -0.5px 0 #fff,
-    -0.5px 0.5px 0 #fff,
-    0.5px 0.5px 0 #fff;
+    -0.5px -0.5px 0 #ededed,
+    0.5px -0.5px 0 #ededed,
+    -0.5px 0.5px 0 #ededed,
+    0.5px 0.5px 0 #ededed;
 }
 
 #bigMultimedia div {
@@ -244,6 +254,10 @@ div#mugshotPhoto div {
     max-width: 960px;
     margin-left: auto;
     margin-right: auto;
+}
+
+#mugshot  {
+  width: 300px;
 }
 
 .box.w1col {
@@ -263,9 +277,11 @@ div#mugshotPhoto div {
     width: 610px;
 }
 
-.box.w3col {
+.box.w3col, #mugshot.w3col {
     width: 920px;
 }
+
+
 
 .box.fullwidth {
     width:100%;
@@ -303,9 +319,7 @@ div#mugshotBio {
     #mugshotPhoto {
         max-width: 300px;
     }
-    #mugshot  {
-        width: 300px;
-    }
+
     object {
         height: 400px;
     }
@@ -348,13 +362,14 @@ div#mugshotBio {
         margin-left: auto;
         margin-right: auto;
     }
-    .box.w1col, .box.w2col, .box.w3col {
+    #mugshot {
+      width: 300px;
+      margin-left: 90px;
+    }
+    .box.w1col, .box.w2col, .box.w3col, #mugshot.w3col {
         width: 480px;
     }
-    #mugshot {
-        width: 300px;
-        margin-left: 90px;
-    }
+
     object {
         height: 300px;
     }
@@ -417,7 +432,7 @@ div#mugshotBio {
 }
 
 .gm-style-iw {
-    font: 100 1em/1.2em 'Josefin Slab';
+    font: 100 1em/1.2em 'Georgia', 'Times New Roman', serif;
     max-width: 150px;
     max-height: 400px;
 }
@@ -426,7 +441,6 @@ div#mugshotBio {
 /* table layout */
 
 table {
-  border: solid 1px black;
   text-align: left;
   width: 100%;
   border-spacing: 0;
@@ -435,24 +449,60 @@ table {
 }
 
 tr {
-  border: solid 1px black;
+  border: solid 1px #ededed;
 
 }
 
 
 td, th {
-  border: solid 1px black;
-  padding: 3px;
+  border: solid 1px #ededed;
+  padding: 5px;
+
 
 }
 
-
-thead {
-  background-color: #cccccc;
-
-}
 
 th {
   font-weight: bold;
+  background-color:#ededed;
 
+}
+
+
+
+/* overloading timeline.css */
+.timeline .event, .timeline.v1 .event,  .timeline.v1 .year,  .timeline .year {
+  border-radius: 3px;
+
+}
+
+
+.timeline .event, .timeline.v1 .event, .timeline.v2 .year, .timeline.v1.v2 .year,
+.timeline.v2 .event, .timeline.v1.v2 .event {
+  border: solid 1px #ededed;
+
+}
+
+
+.timeline .event:hover, .timeline.v1 .event:hover,.timeline .event:hover:after,
+.timeline.v1 .event:hover:after {
+  background-color: #ededed;
+}
+
+
+
+.w1col div:hover figcaption {
+  display: block;
+
+}
+
+.w1col div figcaption {
+  display: none;
+}
+
+
+/* reset slideshow fonts */
+
+.bss-slides figcaption{
+  font-family: 'Georgia', 'Times New Roman', serif;
 }

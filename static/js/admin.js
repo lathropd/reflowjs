@@ -13,15 +13,15 @@ var elementtest;
 function textToTable(element, target) {
   contents = element.val();
   rows = contents.trim().split("\n");
-  html = "<table>\n";
+  html = "<table>";
   html += "<tr><th>";
-  html += rows.shift().split("\t").join("</th><th>");
-  html += "</th></tr>\n";
+  html += rows.shift().trim().split("\t").join("</th><th>");
+  html += "</th></tr>";
 
   while (rows.length > 0) {
       html += "<tr><td>";
       html += rows.shift().split("\t").join("</td><td>");
-      html += "</td><td>\n";
+      html += "</td></tr>";
   }
   html +="</table>";
   target.text(html);
