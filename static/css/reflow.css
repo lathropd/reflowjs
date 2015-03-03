@@ -99,12 +99,12 @@ li.year {
 
 a {
     text-decoration: none;
-    color: #696969;
+    color: #044eb6;
 }
 
 a:hover {
     text-decoration: underline;
-    color: #c3c3c3;
+    color: #0088cc;
 }
 
 .box {
