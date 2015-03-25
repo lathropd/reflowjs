@@ -1,19 +1,10 @@
-var directory;
-var client;
-var skybox = "#skybox";
-var form;
-var O;
-var ul;
-var skyboxHTML;
-
-var elementtest;
-
-
+var directory, client, skybox = "#skybox", form, O, ul, skyboxHTML, elementtest;
+var idString, this_admin, name, thisObit;
 
 function textToTable(element, target) {
-  contents = element.val();
-  rows = contents.trim().split("\n");
-  html = "<table>";
+  var contents = element.val();
+  var rows = contents.trim().split("\n");
+  var html = "<table>";
   html += "<tr><th>";
   html += rows.shift().trim().split("\t").join("</th><th>");
   html += "</th></tr>";
@@ -75,7 +66,7 @@ function admin( options ) {
       this.drafts = entries;
       var skyboxList = skybox + " #skyboxDraftList";
       //$(skyboxList).html();
-      for (entry in entries) {
+      for (var entry in entries) {
         if (entries[entry].match(/\.json$/)) {
           idString  = entries[entry].replace(/\.json$/,'').replace(/\//g,'');
           name = idString.replace(/[\W_]/g, ' ');
@@ -143,14 +134,14 @@ function admin( options ) {
       $('.publishing').unbind('click').removeClass('unpublish').addClass('publish').text('Publish');
       $("button.publish").click(function(e){O.publish();return false;});
     }
-    thisFileName = this.data.file_name;
+
     client.readFile(this.data.file_name, function (error, results) {
       if (error) {
         return error;
       } else {
         //this.data.file_name  = name;
         this.data = JSON.parse(results);
-        this.data.file_name = thisFileName;
+        this.data.file_name = this.data.file_name;;
         thisObit = this;
         if (draft == "published") {
           this.makeUrl();
@@ -174,7 +165,7 @@ function admin( options ) {
       if (error) {
       } else {
         this.data.url = result.url;
-        webUrl = this.options.webUrl +"?file=" + result.url.replace(/https?\:\/\//,"");
+        var webUrl = this.options.webUrl +"?file=" + result.url.replace(/https?\:\/\//,"");
         thisObit.data.url = result.url;
         thisObit.data.webUrl = webUrl;
         $("#webUrl").text("View live");
@@ -245,7 +236,8 @@ function admin( options ) {
   }
 
   this.deleteFile = function () {
-    del = prompt("Enter 'Yes, please' to delete.");
+    //TODO type name of project to delete so you don't accidentally delete the wrong one
+    var del = prompt("Enter 'Yes, please' to delete.");
     if (del == 'Yes, please') {
       client.delete(this.data.file_name,  function () {
         this.loadEntries();
