@@ -1,18 +1,18 @@
-var directory, client, skybox = "#skybox", form, O, ul, skyboxHTML, elementtest;
+var client, skybox = "#skybox", form, O, skyboxHTML;
 var idString, this_admin, name, thisObit;
 
 function textToTable(element, target) {
-  var contents = element.val();
-  var rows = contents.trim().split("\n");
-  var html = "<table>";
+  var contents = element.val(),
+  rows = contents.trim().split("\n"),
+  html = "<table>";
   html += "<tr><th>";
   html += rows.shift().trim().split("\t").join("</th><th>");
   html += "</th></tr>";
 
   while (rows.length > 0) {
-      html += "<tr><td>";
-      html += rows.shift().split("\t").join("</td><td>");
-      html += "</td></tr>";
+    html += "<tr><td>";
+    html += rows.shift().split("\t").join("</td><td>");
+    html += "</td></tr>";
   }
   html +="</table>";
   target.text(html);
@@ -107,11 +107,10 @@ function admin( options ) {
     this.data = {};
     this.data.name = window.prompt("Enter name of a new subject","");
     this.data.file_name = this.options.folder+this.options.drafts+'/' + this.data.name.toLowerCase().replace(/\W+/g, '_') + '.json';
-
     if (this.entries.indexOf(this.data.name)>-1) {
       alert("A project with this name already exists!");
     } else {
-        this.write();
+      this.write();
     }
     this.data.url = this.data.file_name;
     $('.publishing').unbind('click').removeClass('unpublish').addClass('publish').text('Publish');
@@ -194,7 +193,6 @@ function admin( options ) {
         if (!element.value&&this_admin.data.hasOwnProperty(element.name)) {
           this_admin.data[element.name] = "";
         } else if (element.value){
-          console.log(element.value);
           this_admin.data[element.name] = element.value.trim();
           this_admin.data[element.id] = element.value.trim();
         }
@@ -203,7 +201,6 @@ function admin( options ) {
     this.data.mugshotName = this.data.name;
     this.write();
     alert("Changes saved");
-
   }
 
   this.publish = function () {
@@ -212,7 +209,6 @@ function admin( options ) {
     client.delete(oldName);
     this.write();
     this.load(this.name, 'published');
-
   }
 
   this.unpublish = function () {
@@ -242,7 +238,6 @@ function admin( options ) {
       client.delete(this.data.file_name,  function () {
         this.loadEntries();
       });
-
     } else {
       alert('Delete canceled.');
     }
