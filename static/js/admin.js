@@ -79,7 +79,8 @@ function admin( options ) {
         if (entries[entry].match(/\.json$/)) {
           idString  = entries[entry].replace(/\.json$/,'').replace(/\//g,'');
           name = idString.replace(/[\W_]/g, ' ');
-          if (this.options.folder+this.options.drafts + entries[entry] == this.data.file_name) {
+          this.entries.push(name);
+          if (this.options.folder+this.options.drafts + entries[entry] === this.data.file_name) {
             $(skyboxList).append("<option class='filename' id='"+idString+"' selected='selected'>"+name+"</option>");
           } else {
             $(skyboxList).append("<option class='filename' id='"+idString+"'>"+name+"</option>");
@@ -115,8 +116,9 @@ function admin( options ) {
     this.data = {};
     this.data.name = window.prompt("Enter name of a new subject","");
     this.data.file_name = this.options.folder+this.options.drafts+'/' + this.data.name.toLowerCase().replace(/\W+/g, '_') + '.json';
-    if (this.entries.indexOf(this.data.file_name)>-1) {
-        //silently fail, keeping the old one
+
+    if (this.entries.indexOf(this.data.name)>-1) {
+      alert("A project with this name already exists!");
     } else {
         this.write();
     }
