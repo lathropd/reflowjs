@@ -234,13 +234,11 @@ function admin( options ) {
     //TODO type name of project to delete so you don't accidentally delete the wrong one
     var del = prompt("Enter 'Yes, please' to delete.");
     if (del == 'Yes, please') {
-      client.delete(this.data.file_name,  function () {
-        this.loadEntries();
-      });
+      client.delete(this.data.file_name);
+      this.loadEntries();
     } else {
       alert('Delete canceled.');
     }
-
   }
   // load the initial set of entries
   this.loadEntries();
