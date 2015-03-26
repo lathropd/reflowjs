@@ -219,18 +219,15 @@ function admin( options ) {
     this.load(this.name, 'draft');
   }
 
-  this.rename = function (newName) {
-    var oldName = this.data.file_name;
-    if (oldName.search(this.data.published) >= 0 ) {
-      this.data.file_name = this.options.published + '/' + newName;
-    } else {
-      this.data.file_name = this.options.drafts + '/' + newName;
+  this.rename = function () {
+    var oldName = this.data.file_name,
+    newName = window.prompt("Enter new name","");
+    if(newName){
+      this.data.file_name = "/" + oldName.split("/")[1] + "/"+newName.toLowerCase().replace(/\W+/g, '_') + '.json';
+      client.delete(oldName);
+      this.save();
     }
-    this.save();
-    client.delete(oldName);
-    window.reload();
   }
-
   this.deleteFile = function () {
     //TODO type name of project to delete so you don't accidentally delete the wrong one
     var del = prompt("Enter 'Yes, please' to delete.");
