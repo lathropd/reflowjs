@@ -71,7 +71,8 @@ function admin( options ) {
           idString  = entries[entry].replace(/\.json$/,'').replace(/\//g,'');
           name = idString.replace(/[\W_]/g, ' ');
           this.entries.push(name);
-          if (this.options.folder+this.options.drafts + entries[entry] === this.data.file_name) {
+          //TODO move this to rename func since it's really only relevant then, nothing selected by default
+          if (this.options.folder+this.options.drafts + "/" + entries[entry] === this.data.file_name) {
             $(skyboxList).append("<option class='filename' id='"+idString+"' selected='selected'>"+name+"</option>");
           } else {
             $(skyboxList).append("<option class='filename' id='"+idString+"'>"+name+"</option>");
@@ -82,6 +83,7 @@ function admin( options ) {
       $("#skyboxDraftList option.filename").on("click", function (event) {this_admin.load(this.id+".json")});
       //$("#"+(this.data.file_name||"nothing").replace(/.json/,"")).click();
     });
+    //TODO wrap this into the other function it's duplicating a lot of stuff
     client.readdir(this.options.folder+this.options.published, function (error, entries) {
       this.published = entries;
       var skyboxList = skybox + " #skyboxPubList";
@@ -89,7 +91,7 @@ function admin( options ) {
         if (entries[entry].match(/\.json$/)) {
           idString  = entries[entry].replace(/\.json$/,'').replace(/\//g,'');
           name = idString.replace(/[\W_]/g, ' ');
-          if (this.options.folder+this.options.published + entries[entry] == this.data.file_name) {
+          if (this.options.folder+this.options.published + "/" + entries[entry] === this.data.file_name) {
             $(skyboxList).append("<option class='filename' id='"+idString+"' selected='selected'>"+name+"</option>");
           } else {
             $(skyboxList).append("<option class='filename' id='"+idString+"'>"+name+"</option>");
