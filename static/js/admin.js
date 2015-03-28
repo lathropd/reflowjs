@@ -1,5 +1,5 @@
 var client, skybox = "#skybox", form, O, skyboxHTML;
-var idString, this_admin, name, thisObit;
+var idString, this_admin, displayName, thisObit;
 
 function textToTable(element, target) {
   var contents = element.val(),
@@ -62,20 +62,20 @@ function admin( options ) {
     // create a variable we can pass to callbacks
     this_admin = this;
     $(skybox).html(skyboxHTML);
-    client.readdir(this.options.folder+this.options.drafts, function (error, entries) {
-      this.drafts = entries;
+    client.readdir(this.options.folder+this.options.drafts, function (error, items) {
+      this.drafts = items;
       var skyboxList = skybox + " #skyboxDraftList";
       //$(skyboxList).html();
-      for (var entry in entries) {
-        if (entries[entry].match(/\.json$/)) {
-          idString  = entries[entry].replace(/\.json$/,'').replace(/\//g,'');
-          name = idString.replace(/[\W_]/g, ' ');
-          this.entries.push(name);
+      for (var item in items) {
+        if (items[item].match(/\.json$/)) {
+          idString  = items[item].replace(/\.json$/,'').replace(/\//g,'');
+          displayName = idString.replace(/[\W_]/g, ' ');
+          this.entries.push(items[item]);
           //TODO move this to rename func since it's really only relevant then, nothing selected by default
-          if (this.options.folder+this.options.drafts + "/" + entries[entry] === this.data.file_name) {
-            $(skyboxList).append("<option class='filename' id='"+idString+"' selected='selected'>"+name+"</option>");
+          if (this.options.folder+this.options.drafts + "/" + items[item] === this.data.file_name) {
+            $(skyboxList).append("<option class='filename' id='"+idString+"' selected='selected'>"+displayName+"</option>");
           } else {
-            $(skyboxList).append("<option class='filename' id='"+idString+"'>"+name+"</option>");
+            $(skyboxList).append("<option class='filename' id='"+idString+"'>"+displayName+"</option>");
           }
         }
       }
@@ -84,17 +84,18 @@ function admin( options ) {
       //$("#"+(this.data.file_name||"nothing").replace(/.json/,"")).click();
     });
     //TODO wrap this into the other function it's duplicating a lot of stuff
-    client.readdir(this.options.folder+this.options.published, function (error, entries) {
-      this.published = entries;
+    client.readdir(this.options.folder+this.options.published, function (error, items) {
+      this.published = items;
       var skyboxList = skybox + " #skyboxPubList";
-      for (entry in entries) {
-        if (entries[entry].match(/\.json$/)) {
-          idString  = entries[entry].replace(/\.json$/,'').replace(/\//g,'');
-          name = idString.replace(/[\W_]/g, ' ');
-          if (this.options.folder+this.options.published + "/" + entries[entry] === this.data.file_name) {
-            $(skyboxList).append("<option class='filename' id='"+idString+"' selected='selected'>"+name+"</option>");
+      for (var item in items) {
+        if (items[item].match(/\.json$/)) {
+          idString = items[item].replace(/\.json$/,'').replace(/\//g,'');
+          displayName = idString.replace(/[\W_]/g, ' ');
+          this.entries.push(items[item]);
+          if (this.options.folder+this.options.published + "/" + items[item] === this.data.file_name) {
+            $(skyboxList).append("<option class='filename' id='"+idString+"' selected='selected'>"+ displayName+"</option>");
           } else {
-            $(skyboxList).append("<option class='filename' id='"+idString+"'>"+name+"</option>");
+            $(skyboxList).append("<option class='filename' id='"+idString+"'>"+ displayName+"</option>");
           }
         }
         $("#skyboxPubList option.filename").on("click", function (event) {this_admin.load(this.id+".json", 'published'); console.log("t")});
@@ -107,9 +108,11 @@ function admin( options ) {
     // create a variable we can pass to callbacks
     this_admin = this;
     this.data = {};
-    this.data.name = window.prompt("Enter name of a new subject","");
-    this.data.file_name = this.options.folder+this.options.drafts+'/' + this.data.name.toLowerCase().replace(/\W+/g, '_') + '.json';
-    if (this.entries.indexOf(this.data.name)>-1) {
+    this.data.displayName = window.prompt("Enter name of a new subject","");
+    this.data.bioName = this.data.displayName; //form field
+    var underscored = this.data.displayName.toLowerCase().replace(/\W+/g, '_');
+    this.data.file_name = this.options.folder+this.options.drafts+'/' + underscored + '.json';
+    if (this.entries.indexOf(underscored + '.json')>-1) {
       alert("A project with this name already exists!");
     } else {
       this.write();
@@ -119,19 +122,19 @@ function admin( options ) {
     $("button.publish").click(function(e){O.publish();return false;});
   };
 
-  this.load = function (name, draft) {
+  this.load = function (file, draftStatus) {
     // create a variable we can pass to callbacks
     this_admin = this;
     form.find("input, textarea").val("");
     form.find("a#url, a#webUrl, a#previewUrl").text("this will populate automatically").prop("href","");
     $("button#reset").click();
-    if (draft == 'published'){
-      this.data.file_name = this.options.folder + this.options.published+'/' + name;
+    if (draftStatus == 'published'){
+      this.data.file_name = this.options.folder + this.options.published+'/' + file;
       $('.publishing').unbind('click').removeClass('publish').addClass('unpublish').text('Unpublish');
       $("button.unpublish").click(function(e){O.unpublish();return false;});
     }
     else {
-      this.data.file_name = this.options.folder + this.options.drafts +'/'+ name;
+      this.data.file_name = this.options.folder + this.options.drafts +'/'+ file;
       $('.publishing').unbind('click').removeClass('unpublish').addClass('publish').text('Publish');
       $("button.publish").click(function(e){O.publish();return false;});
     }
@@ -144,7 +147,7 @@ function admin( options ) {
         this.data = JSON.parse(results);
         this.data.file_name = this.data.file_name;;
         thisObit = this;
-        if (draft == "published") {
+        if (draftStatus == "published") {
           this.makeUrl();
         } else {
           $("#webUrl").text("View preview");
@@ -200,7 +203,7 @@ function admin( options ) {
         }
       }
     });
-    this.data.mugshotName = this.data.name;
+    this.data.mugshotName = this.data.bioName;
     this.write();
     alert("Changes saved");
   }
@@ -210,7 +213,7 @@ function admin( options ) {
     this.data.file_name = this.data.file_name.replace(this.options.drafts, this.options.published);
     client.delete(oldName);
     this.write();
-    this.load(this.name, 'published');
+    this.load(this.data.file_name, 'published');
   }
 
   this.unpublish = function () {
@@ -218,13 +221,14 @@ function admin( options ) {
     this.data.file_name = this.data.file_name.replace(this.options.published, this.options.drafts);
     this.write();
     client.delete(oldName);
-    this.load(this.name, 'draft');
+    this.load(this.data.file_name, 'draft');
   }
 
   this.rename = function () {
     var oldName = this.data.file_name,
     newName = window.prompt("Enter new name","");
     if(newName){
+      this.data.displayName = newName;
       this.data.file_name = "/" + oldName.split("/")[1] + "/"+newName.toLowerCase().replace(/\W+/g, '_') + '.json';
       client.delete(oldName);
       this.save();
