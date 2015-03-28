@@ -59,6 +59,7 @@ function admin( options ) {
   // (technically these are attributes containing functions)
   // load entries
   this.loadEntries = function() {
+    this.entries = []; //clear it
     // create a variable we can pass to callbacks
     this_admin = this;
     $(skybox).html(skyboxHTML);
@@ -79,8 +80,7 @@ function admin( options ) {
           }
         }
       }
-
-      $("#skyboxDraftList option.filename").on("click", function (event) {this_admin.load(this.id+".json")});
+      $("#skyboxDraftList option.filename").on("click", function (event) {this_admin.load(this.id+".json", 'draft');});
       //$("#"+(this.data.file_name||"nothing").replace(/.json/,"")).click();
     });
     //TODO wrap this into the other function it's duplicating a lot of stuff
@@ -98,7 +98,7 @@ function admin( options ) {
             $(skyboxList).append("<option class='filename' id='"+idString+"'>"+ displayName+"</option>");
           }
         }
-        $("#skyboxPubList option.filename").on("click", function (event) {this_admin.load(this.id+".json", 'published'); console.log("t")});
+        $("#skyboxPubList option.filename").on("click", function (event) {this_admin.load(this.id+".json", 'published');});
       }
     });
   };
@@ -108,18 +108,20 @@ function admin( options ) {
     // create a variable we can pass to callbacks
     this_admin = this;
     this.data = {};
-    this.data.displayName = window.prompt("Enter name of a new subject","");
-    this.data.bioName = this.data.displayName; //form field
-    var underscored = this.data.displayName.toLowerCase().replace(/\W+/g, '_');
-    this.data.file_name = this.options.folder+this.options.drafts+'/' + underscored + '.json';
-    if (this.entries.indexOf(underscored + '.json')>-1) {
-      alert("A project with this name already exists!");
-    } else {
-      this.write();
+    this.data.displayName = window.prompt("Enter name of a new subject","") || null;
+    if(this.data.displayName){
+      this.data.bioName = this.data.displayName; //form field
+      var underscored = this.data.displayName.toLowerCase().replace(/\W+/g, '_');
+      this.data.file_name = this.options.folder+this.options.drafts+'/' + underscored + '.json';
+      if (this.entries.indexOf(underscored + '.json')>-1) {
+        alert("A project with this name already exists!");
+      } else {
+        this.write();
+      }
+      this.data.url = this.data.file_name;
+      $('.publishing').unbind('click').removeClass('unpublish').addClass('publish').text('Publish');
+      $("button.publish").click(function(e){O.publish();return false;});
     }
-    this.data.url = this.data.file_name;
-    $('.publishing').unbind('click').removeClass('unpublish').addClass('publish').text('Publish');
-    $("button.publish").click(function(e){O.publish();return false;});
   };
 
   this.load = function (file, draftStatus) {
@@ -143,9 +145,7 @@ function admin( options ) {
       if (error) {
         return error;
       } else {
-        //this.data.file_name  = name;
         this.data = JSON.parse(results);
-        this.data.file_name = this.data.file_name;;
         thisObit = this;
         if (draftStatus == "published") {
           this.makeUrl();
@@ -226,7 +226,7 @@ function admin( options ) {
 
   this.rename = function () {
     var oldName = this.data.file_name,
-    newName = window.prompt("Enter new name","");
+    newName = window.prompt("Enter new name","") || null;
     if(newName){
       this.data.displayName = newName;
       this.data.file_name = "/" + oldName.split("/")[1] + "/"+newName.toLowerCase().replace(/\W+/g, '_') + '.json';
@@ -236,7 +236,7 @@ function admin( options ) {
   }
   this.deleteFile = function () {
     //TODO type name of project to delete so you don't accidentally delete the wrong one
-    var del = prompt("Enter 'Yes, please' to delete.");
+    var del = prompt("Enter 'Yes, please' to delete file named '" + this.data.displayName + "'") || null;
     if (del == 'Yes, please') {
       client.delete(this.data.file_name);
       this.loadEntries();
@@ -246,7 +246,6 @@ function admin( options ) {
   }
   // load the initial set of entries
   this.loadEntries();
-
   // return the function as a JS object
   return this;
 }
