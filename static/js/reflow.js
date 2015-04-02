@@ -172,9 +172,9 @@ function makeMap(a, b, c) {
 
 	for (var i in a.points ) {
 		windows.push(a.points[i][1]);
+		var toGeocode = { address: a.points[i][0] };
 		reflowSettings.geocoder.geocode(toGeocode, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
-		var toGeocode = { address: a.points[i][0] };
 				var marker = new google.maps.Marker({
 					map: map,
 					position: results[0].geometry.location,
