@@ -209,11 +209,13 @@ function admin( options ) {
   }
 
   this.publish = function () {
-    var oldName = this.data.file_name;
-    this.data.file_name = this.data.file_name.replace(this.options.drafts, this.options.published);
-    client.delete(oldName);
-    this.write();
-    this.load(this.data.file_name, 'published');
+    if(checkSelected(this.data.file_name, "publish")){
+      var oldName = this.data.file_name;
+      this.data.file_name = this.data.file_name.replace(this.options.drafts, this.options.published);
+      client.delete(oldName);
+      this.write();
+      this.load(this.data.file_name, 'published');
+    }
   }
 
   this.unpublish = function () {
@@ -225,23 +227,32 @@ function admin( options ) {
   }
 
   this.rename = function () {
-    var oldName = this.data.file_name,
-    newName = window.prompt("Enter new name","") || null;
-    if(newName){
-      this.data.displayName = newName;
-      this.data.file_name = "/" + oldName.split("/")[1] + "/"+newName.toLowerCase().replace(/\W+/g, '_') + '.json';
-      client.delete(oldName);
-      this.save();
+    if(checkSelected(this.data.file_name, "rename")){
+      var oldName = this.data.file_name,
+      newName = window.prompt("Enter new name","") || null;
+      if(newName){
+        this.data.displayName = newName;
+        this.data.file_name = "/" + oldName.split("/")[1] + "/"+newName.toLowerCase().replace(/\W+/g, '_') + '.json';
+        client.delete(oldName);
+        this.save();
+      }
     }
   }
   this.deleteFile = function () {
-    //TODO type name of project to delete so you don't accidentally delete the wrong one
-    var del = prompt("Enter 'Yes, please' to delete file named '" + this.data.displayName + "'") || null;
-    if (del == 'Yes, please') {
-      client.delete(this.data.file_name);
-      this.loadEntries();
+    //TODO hitting enter doesn't cause the entry to be removed from the visual list but clicking ok does?
+    if(checkSelected(this.data.file_name, "delete")){
+      var del = prompt("Enter 'Yes, please' to delete file named '" + this.data.displayName + "'") || null;
+      if (del == 'Yes, please') {
+        client.delete(this.data.file_name);
+        this.loadEntries();
+      }
+    }
+  }
+  function checkSelected(string, action){
+    if(string){
+      return true;
     } else {
-      alert('Delete canceled.');
+      alert("Please select a project to " + action);
     }
   }
   // load the initial set of entries
