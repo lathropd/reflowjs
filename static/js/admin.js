@@ -72,9 +72,9 @@ function admin( options ) {
           idString  = items[item].replace(/\.json$/,'').replace(/\//g,'');
           displayName = idString.replace(/[\W_]/g, ' ');
           this.entries.push(items[item]);
-          //TODO move this to rename func since it's really only relevant then, nothing selected by default
           if (this.options.folder+this.options.drafts + "/" + items[item] === this.data.file_name) {
             $(skyboxList).append("<option class='filename' id='"+idString+"' selected='selected'>"+displayName+"</option>");
+            this_admin.load(idString+".json", "draft");
           } else {
             $(skyboxList).append("<option class='filename' id='"+idString+"'>"+displayName+"</option>");
           }
