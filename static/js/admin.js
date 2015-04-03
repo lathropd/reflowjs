@@ -1,27 +1,18 @@
-var directory;
-var client;
-var skybox = "#skybox";
-var form;
-var O;
-var ul;
-var skyboxHTML;
-
-var elementtest;
-
-
+var client, skybox = "#skybox", form, O, skyboxHTML;
+var idString, this_admin, displayName, thisObit;
 
 function textToTable(element, target) {
-  contents = element.val();
-  rows = contents.trim().split("\n");
+  var contents = element.val(),
+  rows = contents.trim().split("\n"),
   html = "<table>";
   html += "<tr><th>";
   html += rows.shift().trim().split("\t").join("</th><th>");
   html += "</th></tr>";
 
   while (rows.length > 0) {
-      html += "<tr><td>";
-      html += rows.shift().split("\t").join("</td><td>");
-      html += "</td></tr>";
+    html += "<tr><td>";
+    html += rows.shift().split("\t").join("</td><td>");
+    html += "</td></tr>";
   }
   html +="</table>";
   target.text(html);
@@ -68,42 +59,46 @@ function admin( options ) {
   // (technically these are attributes containing functions)
   // load entries
   this.loadEntries = function() {
+    this.entries = []; //clear it
     // create a variable we can pass to callbacks
     this_admin = this;
     $(skybox).html(skyboxHTML);
-    client.readdir(this.options.folder+this.options.drafts, function (error, entries) {
-      this.drafts = entries;
+    client.readdir(this.options.folder+this.options.drafts, function (error, items) {
+      this.drafts = items;
       var skyboxList = skybox + " #skyboxDraftList";
       //$(skyboxList).html();
-      for (entry in entries) {
-        if (entries[entry].match(/\.json$/)) {
-          idString  = entries[entry].replace(/\.json$/,'').replace(/\//g,'');
-          name = idString.replace(/[\W_]/g, ' ');
-          if (this.options.folder+this.options.drafts + entries[entry] == this.data.file_name) {
-            $(skyboxList).append("<option class='filename' id='"+idString+"' selected='selected'>"+name+"</option>");
+      for (var item in items) {
+        if (items[item].match(/\.json$/)) {
+          idString  = items[item].replace(/\.json$/,'').replace(/\//g,'');
+          displayName = idString.replace(/[\W_]/g, ' ');
+          this.entries.push(items[item]);
+          if (this.options.folder+this.options.drafts + "/" + items[item] === this.data.file_name) {
+            $(skyboxList).append("<option class='filename' id='"+idString+"' selected='selected'>"+displayName+"</option>");
+            this_admin.load(idString+".json", "draft");
           } else {
-            $(skyboxList).append("<option class='filename' id='"+idString+"'>"+name+"</option>");
+            $(skyboxList).append("<option class='filename' id='"+idString+"'>"+displayName+"</option>");
           }
         }
       }
-
-      $("#skyboxDraftList option.filename").on("click", function (event) {this_admin.load(this.id+".json")});
+      $("#skyboxDraftList option.filename").on("click", function (event) {this_admin.load(this.id+".json", 'draft');});
       //$("#"+(this.data.file_name||"nothing").replace(/.json/,"")).click();
     });
-    client.readdir(this.options.folder+this.options.published, function (error, entries) {
-      this.published = entries;
+    //TODO wrap this into the other function it's duplicating a lot of stuff
+    client.readdir(this.options.folder+this.options.published, function (error, items) {
+      this.published = items;
       var skyboxList = skybox + " #skyboxPubList";
-      for (entry in entries) {
-        if (entries[entry].match(/\.json$/)) {
-          idString  = entries[entry].replace(/\.json$/,'').replace(/\//g,'');
-          name = idString.replace(/[\W_]/g, ' ');
-          if (this.options.folder+this.options.published + entries[entry] == this.data.file_name) {
-            $(skyboxList).append("<option class='filename' id='"+idString+"' selected='selected'>"+name+"</option>");
+      for (var item in items) {
+        if (items[item].match(/\.json$/)) {
+          idString = items[item].replace(/\.json$/,'').replace(/\//g,'');
+          displayName = idString.replace(/[\W_]/g, ' ');
+          this.entries.push(items[item]);
+          if (this.options.folder+this.options.published + "/" + items[item] === this.data.file_name) {
+            $(skyboxList).append("<option class='filename' id='"+idString+"' selected='selected'>"+ displayName+"</option>");
           } else {
-            $(skyboxList).append("<option class='filename' id='"+idString+"'>"+name+"</option>");
+            $(skyboxList).append("<option class='filename' id='"+idString+"'>"+ displayName+"</option>");
           }
         }
-        $("#skyboxPubList option.filename").on("click", function (event) {this_admin.load(this.id+".json", 'published'); console.log("t")});
+        $("#skyboxPubList option.filename").on("click", function (event) {this_admin.load(this.id+".json", 'published');});
       }
     });
   };
@@ -113,44 +108,46 @@ function admin( options ) {
     // create a variable we can pass to callbacks
     this_admin = this;
     this.data = {};
-    this.data.name = window.prompt("Enter name of a new subject","");
-    this.data.file_name = this.options.folder+this.options.drafts+'/' + this.data.name.toLowerCase().replace(/\W+/g, '_') + '.json';
-    if (this.entries.indexOf(this.data.file_name)>-1) {
-        //silently fail, keeping the old one
-    } else {
+    this.data.displayName = window.prompt("Enter name of a new subject","") || null;
+    if(this.data.displayName){
+      this.data.bioName = this.data.displayName; //form field
+      var underscored = this.data.displayName.toLowerCase().replace(/\W+/g, '_');
+      this.data.file_name = this.options.folder+this.options.drafts+'/' + underscored + '.json';
+      if (this.entries.indexOf(underscored + '.json')>-1) {
+        alert("A project with this name already exists!");
+      } else {
         this.write();
+      }
+      this.data.url = this.data.file_name;
+      $('.publishing').unbind('click').removeClass('unpublish').addClass('publish').text('Publish');
+      $("button.publish").click(function(e){O.publish();return false;});
     }
-    this.data.url = this.data.file_name;
-    $('.publishing').unbind('click').removeClass('unpublish').addClass('publish').text('Publish');
-    $("button.publish").click(function(e){O.publish();return false;});
   };
 
-  this.load = function (name, draft) {
+  this.load = function (file, draftStatus) {
     // create a variable we can pass to callbacks
     this_admin = this;
     form.find("input, textarea").val("");
     form.find("a#url, a#webUrl, a#previewUrl").text("this will populate automatically").prop("href","");
     $("button#reset").click();
-    if (draft == 'published'){
-      this.data.file_name = this.options.folder + this.options.published+'/' + name;
+    if (draftStatus == 'published'){
+      this.data.file_name = this.options.folder + this.options.published+'/' + file;
       $('.publishing').unbind('click').removeClass('publish').addClass('unpublish').text('Unpublish');
       $("button.unpublish").click(function(e){O.unpublish();return false;});
     }
     else {
-      this.data.file_name = this.options.folder + this.options.drafts +'/'+ name;
+      this.data.file_name = this.options.folder + this.options.drafts +'/'+ file;
       $('.publishing').unbind('click').removeClass('unpublish').addClass('publish').text('Publish');
       $("button.publish").click(function(e){O.publish();return false;});
     }
-    thisFileName = this.data.file_name;
+
     client.readFile(this.data.file_name, function (error, results) {
       if (error) {
         return error;
       } else {
-        //this.data.file_name  = name;
         this.data = JSON.parse(results);
-        this.data.file_name = thisFileName;
         thisObit = this;
-        if (draft == "published") {
+        if (draftStatus == "published") {
           this.makeUrl();
         } else {
           $("#webUrl").text("View preview");
@@ -172,7 +169,7 @@ function admin( options ) {
       if (error) {
       } else {
         this.data.url = result.url;
-        webUrl = this.options.webUrl +"?file=" + result.url.replace(/https?\:\/\//,"");
+        var webUrl = this.options.webUrl +"?file=" + result.url.replace(/https?\:\/\//,"");
         thisObit.data.url = result.url;
         thisObit.data.webUrl = webUrl;
         $("#webUrl").text("View live");
@@ -201,25 +198,24 @@ function admin( options ) {
         if (!element.value&&this_admin.data.hasOwnProperty(element.name)) {
           this_admin.data[element.name] = "";
         } else if (element.value){
-          console.log(element.value);
           this_admin.data[element.name] = element.value.trim();
           this_admin.data[element.id] = element.value.trim();
         }
       }
     });
-    this.data.mugshotName = this.data.name;
+    this.data.mugshotName = this.data.bioName;
     this.write();
     alert("Changes saved");
-
   }
 
   this.publish = function () {
-    var oldName = this.data.file_name;
-    this.data.file_name = this.data.file_name.replace(this.options.drafts, this.options.published);
-    client.delete(oldName);
-    this.write();
-    this.load(this.name, 'published');
-
+    if(checkSelected(this.data.file_name, "publish")){
+      var oldName = this.data.file_name;
+      this.data.file_name = this.data.file_name.replace(this.options.drafts, this.options.published);
+      client.delete(oldName);
+      this.write();
+      this.load(this.data.file_name, 'published');
+    }
   }
 
   this.unpublish = function () {
@@ -227,36 +223,40 @@ function admin( options ) {
     this.data.file_name = this.data.file_name.replace(this.options.published, this.options.drafts);
     this.write();
     client.delete(oldName);
-    this.load(this.name, 'draft');
+    this.load(this.data.file_name, 'draft');
   }
 
-  this.rename = function (newName) {
-    var oldName = this.data.file_name;
-    if (oldName.search(this.data.published) >= 0 ) {
-      this.data.file_name = this.options.published + '/' + newName;
-    } else {
-      this.data.file_name = this.options.drafts + '/' + newName;
+  this.rename = function () {
+    if(checkSelected(this.data.file_name, "rename")){
+      var oldName = this.data.file_name,
+      newName = window.prompt("Enter new name","") || null;
+      if(newName){
+        this.data.displayName = newName;
+        this.data.file_name = "/" + oldName.split("/")[1] + "/"+newName.toLowerCase().replace(/\W+/g, '_') + '.json';
+        client.delete(oldName);
+        this.save();
+      }
     }
-    this.save();
-    client.delete(oldName);
-    window.reload();
   }
-
   this.deleteFile = function () {
-    del = prompt("Enter 'Yes, please' to delete.");
-    if (del == 'Yes, please') {
-      client.delete(this.data.file_name,  function () {
+    //TODO hitting enter doesn't cause the entry to be removed from the visual list but clicking ok does?
+    if(checkSelected(this.data.file_name, "delete")){
+      var del = prompt("Enter 'Yes, please' to delete file named '" + this.data.displayName + "'") || null;
+      if (del == 'Yes, please') {
+        client.delete(this.data.file_name);
         this.loadEntries();
-      });
-
-    } else {
-      alert('Delete canceled.');
+      }
     }
-
+  }
+  function checkSelected(string, action){
+    if(string){
+      return true;
+    } else {
+      alert("Please select a project to " + action);
+    }
   }
   // load the initial set of entries
   this.loadEntries();
-
   // return the function as a JS object
   return this;
 }

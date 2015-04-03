@@ -4,7 +4,7 @@
 /* (c) 2014 Daniel Lathrop                            */
 /* Released under the MIT license                     */
 /* ================================================== */
-@import url(http://fonts.googleapis.com/css?family=Montserrat|Josefin+Slab:100);
+@import url(//fonts.googleapis.com/css?family=Montserrat|Josefin+Slab:100);
 * {
     font: 100 1em/1.25em 'Georgia', 'Times New Roman', serif;
 }
@@ -99,12 +99,12 @@ li.year {
 
 a {
     text-decoration: none;
-    color: #696969;
+    color: #044eb6;
 }
 
 a:hover {
     text-decoration: underline;
-    color: #c3c3c3;
+    color: #0088cc;
 }
 
 .box {

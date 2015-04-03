@@ -24,6 +24,7 @@ In admin.html you need to set:
 
 
 In preview.html you need to set:
+* _googleKey_ to a valid Google Maps API key
 * Dropbox.Client _key_
 * Dropbox.Client _token_
 
