@@ -9,7 +9,7 @@
     if (location.protocol == 'http:' && !(location.href.match(/localhost/)))
       location.href = location.href.replace(/^http:/, 'https:');
     </script>
-    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900" rel="stylesheet" type="text/css">
     <link href="static/css/reflow.css" rel="stylesheet" type="text/css">
     <link href="static/css/admin.css" rel="stylesheet" type="text/css">
     <link href="static/css/ajc.css" rel="stylesheet" type="text/css">
@@ -67,7 +67,7 @@
             Enter the name as you intend it to be displayed.
             Use  <code>&amp;nbsp;</code> (the "non-breaking space") to control where the line break
             occurs.<br>
-            <input id="name" name="name"/>
+            <input id="bioName" name="bioName"/>
           </p>
           <h4>Headline <small><em>(optional)</em></small></h4>
           <p>
@@ -302,7 +302,8 @@
 			<h4>Want to make a table in one of your boxes?</h4>
 			<p>
 				Paste a table from a spreadsheet like Excel into the box below
-				and it will generate the HTML in the box below.
+				and it will generate the HTML in the box below. Copy and paste
+				the result into a multimedia block.
 			</p>
 			<textarea id="tableGenerator" class="codeGenerator">
 				Header1	Header2	Header3	Header4
@@ -352,6 +353,8 @@
 					to map on a second line and the material for the info window on the
 					third and subsequent lines. The info window can contain basic
 					formatting. Use &lt;br&gt; to add line breaks within the window.
+					Use a semicolon to indicate the end of your info window text and
+					start the next address on the next line 
 				</li>
 				<small>
 					<pre>
