@@ -170,7 +170,7 @@ div.left, div.right {
     overflow: scroll;
     padding-left: 10px;
     padding-right: 50px;
-    
+
   }
 
   div.left {
@@ -235,4 +235,9 @@ pre {
 
 .left h4 {
   clear: both;
+}
+
+#webUrl {
+  width: 190px;
+  display: inline-block;
 }
